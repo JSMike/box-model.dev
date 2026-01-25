@@ -1,0 +1,13 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  --list-padding: #{tokens.$component-list-padding};
+  --list-gap: #{tokens.$component-list-gap};
+  --list-marker-color: #{tokens.$component-list-marker-color};
+  --list-background: #{tokens.$component-list-background};
+  --list-border: #{tokens.$component-list-border};
+  --list-border-width: #{tokens.$component-list-border-width};
+  @include theme.custom-property('list-marker-color', 'box-model-text-primary');
+}

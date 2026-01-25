@@ -1,0 +1,11 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+tooltip-box .tooltip-box__trigger {
+  cursor: help;
+}
+
+tooltip-box span.tooltip-box__trigger {
+  @include theme.property(color, 'box-model-text-primary');
+  border-bottom: 1px dashed currentColor;
+}

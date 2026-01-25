@@ -1,0 +1,21 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: block;
+  --columns-gap: #{tokens.$space-scale-300};
+  --columns-min-width: 15rem;
+}
+
+:host([gap='sm']) {
+  --columns-gap: #{tokens.$space-scale-150};
+}
+
+:host([gap='lg']) {
+  --columns-gap: #{tokens.$space-scale-400};
+}
+
+.columns-box__grid {
+  display: grid;
+  gap: var(--columns-gap);
+  grid-template-columns: repeat(auto-fit, minmax(var(--columns-min-width), 1fr));
+}

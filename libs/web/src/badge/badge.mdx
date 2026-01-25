@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as BadgeBoxStories from './badge.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={BadgeBoxStories} />
+
+# Badge Box
+
+Highlights counts or unread states with compact adornments.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { BadgeBox } from '@box-model/web/badge';
+  `}
+/>
+
+<Canvas of={BadgeBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={BadgeBoxStories} />

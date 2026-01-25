@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as TooltipBoxStories from './tooltip.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={TooltipBoxStories} />
+
+# Tooltip Box
+
+Styles tooltip surfaces for supplemental guidance. Provide a trigger via `slot="trigger"` (or rely on the built-in dashed `?`) and place the tooltip message in the default slot. The tooltip only appears when the trigger is hovered or focused.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { TooltipBox } from '@box-model/web/tooltip';
+  `}
+/>
+
+<Canvas of={TooltipBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={TooltipBoxStories} />
+
+
+## Usage
+
+<Source
+  dark={true}
+  format="dedent"
+  language="html"
+  code={`
+    <tooltip-box>
+      <status-icon-box slot="trigger" variant="info" label="Explain status" style="cursor: help;">?</status-icon-box>
+      <span>Tooltips borrow CSS anchor positioning when available.</span>
+    </tooltip-box>
+  `}
+/>

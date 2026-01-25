@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as TextareaStories from './textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+Multi-line text input.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Textarea } from '@box-model/rsd/textarea';
+  `}
+/>
+
+<Canvas of={TextareaStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={TextareaStories} />

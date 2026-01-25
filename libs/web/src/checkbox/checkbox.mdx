@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as CheckboxGroupBoxStories from './checkbox.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={CheckboxGroupBoxStories} />
+
+# Checkbox Group Box
+
+Wraps related checkboxes with a shared legend, spacing, and focus styles so multi-select inputs align with the design system.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { CheckboxGroupBox } from '@box-model/web/checkbox';
+  `}
+/>
+
+<Canvas of={CheckboxGroupBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={CheckboxGroupBoxStories} />

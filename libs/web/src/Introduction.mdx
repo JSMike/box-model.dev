@@ -1,0 +1,28 @@
+import { Meta, Canvas, Source } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './button/button.stories.ts';
+import * as CardStories from './card/card.stories.ts';
+import * as BannerStories from './banner/banner.stories.ts';
+
+<Meta title="Introduction" />
+
+# Box Model UI
+
+Box Model UI is a playful nod to the CSS box model—the kind of design system a developer might assemble solo when all they have are rectangles, good intentions, and tokens. Everything is a box (`button-box`, `card-box`, `banner-box`), yet consistent structure and Lit components keep the system cohesive and production-ready.
+
+## Install & Import
+
+<Source
+  dark={true}
+  format="dedent"
+  language="bash"
+  code={`
+    npm install @box-model/web
+  `}
+/>
+
+## Design Principles
+
+- **Predictable structure** – Each component ships with host styles plus a `.slot.scss` file that handles light-DOM selectors via `slotStyleService`. Never use `::slotted()`; instead scope selectors like `card-box [slot='header']` so specificity behaves.
+- **Token-driven** – Colors, spacing, typography, and motion come from `libs/web/src/styles/_tokens.scss`. Host SCSS files surface those tokens as CSS custom properties for easy theming.
+- **Endearingly utilitarian** – Slots for headers, footers, actions, and close controls make it simple to compose boxy layouts that still read as intentional UI.
+- **Accessible defaults** – Storybook stories demonstrate real markup and interactions, so consumers can copy/paste patterns that already meet accessibility expectations.

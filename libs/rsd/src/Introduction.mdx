@@ -1,0 +1,45 @@
+import { Canvas, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './button/button.stories';
+import * as CardStories from './card/card.stories';
+import * as BadgeStories from './badge/badge.stories';
+
+<Meta title="Introduction" />
+
+# Box Model RSD
+
+React Strict DOM implementation of the Box Model design system. Everything stays boxy (zero radius) and token-driven, now with `html.*` and StyleX.
+
+## Install & Import
+
+<Source
+  dark={true}
+  format="dedent"
+  language="bash"
+  code={`
+    npm install @box-model/rsd
+  `}
+/>
+
+## Design Principles
+
+- **React Strict DOM first** – Use `html.*` primitives and `css.create` for compile-time styles; no runtime StyleX.
+- **Token-driven** – Style Dictionary emits `tokens.stylex.ts`, consumed via `css.defineVars()`; base styles import `tokens.css`.
+- **Square edges always** – Borders and radii are zeroed across components to match the Box Model aesthetic.
+- **Accessible defaults** – Stories mirror real markup; focus rings and typography come from tokens.
+
+## Quick tour
+
+<Canvas of={ButtonStories.Canvas} />
+<Canvas of={CardStories.Canvas} />
+<Canvas of={BadgeStories.Canvas} />
+
+## Platform notes
+
+- Web Storybook runs on port 4400 (Lit reference); RSD Storybook runs on port 4401 (React Strict DOM).
+- Optional platform overrides: `index.web.ts(x)` / `index.native.ts(x)` alongside shared implementations.
+
+## References
+
+- [React Strict DOM](https://github.com/nicksaunders/react-strict-dom)
+- [StyleX Documentation](https://stylexjs.com/)
+- [Box Model Design System](../)

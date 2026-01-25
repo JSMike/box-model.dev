@@ -1,0 +1,17 @@
+dialog-box {
+  display: block;
+}
+
+dialog-box > * {
+  margin: 0;
+}
+
+dialog-box [slot='header'],
+dialog-box [slot='footer'],
+dialog-box [slot='close-control'] {
+  margin: 0;
+}
+
+dialog-box > close-control-box[slot='close-control'] {
+  --close-size: var(--dialog-close-size);
+}

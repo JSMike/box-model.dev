@@ -1,0 +1,44 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as StatusIconStories from './status-icon.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={StatusIconStories} />
+
+# Status Icon
+
+Renders a square intent glyph. Use preset variants for info/success/warning/danger, or pass custom colours and slot content via `variant="custom"`.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { StatusIconBox } from '@box-model/web/status-icon';
+  `}
+/>
+
+<Canvas of={StatusIconStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={StatusIconStories} />
+
+
+## Customizing a status icon
+
+To customize the status icon, set custom properties and/or supply your own glyph via the default slot:
+
+<Source
+  format="dedent"
+  language="html"
+  dark={true}
+  code={`
+    <status-icon-box
+      variant="custom"
+      label="Processing"
+      style="--status-icon-color: #222; --status-icon-background: #f2f2f2; --status-icon-border-color: #222;"
+    >
+      ●
+    </status-icon-box>
+  `}
+/>

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as TableStories from './table.stories';
+
+<Meta of={TableStories} />
+
+# Table
+
+Styled data table with optional zebra striping.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Table } from '@box-model/rsd/table';
+  `}
+/>
+
+<Canvas of={TableStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={TableStories} />

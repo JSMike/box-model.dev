@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as StatBoxStories from './stat.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={StatBoxStories} />
+
+# Stat Box
+
+Highlights a key metric with optional trend information.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { StatBox } from '@box-model/web/stat';
+  `}
+/>
+
+<Canvas of={StatBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={StatBoxStories} />

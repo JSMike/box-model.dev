@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as DialogStories from './dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+Modal dialog surface with header, body, and optional footer actions.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Dialog } from '@box-model/rsd/dialog';
+  `}
+/>
+
+<Canvas of={DialogStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={DialogStories} />

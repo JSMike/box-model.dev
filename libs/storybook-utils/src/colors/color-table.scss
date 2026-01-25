@@ -1,0 +1,44 @@
+@use '@box-model/web/styles/theme' as theme;
+@use '@box-model/tokens/tokens' as tokens;
+
+.color-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: tokens.$space-scale-075 tokens.$space-scale-100;
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+.color-value {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.$space-scale-050;
+  white-space: nowrap;
+}
+
+.color-value__text {
+  font-family: tokens.$typography-roles-code-font-family;
+  font-size: tokens.$typography-roles-code-font-size;
+}
+
+.color-chip {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1rem;
+  border: 1px solid var(--box-model-border-subtle, #ccc);
+  border-radius: 0;
+  vertical-align: middle;
+  background: var(--swatch, transparent);
+}
+
+.color-column--light {
+  @include theme.force-theme(light);
+}
+
+.color-column--dark {
+  @include theme.force-theme(dark);
+}

@@ -1,0 +1,26 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use './theme';
+
+body {
+  min-height: 100vh;
+  font-family: #{tokens.$typography-font-family-sans};
+  @include theme.property(background-color, 'box-model-background-canvas');
+  @include theme.property(color, 'box-model-text-primary');
+}
+
+a {
+  @include theme.property(color, 'box-model-text-accent');
+}
+
+a:hover {
+  @include theme.property(color, 'box-model-text-primary');
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  background-color: inherit;
+  border-color: inherit;
+}

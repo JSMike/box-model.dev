@@ -1,0 +1,25 @@
+@use './theme';
+
+.box-model-margin-container {
+  @include theme.box-model-margin-container;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.box-model-border-container {
+  @include theme.box-model-border-container;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.box-model-padding-container {
+  @include theme.box-model-padding-container;
+  border-style: dashed;
+  border-width: 1px;
+}
+
+.box-model-content-container {
+  @include theme.box-model-content-container;
+  border-style: solid;
+  border-width: 1px;
+}

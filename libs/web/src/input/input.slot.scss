@@ -1,0 +1,74 @@
+input-box {
+  display: inline-flex;
+  width: auto;
+}
+
+input-box[fullwidth] {
+  width: 100%;
+}
+
+input-box {
+  input,
+  textarea,
+  select {
+    width: 100%;
+    font-family: var(--input-font-family);
+    font-size: var(--input-font-size);
+    font-weight: var(--input-font-weight);
+    line-height: var(--input-line-height);
+    letter-spacing: var(--input-letter-spacing);
+    color: var(--input-text-color);
+    background-color: var(--input-background);
+    border-radius: var(--input-border-radius);
+    border: var(--input-border-width) solid var(--input-border-color);
+    padding: var(--input-padding-block) var(--input-padding-inline);
+    min-height: var(--input-min-height);
+    transition:
+      border-color var(--input-transition-duration) var(--input-transition-easing),
+      box-shadow var(--input-transition-duration) var(--input-transition-easing),
+      background-color var(--input-transition-duration) var(--input-transition-easing);
+    box-shadow: none;
+    appearance: none;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  input:hover,
+  textarea:hover,
+  select:hover {
+    border-color: var(--input-border-color-hover);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--input-border-color-focus);
+    outline: none;
+    box-shadow: var(--input-focus-shadow);
+  }
+
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    background-color: var(--input-disabled-background);
+    color: var(--input-disabled-text);
+    cursor: not-allowed;
+    border-color: var(--input-disabled-border-color);
+  }
+
+  input:disabled::placeholder,
+  textarea:disabled::placeholder {
+    color: var(--input-disabled-text);
+  }
+
+  input[readonly],
+  textarea[readonly],
+  select[readonly] {
+    background-color: var(--input-background-read-only);
+    border-color: var(--input-border-color);
+    color: var(--input-text-color);
+  }
+}

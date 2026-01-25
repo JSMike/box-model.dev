@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as AlertStories from './alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Inline feedback with status icon and optional close control, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Alert } from '@box-model/rsd/alert';
+  `}
+/>
+
+<Canvas of={AlertStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={AlertStories} />

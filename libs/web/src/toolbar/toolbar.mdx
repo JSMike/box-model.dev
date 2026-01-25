@@ -1,0 +1,15 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as ToolbarStories from './toolbar.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ToolbarStories} />
+
+# Toolbar Box
+
+`toolbar-box` arranges its slotted controls in a horizontal strip—ideal for editor actions.
+
+<Canvas of={ToolbarStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ToolbarStories} />

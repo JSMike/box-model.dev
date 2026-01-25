@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as BannerBoxStories from './banner.stories.ts';
+
+<Meta of={BannerBoxStories} />
+
+# Banner Box
+
+Communicates system-wide messages with optional actions.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { BannerBox } from '@box-model/web/banner';
+  `}
+/>
+
+<Canvas of={BannerBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={BannerBoxStories} />

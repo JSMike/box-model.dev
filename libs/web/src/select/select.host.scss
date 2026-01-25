@@ -1,0 +1,34 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: inline-flex;
+  width: auto;
+  --select-font-family: #{tokens.$typography-roles-body-font-family};
+  --select-font-size: #{tokens.$typography-roles-body-font-size};
+  --select-font-weight: #{tokens.$typography-roles-body-font-weight};
+  --select-line-height: #{tokens.$typography-roles-body-line-height};
+  --select-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  @include theme.custom-property('select-background', 'box-model-background-elevated');
+  --select-border-radius: #{tokens.$component-input-border-radius};
+  --select-border-width: #{tokens.$component-input-border-width};
+  @include theme.custom-property('select-border-color', 'box-model-border-default');
+  @include theme.custom-property('select-border-color-hover', 'box-model-border-strong');
+  @include theme.custom-property('select-border-color-focus', 'box-model-border-focus');
+  --select-padding-block: #{tokens.$component-input-padding-block};
+  --select-padding-inline: #{tokens.$component-input-padding-inline};
+  --select-min-height: #{tokens.$component-input-min-height};
+  @include theme.custom-property('select-text-color', 'box-model-text-primary');
+  @include theme.custom-property('select-icon-color', 'box-model-text-primary');
+  --select-icon-space: 1.5rem;
+  --select-disabled-background: #{tokens.$component-input-disabled-background};
+  --select-disabled-text: #{tokens.$component-input-disabled-text};
+  --select-disabled-border-color: #{tokens.$component-input-disabled-border-color};
+  --select-transition-duration: #{tokens.$motion-duration-fast};
+  --select-transition-easing: #{tokens.$motion-easing-standard};
+}
+
+:host([fullwidth]) {
+  display: flex;
+  width: 100%;
+}

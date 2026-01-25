@@ -1,0 +1,17 @@
+badge-box {
+  span,
+  div {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--badge-gap);
+    border-radius: var(--badge-radius);
+    padding: var(--badge-padding);
+    background-color: var(--badge-background);
+    color: var(--badge-text-color);
+    font-family: var(--badge-font-family);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    line-height: var(--badge-line-height);
+    letter-spacing: var(--badge-letter-spacing);
+  }
+}

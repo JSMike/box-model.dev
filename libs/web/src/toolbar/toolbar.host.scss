@@ -1,0 +1,20 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  @include theme.custom-property('toolbar-background', 'box-model-background-elevated');
+  @include theme.custom-property('toolbar-border-color', 'box-model-border-strong');
+  @include theme.custom-property('toolbar-text-color', 'box-model-text-primary');
+  border: 1px solid var(--toolbar-border-color);
+  background-color: var(--toolbar-background);
+  color: var(--toolbar-text-color);
+  padding: #{tokens.$space-scale-050};
+  border-radius: 0;
+}
+
+.toolbar-box__surface {
+  display: flex;
+  flex-wrap: wrap;
+  gap: #{tokens.$space-scale-050};
+}

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as RadioStories from './radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio Group
+
+Grouped radio inputs with shared legend.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { RadioGroup } from '@box-model/rsd/radio';
+  `}
+/>
+
+<Canvas of={RadioStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={RadioStories} />

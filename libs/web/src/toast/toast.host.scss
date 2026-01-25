@@ -1,0 +1,54 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: inline-block;
+  --toast-padding: #{tokens.$component-toast-padding};
+  --toast-gap: #{tokens.$component-toast-gap};
+  --toast-border-width: #{tokens.$component-toast-border-width};
+  --toast-shadow: #{tokens.$component-toast-shadow};
+  --toast-background: #{tokens.$component-toast-default-background};
+  --toast-border: #{tokens.$component-toast-default-border};
+  --toast-text: #{tokens.$component-toast-default-text};
+  --toast-icon: #{tokens.$component-toast-default-icon};
+  --toast-close-size: #{tokens.$component-close-control-size};
+}
+
+:host([variant='info']) {
+  --toast-background: #{tokens.$component-toast-info-background};
+  --toast-border: #{tokens.$component-toast-info-border};
+  --toast-text: #{tokens.$component-toast-info-text};
+  --toast-icon: #{tokens.$component-toast-info-icon};
+}
+
+:host([variant='success']) {
+  --toast-background: #{tokens.$component-toast-success-background};
+  --toast-border: #{tokens.$component-toast-success-border};
+  --toast-text: #{tokens.$component-toast-success-text};
+  --toast-icon: #{tokens.$component-toast-success-icon};
+}
+
+:host([variant='warning']) {
+  --toast-background: #{tokens.$component-toast-warning-background};
+  --toast-border: #{tokens.$component-toast-warning-border};
+  --toast-text: #{tokens.$component-toast-warning-text};
+  --toast-icon: #{tokens.$component-toast-warning-icon};
+}
+
+:host([variant='danger']) {
+  --toast-background: #{tokens.$component-toast-danger-background};
+  --toast-border: #{tokens.$component-toast-danger-border};
+  --toast-text: #{tokens.$component-toast-danger-text};
+  --toast-icon: #{tokens.$component-toast-danger-icon};
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.toast-box__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--toast-icon);
+  font-weight: 600;
+}

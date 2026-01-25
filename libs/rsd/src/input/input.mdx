@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as InputStories from './input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+Styled text input control.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Input } from '@box-model/rsd/input';
+  `}
+/>
+
+<Canvas of={InputStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={InputStories} />

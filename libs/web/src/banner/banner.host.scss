@@ -1,0 +1,116 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: block;
+  --banner-padding: #{tokens.$component-banner-padding};
+  --banner-gap: #{tokens.$component-banner-gap};
+  --banner-border-width: #{tokens.$component-banner-border-width};
+  --banner-border-radius: #{tokens.$component-card-border-radius};
+  --banner-background: #{tokens.$component-banner-default-background};
+  --banner-border: #{tokens.$component-banner-default-border};
+  --banner-text: #{tokens.$component-banner-default-text};
+  --banner-close-size: #{tokens.$component-close-control-size};
+}
+
+:host([variant='info']) {
+  --banner-background: #{tokens.$component-banner-info-background};
+  --banner-border: #{tokens.$component-banner-info-border};
+  --banner-text: #{tokens.$component-banner-info-text};
+}
+
+:host([variant='success']) {
+  --banner-background: #{tokens.$component-banner-success-background};
+  --banner-border: #{tokens.$component-banner-success-border};
+  --banner-text: #{tokens.$component-banner-success-text};
+}
+
+:host([variant='warning']) {
+  --banner-background: #{tokens.$component-banner-warning-background};
+  --banner-border: #{tokens.$component-banner-warning-border};
+  --banner-text: #{tokens.$component-banner-warning-text};
+}
+
+:host([variant='danger']) {
+  --banner-background: #{tokens.$component-banner-danger-background};
+  --banner-border: #{tokens.$component-banner-danger-border};
+  --banner-text: #{tokens.$component-banner-danger-text};
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.banner-box__surface {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-auto-rows: minmax(min-content, max-content);
+  gap: var(--banner-gap);
+  padding: var(--banner-padding);
+  border: var(--banner-border-width) solid var(--banner-border);
+  background: var(--banner-background);
+  color: var(--banner-text);
+  position: relative;
+  border-radius: var(--banner-border-radius);
+}
+
+status-icon-box {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: flex-start;
+}
+
+.banner-box__content {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--banner-gap);
+}
+
+.banner-box__details {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.banner-box__actions {
+  grid-column: 3;
+  grid-row: 2;
+  display: inline-flex;
+  gap: var(--banner-gap);
+  justify-self: flex-start;
+  align-self: flex-end;
+  flex-wrap: wrap;
+}
+
+.banner-box__close {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: flex-end;
+  align-self: flex-start;
+}
+
+.banner-box__close[hidden],
+.banner-box__details[hidden],
+.banner-box__actions[hidden] {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .banner-box__surface {
+    grid-template-columns: auto 1fr;
+  }
+
+  .banner-box__actions {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-content: flex-start;
+  }
+
+  .banner-box__details {
+    grid-column: 1 / -1;
+  }
+
+  .banner-box__close {
+    grid-column: 2;
+  }
+}

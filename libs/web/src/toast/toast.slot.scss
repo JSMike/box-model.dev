@@ -1,0 +1,21 @@
+toast-box {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--toast-gap);
+  padding: var(--toast-padding);
+  border: var(--toast-border-width) solid var(--toast-border);
+  background: var(--toast-background);
+  color: var(--toast-text);
+  box-shadow: var(--toast-shadow);
+  border-radius: 0;
+}
+
+toast-box p {
+  margin: 0;
+}
+
+toast-box close-control-box {
+  margin-left: auto;
+  align-self: flex-start;
+  --close-size: var(--toast-close-size);
+}

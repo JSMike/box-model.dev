@@ -1,0 +1,7 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: flex;
+  justify-content: flex-end;
+  gap: #{tokens.$component-dialog-footer-gap};
+}

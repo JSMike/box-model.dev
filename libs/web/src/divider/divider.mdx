@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as DividerBoxStories from './divider.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={DividerBoxStories} />
+
+# Divider Box
+
+Separates groups of content either horizontally or vertically.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { DividerBox } from '@box-model/web/divider';
+  `}
+/>
+
+<Canvas of={DividerBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={DividerBoxStories} />

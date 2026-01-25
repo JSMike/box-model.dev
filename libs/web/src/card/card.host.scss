@@ -1,0 +1,79 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  --card-background: var(--box-model-background-surface, #{tokens.$component-card-background});
+  --card-border-color: var(--box-model-border-strong, #{tokens.$component-card-border-color});
+  --card-border-width: #{tokens.$component-card-border-width};
+  --card-border-radius: #{tokens.$component-card-border-radius};
+  --card-padding: #{tokens.$component-card-padding};
+  --card-gap: #{tokens.$component-card-gap};
+  --card-shadow: #{tokens.$component-card-shadow-rest};
+  --card-shadow-hover: #{tokens.$component-card-shadow-hover};
+  --card-transition-duration: #{tokens.$motion-duration-fast};
+  --card-transition-easing: #{tokens.$motion-easing-standard};
+  --card-close-size: #{tokens.$component-close-control-size};
+  @include theme.custom-property('card-text-color', 'box-model-text-primary');
+}
+
+:host([interactive]) {
+  cursor: pointer;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.card-box__surface {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--card-gap);
+  background-color: var(--card-background);
+  color: var(--card-text-color);
+  border-radius: var(--card-border-radius);
+  border: var(--card-border-width) solid var(--card-border-color);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  transition: box-shadow var(--card-transition-duration) var(--card-transition-easing);
+  position: relative;
+}
+
+:host([interactive]):hover .card-box__surface {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card-box__header {
+  margin-bottom: calc(var(--card-gap) * 0.75);
+}
+
+.card-box__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.card-box__footer {
+  margin-top: calc(var(--card-gap) * 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--card-gap);
+}
+
+.card-box__actions {
+  margin-top: calc(var(--card-gap) * 0.5);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--card-gap);
+}
+
+.card-box__close {
+  position: absolute;
+  top: var(--card-padding);
+  right: var(--card-padding);
+}
+
+.card-box__close[hidden] {
+  display: none;
+}

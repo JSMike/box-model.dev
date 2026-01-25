@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as DialogBoxStories from './dialog.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={DialogBoxStories} />
+
+# Dialog Box
+
+Wrapper around the native `<dialog>` element with square styling and optional footer actions.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { DialogBox } from '@box-model/web/dialog';
+  `}
+/>
+
+<Canvas of={DialogBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={DialogBoxStories} />

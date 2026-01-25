@@ -1,0 +1,54 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use './theme';
+@use './typography' as typography;
+
+@property --box-model-text-primary {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #{tokens.$color-text-primary-dark};
+}
+
+@mixin box-model-theme-surface {
+  @include typography.base-font();
+  @include theme.property(background-color, 'box-model-background-canvas');
+  @include theme.property(color, 'box-model-text-primary');
+}
+
+.box-model-theme-surface {
+  @include box-model-theme-surface();
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  @include box-model-theme-surface();
+}
+
+h1 {
+  @include typography.heading('3xl');
+}
+
+h2 {
+  @include typography.heading('2xl');
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @include typography.heading(xl);
+}
+
+p {
+  margin: 0;
+}

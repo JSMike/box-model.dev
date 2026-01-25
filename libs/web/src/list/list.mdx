@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ListBoxStories from './list.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ListBoxStories} />
+
+# List Box
+
+Provides consistent spacing and styling for ordered or unordered lists.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { ListBox } from '@box-model/web/list';
+  `}
+/>
+
+<Canvas of={ListBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ListBoxStories} />

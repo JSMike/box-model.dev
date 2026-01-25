@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ToolbarStories from './toolbar.stories';
+
+<Meta of={ToolbarStories} />
+
+# Toolbar
+
+Horizontal toolbar container for grouping actions.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Toolbar } from '@box-model/rsd/toolbar';
+  `}
+/>
+
+<Canvas of={ToolbarStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ToolbarStories} />

@@ -1,0 +1,56 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  --button-padding: #{tokens.$component-button-padding-md};
+  --button-font-size: #{tokens.$component-button-font-size-md};
+  --button-font-family: #{tokens.$component-button-font-family};
+  --button-font-weight: #{tokens.$component-button-font-weight};
+  --button-letter-spacing: #{tokens.$component-button-letter-spacing};
+  --button-line-height: #{tokens.$component-button-line-height};
+  --button-border-radius: 0;
+  --button-min-height: #{tokens.$component-button-min-height-md};
+  --button-gap: #{tokens.$component-button-gap};
+  @include theme.custom-property('button-bg-color', 'box-model-primary-rest');
+  @include theme.custom-property('button-hover-bg-color', 'box-model-primary-hover');
+  @include theme.custom-property('button-active-bg-color', 'box-model-primary-active');
+  @include theme.custom-property('button-text-color', 'box-model-primary-text');
+  @include theme.custom-property('button-focus-ring-color', 'box-model-primary-focus-ring');
+  --button-focus-ring-width: #{tokens.$component-button-focus-ring-width};
+  --button-focus-ring-offset: #{tokens.$component-button-focus-offset};
+  --button-focus-ring-shadow: #{tokens.$component-button-focus-ring-shadow};
+  --button-transition-duration: #{tokens.$component-button-transition-duration};
+  --button-transition-easing: #{tokens.$component-button-transition-easing};
+  @include theme.custom-property('button-disabled-bg-color', 'box-model-disabled-background');
+  @include theme.custom-property('button-disabled-text-color', 'box-model-disabled-text');
+}
+
+:host([variant='secondary']) {
+  @include theme.custom-property('button-bg-color', 'box-model-secondary-rest');
+  @include theme.custom-property('button-hover-bg-color', 'box-model-secondary-hover');
+  @include theme.custom-property('button-active-bg-color', 'box-model-secondary-active');
+  @include theme.custom-property('button-text-color', 'box-model-secondary-text');
+  @include theme.custom-property('button-disabled-bg-color', 'box-model-disabled-background');
+  @include theme.custom-property('button-disabled-text-color', 'box-model-disabled-text');
+}
+
+:host([variant='tertiary']) {
+  @include theme.custom-property('button-bg-color', 'box-model-tertiary-rest');
+  @include theme.custom-property('button-text-color', 'box-model-tertiary-text');
+  @include theme.custom-property('button-hover-bg-color', 'box-model-tertiary-hover');
+  @include theme.custom-property('button-active-bg-color', 'box-model-tertiary-active');
+  @include theme.custom-property('button-disabled-bg-color', 'box-model-tertiary-rest');
+  @include theme.custom-property('button-disabled-text-color', 'box-model-disabled-text');
+}
+
+:host([size='small']) {
+  --button-padding: #{tokens.$component-button-padding-sm};
+  --button-font-size: #{tokens.$component-button-font-size-sm};
+  --button-min-height: #{tokens.$component-button-min-height-sm};
+}
+
+:host([size='large']) {
+  --button-padding: #{tokens.$component-button-padding-lg};
+  --button-font-size: #{tokens.$component-button-font-size-lg};
+  --button-min-height: #{tokens.$component-button-min-height-lg};
+}

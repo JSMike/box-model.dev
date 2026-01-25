@@ -1,0 +1,9 @@
+{
+  "name": "box-model-web-vite",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/box-model-web-vite/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project box-model-web-vite --web",
+  "targets": {}
+}

@@ -1,0 +1,52 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  box-sizing: border-box;
+  @include theme.custom-property('status-icon-color', 'box-model-feedback-info-icon');
+  @include theme.custom-property('status-icon-background', 'box-model-feedback-info-surface');
+  @include theme.custom-property('status-icon-border-color', 'box-model-feedback-info-border');
+  color: var(--status-icon-color);
+  background: var(--status-icon-background);
+  border: #{tokens.$size-border-width-hairline} solid var(--status-icon-border-color);
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+  border-radius: 0;
+}
+
+:host([variant='info']) {
+  @include theme.custom-property('status-icon-color', 'box-model-feedback-info-icon');
+  @include theme.custom-property('status-icon-background', 'box-model-feedback-info-surface');
+  @include theme.custom-property('status-icon-border-color', 'box-model-feedback-info-border');
+}
+
+:host([variant='success']) {
+  @include theme.custom-property('status-icon-color', 'box-model-feedback-success-icon');
+  @include theme.custom-property('status-icon-background', 'box-model-feedback-success-surface');
+  @include theme.custom-property('status-icon-border-color', 'box-model-feedback-success-border');
+}
+
+:host([variant='warning']) {
+  @include theme.custom-property('status-icon-color', 'box-model-feedback-warning-icon');
+  @include theme.custom-property('status-icon-background', 'box-model-feedback-warning-surface');
+  @include theme.custom-property('status-icon-border-color', 'box-model-feedback-warning-border');
+}
+
+:host([variant='danger']) {
+  @include theme.custom-property('status-icon-color', 'box-model-feedback-danger-icon');
+  @include theme.custom-property('status-icon-background', 'box-model-feedback-danger-surface');
+  @include theme.custom-property('status-icon-border-color', 'box-model-feedback-danger-border');
+}
+
+:host([variant='custom']) {
+  --status-icon-color: var(--status-icon-color, #{tokens.$component-tag-neutral-text});
+  --status-icon-background: var(--status-icon-background, #{tokens.$component-tag-neutral-background});
+  --status-icon-border-color: var(--status-icon-border-color, #{tokens.$component-tag-neutral-border});
+}

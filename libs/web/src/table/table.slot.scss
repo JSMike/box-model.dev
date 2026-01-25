@@ -1,0 +1,51 @@
+table-box {
+  display: block;
+}
+
+table-box > table[data-table-box] {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--table-border-width) solid var(--table-row-border);
+  background: var(--table-background, transparent);
+}
+
+table-box > table[data-table-box] thead {
+  background: var(--table-header-background);
+  color: var(--table-header-text);
+  text-align: left;
+}
+
+table-box > table[data-table-box] th,
+table-box > table[data-table-box] td {
+  padding: var(--table-cell-padding);
+  border-bottom: var(--table-border-width) solid var(--table-row-border);
+}
+
+table-box > table[data-table-box] tbody {
+  color: var(--table-body-text);
+}
+
+table-box > table[data-table-box] tbody tr {
+  --table-row-background: var(--table-row-base);
+  background: var(--table-row-background);
+}
+
+table-box[zebra] > table[data-table-box] tbody tr:nth-child(even) {
+  --table-row-background: var(--table-row-zebra);
+}
+
+table-box > table[data-table-box] tbody tr:hover {
+  --table-row-background: var(--table-row-hover);
+}
+
+table-box[zebra] > table[data-table-box] tbody tr:nth-child(even):hover {
+  --table-row-background: var(--table-row-hover);
+}
+
+table-box > table[data-table-box] tfoot td {
+  font-weight: 500;
+}
+
+table-box > table[data-table-box] tfoot {
+  background: var(--table-footer-background, var(--table-header-background));
+}

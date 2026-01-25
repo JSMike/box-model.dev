@@ -1,0 +1,19 @@
+{
+  "name": "@box-model/tokens",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./tokens.js",
+      "types": "./tokens.d.ts"
+    },
+    "./tokens.js": {
+      "import": "./tokens.js",
+      "types": "./tokens.d.ts"
+    },
+    "./tokens.css": "./tokens.css",
+    "./tokens.scss": "./tokens.scss"
+  }
+}
+

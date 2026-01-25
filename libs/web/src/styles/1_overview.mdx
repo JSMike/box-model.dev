@@ -1,0 +1,40 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Styles/Overview" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Styles overview
+
+Box Model UI ships a compiled stylesheet that wires up the design tokens, resets, typography baseline, and theme variables. Import it once at the root of your host application to guarantee every component receives the same CSS custom properties and browser normalisations.
+
+## Initial application setup
+
+Add the stylesheet to your global Sass entry (for example `styles.scss` or the Next.js `globals.scss`). The file emits both the light theme defaults and the `prefers-color-scheme: dark` overrides:
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    // globals.scss
+    @use '@box-model/web/styles/box-model';
+    @use '@box-model/web/styles/theme' as theme;
+    // Optionally pin a specific theme in a subtree
+    [data-theme='light'] {
+      @include theme.apply-theme(light);
+    }
+    [data-theme='dark'] {
+      @include theme.force-theme(dark);
+    }
+  `}
+/>
+
+`box-model.scss` forwards both `box-model-light` and `box-model-dark`, registers the CSS variables from `libs/web/src/styles/_theme.scss`, and includes the reset, typography, layout, and layer helpers used by every component. Keeping it at the very top of your cascade prevents local styles from clobbering the host variables (`--box-model-*`) that components rely on.
+
+## File map
+
+- `box-model-light.scss` / `box-model-dark.scss`: generated tokens for each color scheme.
+- `_theme.scss`: theme mixins for applying tokens, scoping themes, and exposing CSS custom properties.
+- `_typography.scss`: base font stack and heading mixins for aligning product copy with Box Model typography scale.
+- `_layers.scss`, `_layout.scss`, `_reset.scss`: primitive helpers used by higher-level components. Import them only if you need the individual mixins instead of the full bundle.
+
+See the dedicated pages in this section for more details on the theme and typography mixins that are most useful to application teams.

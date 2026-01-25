@@ -1,0 +1,8 @@
+@use '../textarea/textarea-text-field' as textField;
+
+wysiwyg-box {
+  textarea.wysiwyg-box__textarea {
+    @include textField.text-field;
+    min-height: 10rem;
+  }
+}

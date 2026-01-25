@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as LoadingStories from './loading.stories';
+
+<Meta of={LoadingStories} />
+
+# Loading
+
+Inline loading indicator with three dots and an accessible label.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Loading } from '@box-model/rsd/loading';
+  `}
+/>
+
+<Canvas of={LoadingStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={LoadingStories} />

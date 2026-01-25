@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/box-model-rsd-nextjs-e2e"
+    },
+    {
+      "path": "./apps/box-model-rsd-expo-e2e"
+    },
+    {
+      "path": "./apps/box-model-web-vite-e2e"
+    },
+    {
+      "path": "./apps/box-model-rsd-nextjs"
+    },
+    {
+      "path": "./apps/box-model-rsd-expo"
+    },
+    {
+      "path": "./apps/box-model-web-vite"
+    },
+    {
+      "path": "./libs/rsd-app"
+    },
+    {
+      "path": "./libs/rsd"
+    },
+    {
+      "path": "./libs/web"
+    }
+  ]
+}

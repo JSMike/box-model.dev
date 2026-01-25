@@ -1,0 +1,74 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: var(--skeleton-width, 100%);
+  height: var(--skeleton-height, #{tokens.$component-skeleton-height});
+  @include theme.custom-property('skeleton-base', 'box-model-background-sunken');
+  @include theme.custom-property('skeleton-surface', 'box-model-background-surface');
+  @include theme.custom-property('skeleton-highlight', 'box-model-text-secondary');
+  --skeleton-base-color: color-mix(
+    in srgb,
+    var(--skeleton-base, #{tokens.$component-skeleton-background}) 75%,
+    #000 25%
+  );
+  --skeleton-highlight-color: color-mix(
+    in srgb,
+    var(--skeleton-surface, #{tokens.$color-background-surface-light}) 55%,
+    #fff 45%
+  );
+  background: var(--skeleton-base-color);
+  border-radius: #{tokens.$component-skeleton-border-radius};
+  --skeleton-animation-duration: 2.8s;
+  box-shadow: inset 0 0 0 1px color-mix(
+      in srgb,
+      var(--skeleton-surface, #{tokens.$color-background-surface-light}) 35%,
+      transparent
+    );
+}
+
+:host([animated])::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skeleton-highlight-color),
+    transparent
+  );
+  animation: skeleton-shimmer var(--skeleton-animation-duration) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host([animated])::after {
+    animation: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--skeleton-highlight-color),
+      transparent
+    );
+    background-size: 200% 100%;
+    background-position: 50% 0;
+  }
+}
+
+@supports not (color: color-mix(in srgb, #000 50%, #fff 50%)) {
+  :host {
+    --skeleton-base-color: var(--skeleton-base, #{tokens.$component-skeleton-background});
+    --skeleton-highlight-color: var(--skeleton-surface, #{tokens.$component-skeleton-shimmer});
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as DrawerStories from './drawer.stories';
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+Slide-in panel anchored to an edge of the viewport.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Drawer } from '@box-model/rsd/drawer';
+  `}
+/>
+
+<Canvas of={DrawerStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={DrawerStories} />

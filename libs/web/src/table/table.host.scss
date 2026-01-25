@@ -1,0 +1,38 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  overflow-x: auto;
+  @include theme.custom-property('table-background', 'box-model-background-surface');
+  @include theme.custom-property('table-header-background', 'table-section-background');
+  @include theme.custom-property('table-footer-background', 'table-section-background');
+  @include theme.custom-property('table-header-text', 'box-model-text-primary');
+  @include theme.custom-property('table-body-text', 'box-model-text-primary');
+  @include theme.custom-property('table-row-border', 'box-model-border-subtle');
+  @include theme.custom-property('table-row-hover', 'box-model-background-content');
+  --table-cell-padding: #{tokens.$component-table-cell-padding};
+  --table-border-width: #{tokens.$component-table-border-width};
+  --table-row-base: #{theme.value('box-model-background-canvas')};
+  --table-row-zebra: transparent;
+}
+
+:host([zebra='surface']) {
+  --table-row-zebra: #{theme.value('table-zebra-surface')};
+}
+
+:host([zebra='border']) {
+  --table-row-zebra: #{theme.value('table-zebra-border')};
+}
+
+:host([zebra='padding']) {
+  --table-row-zebra: #{theme.value('table-zebra-padding')};
+}
+
+:host([zebra='content']) {
+  --table-row-zebra: #{theme.value('table-zebra-content')};
+}
+
+:host([zebra='margin']) {
+  --table-row-zebra: #{theme.value('table-zebra-margin')};
+}

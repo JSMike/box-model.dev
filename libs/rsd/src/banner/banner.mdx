@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as BannerStories from './banner.stories';
+
+<Meta of={BannerStories} />
+
+# Banner
+
+Inline notification with optional details, actions, and close control.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Banner } from '@box-model/rsd/banner';
+  `}
+/>
+
+<Canvas of={BannerStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={BannerStories} />

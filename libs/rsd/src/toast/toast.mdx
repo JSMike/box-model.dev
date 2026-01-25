@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ToastStories from './toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+Transient notification message.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Toast } from '@box-model/rsd/toast';
+  `}
+/>
+
+<Canvas of={ToastStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ToastStories} />

@@ -1,0 +1,27 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as TerminalStories from './terminal.stories';
+
+<Meta of={TerminalStories} />
+
+# Terminal
+
+Terminal display for code and command examples, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Terminal, TerminalLine } from '@box-model/rsd/terminal';
+  `}
+/>
+
+<Canvas of={TerminalStories.Canvas} />
+<Controls />
+
+## Multiple Lines
+
+<Canvas of={TerminalStories.MultipleLines} />
+
+<ComponentDocs of={TerminalStories} />

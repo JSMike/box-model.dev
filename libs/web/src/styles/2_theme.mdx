@@ -1,0 +1,136 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Styles/Theme" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Theme utilities
+
+`libs/web/src/styles/_theme.scss` exposes mixins for registering CSS variables, applying a theme inside any scope, and referencing tokens without duplicating values. These helpers are the preferred way for application teams to extend Box Model UI so that local styles stay aligned with component internals.
+
+## Applying themes
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/theme' as theme;
+
+    :root {
+        @include theme.register-theme-vars();
+        @include theme.apply-theme(light);
+    }
+
+    [data-theme='dark'] {
+        @include theme.force-theme(dark);
+    }
+  `}
+/>
+
+- `register-theme-vars()` creates the `--box-model-*` variables in both light and dark modes.
+- `apply-theme($mode)` assigns values for the provided mode while keeping `prefers-color-scheme` responsive.
+- `force-theme($mode)` hard-sets a mode for a subtree (useful for preview panels or modals that must stay dark).
+
+## Referencing tokens
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/theme' as theme;
+
+    .surface {
+        @include theme.property(background-color, 'box-model-background-surface');
+        @include theme.property(color, 'box-model-text-primary');
+    }
+
+    .surface-accent {
+        @include theme.custom-property('surface-accent', 'box-model-brand-primary-emphasis');
+    }
+  `}
+/>
+
+- `property($property, $token)` outputs a CSS declaration with its fallback.
+- `custom-property($name, $token)` sets `--{$name}` to the themed value so JavaScript or nested components can reference it.
+
+## Feedback variants
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/theme' as theme;
+
+    .alert-success {
+        @include theme.feedback-variant(success, 'alert');
+    }
+  `}
+/>
+
+## Spacing and size tokens
+
+Use the generated Sass tokens for consistent gaps, radii, and control heights. The `_tokens.scss` file exports the raw scales while components pull from the same source.
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/tokens/tokens';
+
+    .stack-md {
+        gap: tokens.$space-scale-200;
+        margin-block-end: tokens.$space-scale-300;
+    }
+
+    .control-md {
+        min-height: tokens.$size-control-height-md;
+        border-width: tokens.$size-border-width-hairline;
+        border-style: solid;
+    }
+
+    .control-lg {
+        min-height: tokens.$size-control-height-lg;
+        padding-inline: tokens.$space-scale-200;
+    }
+  `}
+/>
+
+## Color tokens
+
+Theme-aware color values should flow through the helpers in `_theme.scss` so light/dark overrides stay in sync with components.
+
+- `@include theme.property(<css-prop>, '<token-name>')` — single declaration with fallback.
+- `@include theme.custom-property('<name>', '<token-name>')` — exposes a custom property for nested selectors or JS.
+- `theme.value('<token-name>')` — returns the token value with the right fallback for manual composition.
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/theme' as theme;
+
+    .panel {
+        @include theme.property(background-color, 'box-model-background-surface');
+        @include theme.property(color, 'box-model-text-primary');
+        border: 1px solid theme.value('box-model-border-default');
+    }
+
+    .panel--muted {
+        @include theme.custom-property('panel-border', 'box-model-border-subtle');
+        border-color: var(--panel-border);
+    }
+  `}
+/>
+
+## Mixins quick reference
+
+- `register-theme-vars()` — registers light/dark CSS variables so tokens exist even before a theme is applied.
+- `apply-theme($mode)` — sets values for `light` or `dark`, respecting `prefers-color-scheme`.
+- `force-theme($mode)` — pins a subtree to the supplied mode.
+- `property($property, $token)` — outputs a CSS declaration with theme fallbacks.
+- `custom-property($name, $token)` — defines a custom property for reuse in JS or descendant rules.
+- `feedback-variant($variant, $prefix)` — applies contextual palettes (`info`, `success`, `warning`, `danger`).
+- `box-layer($layer, $prefix: 'box-layer')` — assigns background/border/text tokens for the margin, border, padding, or content layers shown in the Box Model visualiser.

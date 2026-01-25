@@ -1,0 +1,16 @@
+@use './textarea-text-field' as mixins;
+
+textarea-box {
+  display: inline-flex;
+  width: auto;
+}
+
+textarea-box[fullwidth] {
+  width: 100%;
+}
+
+textarea-box {
+  textarea {
+    @include mixins.text-field;
+  }
+}

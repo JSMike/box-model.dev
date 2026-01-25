@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "bierner.lit-html",
+    "dbaeumer.vscode-eslint",
+    "unifiedjs.vscode-mdx",
+    "vitest.explorer",
+    "ms-playwright.playwright",
+    "firsttris.vscode-jest-runner"
+  ]
+}

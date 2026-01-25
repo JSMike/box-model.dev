@@ -1,0 +1,14 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as WysiwygStories from './wysiwyg.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={WysiwygStories} />
+
+# WYSIWYG Box
+
+`wysiwyg-box` pairs `toolbar-box` actions with a slotted `<textarea>` so authors can insert Box Model markdown snippets (banners, dividers, columns, links, and more) without memorizing syntax.
+
+<Canvas of={WysiwygStories.Canvas} />
+
+
+<ComponentDocs of={WysiwygStories} />

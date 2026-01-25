@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ProgressBoxStories from './progress.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ProgressBoxStories} />
+
+# Progress Box
+
+Displays determinate progress for long running operations.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { ProgressBox } from '@box-model/web/progress';
+  `}
+/>
+
+<Canvas of={ProgressBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ProgressBoxStories} />

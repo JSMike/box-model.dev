@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as StatStories from './stat.stories';
+
+<Meta of={StatStories} />
+
+# Stat
+
+Display statistics with value, title, and optional trend indicator, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Stat } from '@box-model/rsd/stat';
+  `}
+/>
+
+<Canvas of={StatStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={StatStories} />

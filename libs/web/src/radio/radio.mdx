@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as RadioGroupBoxStories from './radio.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={RadioGroupBoxStories} />
+
+# Radio Group Box
+
+Provides shared legend styling, spacing, and accessibility wiring for grouped radio controls rendered in the light DOM.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { RadioGroupBox } from '@box-model/web/radio';
+  `}
+/>
+
+<Canvas of={RadioGroupBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={RadioGroupBoxStories} />

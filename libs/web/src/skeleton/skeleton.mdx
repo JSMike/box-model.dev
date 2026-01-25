@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as SkeletonBoxStories from './skeleton.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={SkeletonBoxStories} />
+
+# Skeleton Box
+
+Placeholder shimmer used while loading primary content.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { SkeletonBox } from '@box-model/web/skeleton';
+  `}
+/>
+
+<Canvas of={SkeletonBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={SkeletonBoxStories} />

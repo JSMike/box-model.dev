@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as CardBoxStories from './card.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={CardBoxStories} />
+
+# Card Box
+
+Token-driven container for grouping related content with elevation.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { CardBox } from '@box-model/web/card';
+  `}
+/>
+
+<Canvas of={CardBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={CardBoxStories} />

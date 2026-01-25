@@ -1,0 +1,9 @@
+@use './theme';
+
+@mixin box-model-apply-dark {
+  @include theme.apply-theme(dark);
+}
+
+.box-model-theme-dark {
+  @include box-model-apply-dark();
+}

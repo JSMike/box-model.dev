@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as DrawerBoxStories from './drawer.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={DrawerBoxStories} />
+
+# Drawer Box
+
+Slides in from the side to reveal secondary content.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { DrawerBox } from '@box-model/web/drawer';
+  `}
+/>
+
+<Canvas of={DrawerBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={DrawerBoxStories} />

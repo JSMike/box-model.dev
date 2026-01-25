@@ -1,0 +1,28 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as MarkdownStories from './markdown.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={MarkdownStories} />
+
+# Markdown Box
+
+`markdown-box` ingests markdown text from its default slot, hides the raw content, and renders the parsed HTML inside the shadow DOM with Box Model components.
+
+Links accept `{variant="..." size="..."}` attributes and, when you add `{type="button"}`, the anchor is wrapped with `<button-box>` so it inherits button styling.
+
+> 💡 When nesting `card` containers inside `columns`, start and end the `columns` block with four colons (`::::columns … ::::`) so the inner fences don’t prematurely close the grid.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { MarkdownBox } from '@box-model/web/markdown';
+  `}
+/>
+
+<Canvas of={MarkdownStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={MarkdownStories} />

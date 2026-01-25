@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as AlertBoxStories from './alert.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={AlertBoxStories} />
+
+# Alert Box
+
+Communicates system feedback with icon, heading, and supporting text.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { AlertBox } from '@box-model/web/alert';
+  `}
+/>
+
+<Canvas of={AlertBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={AlertBoxStories} />

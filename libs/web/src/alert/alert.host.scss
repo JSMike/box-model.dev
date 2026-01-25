@@ -1,0 +1,34 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: block;
+  --alert-background: #{tokens.$component-alert-info-background};
+  --alert-border-color: #{tokens.$component-alert-info-border};
+  --alert-text-color: #{tokens.$component-alert-info-text};
+  --alert-radius: #{tokens.$component-alert-radius};
+  --alert-padding: #{tokens.$component-alert-padding};
+  --alert-gap: #{tokens.$component-alert-gap};
+  --alert-border-width: #{tokens.$size-border-width-hairline};
+  --alert-font-family: #{tokens.$typography-roles-body-font-family};
+  --alert-font-size: #{tokens.$typography-roles-body-font-size};
+  --alert-font-weight: #{tokens.$typography-roles-body-font-weight};
+  --alert-line-height: #{tokens.$typography-roles-body-line-height};
+}
+
+:host([variant='success']) {
+  --alert-background: #{tokens.$component-alert-success-background};
+  --alert-border-color: #{tokens.$component-alert-success-border};
+  --alert-text-color: #{tokens.$component-alert-success-text};
+}
+
+:host([variant='warning']) {
+  --alert-background: #{tokens.$component-alert-warning-background};
+  --alert-border-color: #{tokens.$component-alert-warning-border};
+  --alert-text-color: #{tokens.$component-alert-warning-text};
+}
+
+:host([variant='danger']) {
+  --alert-background: #{tokens.$component-alert-danger-background};
+  --alert-border-color: #{tokens.$component-alert-danger-border};
+  --alert-text-color: #{tokens.$component-alert-danger-text};
+}

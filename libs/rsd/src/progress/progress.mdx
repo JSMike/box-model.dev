@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ProgressStories from './progress.stories';
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+Linear progress indicator with optional label.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Progress } from '@box-model/rsd/progress';
+  `}
+/>
+
+<Canvas of={ProgressStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ProgressStories} />

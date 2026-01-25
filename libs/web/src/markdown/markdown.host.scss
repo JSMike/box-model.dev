@@ -1,0 +1,103 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  @include theme.property(color, 'box-model-text-primary');
+  font-family: #{tokens.$typography-roles-body-font-family};
+  font-size: #{tokens.$typography-roles-body-font-size};
+  line-height: #{tokens.$typography-roles-body-line-height};
+}
+
+.markdown-box__source {
+  display: none;
+}
+
+.markdown-box__content {
+  display: block;
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-block: #{tokens.$space-stack-base};
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: #{tokens.$typography-roles-heading-h4-font-family};
+    font-weight: #{tokens.$typography-roles-heading-h4-font-weight};
+    line-height: #{tokens.$typography-roles-heading-h4-line-height};
+    margin-block-start: #{tokens.$space-stack-lg};
+    margin-block-end: #{tokens.$space-stack-base};
+  }
+
+  ul,
+  ol {
+    margin-block: #{tokens.$space-stack-base};
+    padding-inline-start: #{tokens.$space-scale-300};
+  }
+
+  code {
+    font-family: #{tokens.$typography-roles-code-font-family};
+    font-size: #{tokens.$typography-roles-code-font-size};
+    @include theme.property(background-color, 'box-model-background-surface');
+    padding: 0 #{tokens.$space-scale-050};
+    @include theme.property(color, 'box-model-text-primary');
+  }
+
+  pre {
+    font-family: #{tokens.$typography-roles-code-font-family};
+    font-size: #{tokens.$typography-roles-code-font-size};
+    @include theme.property(background-color, 'box-model-background-surface');
+    padding: #{tokens.$space-scale-150};
+    overflow-x: auto;
+    &:has(code) {
+      padding-top: 0;
+    }
+    @include theme.property(color, 'box-model-text-primary');
+  }
+
+  blockquote {
+    margin: #{tokens.$space-stack-base} #{tokens.$space-scale-150};
+    padding: #{tokens.$space-scale-150};
+    border: #{tokens.$size-border-width-hairline} solid
+      var(--box-model-border-subtle, #{tokens.$color-border-subtle});
+    @include theme.property(background-color, 'box-model-background-surface');
+    @include theme.property(color, 'box-model-text-primary');
+    position: relative;
+    padding-inline-start: #{tokens.$space-scale-300};
+
+    &::before {
+      content: '“';
+      position: absolute;
+      left: #{tokens.$space-scale-125};
+      top: #{tokens.$space-scale-125};
+      font-size: #{tokens.$typography-roles-heading-h3-font-size};
+      line-height: 1;
+      color: var(--box-model-text-secondary, #{tokens.$color-text-secondary});
+    }
+
+    p {
+      margin: 0;
+    }
+
+    cite {
+      display: block;
+      text-align: right;
+      font-style: italic;
+      font-size: #{tokens.$typography-font-size-sm};
+      color: var(--box-model-text-secondary, #{tokens.$color-text-secondary});
+      margin-top: #{tokens.$space-scale-100};
+    }
+  }
+}

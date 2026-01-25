@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as SelectStories from './select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Styled select control with placeholder and options.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Select } from '@box-model/rsd/select';
+  `}
+/>
+
+<Canvas of={SelectStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={SelectStories} />

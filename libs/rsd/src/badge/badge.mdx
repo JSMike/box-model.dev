@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as BadgeStories from './badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Highlights counts or unread states with compact adornments, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Badge } from '@box-model/rsd/badge';
+  `}
+/>
+
+<Canvas of={BadgeStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={BadgeStories} />

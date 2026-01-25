@@ -1,0 +1,34 @@
+@use 'sass:map';
+@use '@box-model/tokens/tokens' as tokens;
+@use './theme';
+
+$base-font-size: 16px;
+$scale: (
+  xs: 0.75rem,
+  sm: 0.875rem,
+  md: 1rem,
+  lg: 1.25rem,
+  xl: 1.5rem,
+  '2xl': 2rem,
+  '3xl': 2.5rem,
+  '4xl': 3rem,
+);
+
+@mixin base-font() {
+
+  font-family: #{tokens.$typography-font-family-sans};
+  font-size: map.get($scale, md);
+  line-height: #{tokens.$typography-line-height-normal};
+  @include theme.property(color, 'box-model-text-primary');
+}
+
+@mixin heading($size) {
+  @include base-font();
+  font-size: map.get($scale, $size);
+  font-weight: #{tokens.$typography-font-weight-semibold};
+}
+
+@mixin monospace() {
+  font-family: #{tokens.$typography-font-family-mono};
+  font-size: map.get($scale, md);
+}

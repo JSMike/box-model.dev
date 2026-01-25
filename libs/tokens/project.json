@@ -1,0 +1,36 @@
+{
+  "name": "tokens",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tokens/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "style-dictionary build --config libs/tokens/style-dictionary.config.js",
+          "cp libs/tokens/package.dist.json dist/libs/tokens/package.json",
+          "cp dist/libs/tokens/_tokens.scss libs/web/src/styles/_tokens.scss",
+          "cp dist/libs/tokens/tokens.stylex.ts libs/rsd/src/tokens/tokens.stylex.ts",
+          "cp dist/libs/tokens/tokens.stylex.ts libs/rsd-app/src/tokens/tokens.stylex.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "build-lib": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "style-dictionary build --config libs/tokens/style-dictionary.config.js",
+          "cp libs/tokens/package.dist.json dist/libs/tokens/package.json",
+          "cp dist/libs/tokens/_tokens.scss libs/web/src/styles/_tokens.scss",
+          "cp dist/libs/tokens/tokens.stylex.ts libs/rsd/src/tokens.stylex.ts"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

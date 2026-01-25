@@ -1,0 +1,63 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/src",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": ["tokens"],
+  "targets": {
+    "build": {
+      "dependsOn": ["build-lib", "build-storybook"]
+    },
+    "generate-types": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsx libs/web/generators/tag-name-map.ts",
+          "tsx libs/web/generators/react.ts",
+          "tsx libs/web/generators/preact.ts",
+          "tsx libs/web/generators/solid.ts"
+        ],
+        "parallel": false
+      }
+    },
+    "build-lib": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/web",
+        "viteConfig": "libs/web/vite.config.ts"
+      },
+      "dependsOn": ["generate-types", "^build-lib"]
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/web/.storybook"
+      },
+      "dependsOn": ["^build"]
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/web",
+        "configDir": "libs/web/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "vitestConfig": "libs/web/vite.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["^build"]
+    }
+  }
+}

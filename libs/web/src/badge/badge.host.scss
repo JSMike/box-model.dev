@@ -1,0 +1,15 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: inline-flex;
+  --badge-background: #{tokens.$component-badge-background};
+  --badge-text-color: #{tokens.$component-badge-text};
+  --badge-radius: #{tokens.$component-badge-radius};
+  --badge-gap: #{tokens.$component-badge-gap};
+  --badge-padding: #{tokens.$component-badge-padding};
+  --badge-font-family: #{tokens.$typography-roles-caption-font-family};
+  --badge-font-size: #{tokens.$typography-roles-caption-font-size};
+  --badge-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  --badge-line-height: #{tokens.$typography-roles-caption-line-height};
+  --badge-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
+}

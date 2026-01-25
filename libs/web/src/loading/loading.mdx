@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as LoadingBoxStories from './loading.stories';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={LoadingBoxStories} />
+
+# Loading box
+
+Animated Box Model indicator built from a 3×3 grid of squares. The center remains empty while the border cells pulse in sequence.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { LoadingBox } from '@box-model/web/loading';
+  `}
+/>
+
+<Canvas of={LoadingBoxStories.Canvas} />
+<Controls of={LoadingBoxStories.Canvas} />
+
+
+<ComponentDocs of={LoadingBoxStories} />

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as CardStories from './card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+Token-driven container for grouping related content with elevation. Built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Card, CardHeader, CardBody, CardFooter } from '@box-model/rsd/card';
+  `}
+/>
+
+<Canvas of={CardStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={CardStories} />

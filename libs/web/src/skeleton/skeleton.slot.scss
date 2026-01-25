@@ -1,0 +1,8 @@
+skeleton-box {
+  display: block;
+}
+
+skeleton-box > * {
+  opacity: 0;
+  pointer-events: none;
+}

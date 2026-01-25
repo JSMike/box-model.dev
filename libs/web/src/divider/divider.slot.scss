@@ -1,0 +1,29 @@
+divider-box {
+  display: block;
+}
+
+divider-box[orientation='horizontal'] {
+  margin-block: var(--divider-spacing);
+}
+
+divider-box[orientation='horizontal'] .divider-box__line {
+  width: 100%;
+  height: var(--divider-thickness);
+  background: var(--divider-color);
+}
+
+divider-box[orientation='vertical'] {
+  display: inline-flex;
+  align-items: stretch;
+  margin-inline: var(--divider-spacing);
+}
+
+divider-box[orientation='vertical'] .divider-box__line {
+  width: var(--divider-thickness);
+  height: 100%;
+  background: var(--divider-color);
+}
+
+divider-box > * {
+  margin: 0;
+}

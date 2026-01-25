@@ -1,0 +1,17 @@
+banner-box {
+  display: block;
+}
+
+banner-box > * {
+  margin: 0;
+}
+
+banner-box [slot='details'],
+banner-box [slot='actions'],
+banner-box [slot='close-control'] {
+  margin: 0;
+}
+
+banner-box > close-control-box[slot='close-control'] {
+  --close-size: var(--banner-close-size, 1.5rem);
+}

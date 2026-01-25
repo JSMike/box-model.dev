@@ -1,0 +1,40 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '@box-model/web/styles/box-model.scss' as box-model;
+
+:root {
+  font-family: Consolas, 'Courier New', monospace;
+  --box-model-radius-sm: 0;
+  --box-model-radius-md: 0;
+  --box-model-radius-lg: 0;
+  --box-model-radius-xl: 0;
+  --box-model-radius-full: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  @include box-model.box-model-apply-dark();
+  background-color: var(--box-model-background-canvas, #{tokens.$color-background-sunken});
+  color: var(--box-model-text-primary, #{tokens.$color-text-primary});
+}
+
+a {
+  color: var(--box-model-brand-primary-emphasis, #{tokens.$color-brand-primary-emphasis});
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--box-model-brand-primary-strong, #{tokens.$color-brand-primary-strong});
+  }
+}
+
+button {
+  font: inherit;
+}

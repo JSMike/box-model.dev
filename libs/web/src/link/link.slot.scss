@@ -1,0 +1,85 @@
+link-box {
+  a,
+  button {
+    all: unset;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--link-gap);
+    font-family: var(--link-font-family);
+    font-size: var(--link-font-size);
+    font-weight: var(--link-font-weight);
+    letter-spacing: var(--link-letter-spacing);
+    line-height: var(--link-line-height);
+    color: var(--link-color);
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    min-height: auto;
+    width: fit-content;
+    text-align: left;
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--link-decoration-thickness);
+    text-decoration-color: currentColor;
+    text-underline-offset: var(--link-underline-offset);
+    text-transform: none;
+    white-space: inherit;
+    transition:
+      color var(--link-transition-duration) var(--link-transition-easing),
+      text-decoration-color var(--link-transition-duration)
+        var(--link-transition-easing);
+  }
+
+  a:hover,
+  button:hover {
+    color: var(--link-hover-color);
+  }
+
+  a:active,
+  button:active {
+    color: var(--link-active-color);
+  }
+
+  a:visited {
+    color: var(--link-visited-color);
+  }
+
+  a:focus,
+  button:focus {
+    outline: var(--link-focus-ring-width) solid var(--link-focus-ring-color);
+    outline-offset: var(--link-focus-ring-offset);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    box-shadow: var(--link-focus-ring-shadow);
+  }
+
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  a:disabled,
+  a[aria-disabled='true'],
+  button:disabled,
+  button[aria-disabled='true'] {
+    color: var(--link-disabled-color);
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  a:disabled,
+  a[aria-disabled='true'],
+  button:disabled,
+  button[aria-disabled='true'] {
+    outline: none;
+    box-shadow: none;
+  }
+}

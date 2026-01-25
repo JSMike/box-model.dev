@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as HomeStories from './home.stories';
+
+<Meta of={HomeStories} />
+
+# Home
+
+Landing screen for the Box Model RSD app.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { HomeScreen } from '@box-model/rsd-app';
+  `}
+/>
+
+<Canvas of={HomeStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={HomeStories} />

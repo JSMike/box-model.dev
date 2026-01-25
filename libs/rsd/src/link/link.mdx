@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as LinkStories from './link.stories';
+
+<Meta of={LinkStories} />
+
+# Link
+
+Styled anchor or button with link affordance.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Link } from '@box-model/rsd/link';
+  `}
+/>
+
+<Canvas of={LinkStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={LinkStories} />

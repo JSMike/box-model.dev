@@ -1,0 +1,45 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme';
+
+@mixin text-field {
+  width: 100%;
+  font-family: var(--textarea-font-family, #{tokens.$typography-roles-body-font-family});
+  font-size: var(--textarea-font-size, #{tokens.$typography-roles-body-font-size});
+  font-weight: var(--textarea-font-weight, #{tokens.$typography-roles-body-font-weight});
+  line-height: var(--textarea-line-height, #{tokens.$typography-roles-body-line-height});
+  letter-spacing: var(--textarea-letter-spacing, #{tokens.$typography-roles-body-letter-spacing});
+  color: var(--textarea-text-color, #{theme.value('box-model-text-primary')});
+  background-color: var(--textarea-background, #{theme.value('box-model-background-surface')});
+  border: var(--textarea-border-width, 1px)
+    solid var(--textarea-border-color, #{theme.value('box-model-border-default')});
+  border-radius: var(--textarea-border-radius, 0);
+  padding: var(--textarea-padding-block, #{tokens.$space-scale-125})
+    var(--textarea-padding-inline, #{tokens.$space-scale-150});
+  min-height: var(--textarea-min-height, 6rem);
+  resize: vertical;
+  box-sizing: border-box;
+  transition:
+    border-color var(--textarea-transition-duration, #{tokens.$motion-interaction-press-duration})
+      var(--textarea-transition-easing, #{tokens.$motion-interaction-press-easing}),
+    box-shadow var(--textarea-transition-duration, #{tokens.$motion-interaction-press-duration})
+      var(--textarea-transition-easing, #{tokens.$motion-interaction-press-easing});
+
+  &::placeholder {
+    color: var(--textarea-placeholder-color, #{theme.value('box-model-text-tertiary')});
+  }
+
+  &:hover {
+    border-color: var(--textarea-border-color-hover, #{theme.value('box-model-border-strong')});
+  }
+
+  &:focus {
+    border-color: var(--textarea-border-color-focus, #{theme.value('box-model-border-focus')});
+    outline: none;
+    box-shadow: var(--textarea-focus-shadow, #{tokens.$shadow-glow-focus});
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}

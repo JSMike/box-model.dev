@@ -1,0 +1,27 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as DividerStories from './divider.stories';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+Visual separator for content sections, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Divider } from '@box-model/rsd/divider';
+  `}
+/>
+
+<Canvas of={DividerStories.Canvas} />
+<Controls />
+
+## Vertical
+
+<Canvas of={DividerStories.Vertical} />
+
+<ComponentDocs of={DividerStories} />

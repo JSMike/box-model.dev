@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as LinkBoxStories from './link.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={LinkBoxStories} />
+
+# Link Box
+
+Use `link-box` to style anchors or buttons as textual links with consistent variants and sizes.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { LinkBox } from '@box-model/web/link';
+  `}
+/>
+
+<Canvas of={LinkBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={LinkBoxStories} />

@@ -1,0 +1,56 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: inline-flex;
+  --close-size: #{tokens.$component-close-control-size};
+  --close-border-width: #{tokens.$component-close-control-border-width};
+  @include theme.custom-property('close-background', 'box-model-background-elevated');
+  @include theme.custom-property('close-background-hover', 'box-model-background-content');
+  @include theme.custom-property('close-background-active', 'box-model-background-sunken');
+  @include theme.custom-property('close-border-color', 'box-model-border-strong');
+  @include theme.custom-property('close-icon-color', 'box-model-text-primary');
+}
+
+button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--close-size);
+  height: var(--close-size);
+  background: var(--close-background);
+  border: var(--close-border-width) solid var(--close-border-color);
+  color: var(--close-icon-color);
+  cursor: pointer;
+}
+
+.close-control__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-control__icon svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 3px;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  fill: none;
+}
+
+button:hover {
+  background: var(--close-background-hover);
+}
+
+button:active {
+  background: var(--close-background-active);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--close-icon-color);
+  outline-offset: 2px;
+}

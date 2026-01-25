@@ -1,0 +1,88 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: inline-flex;
+  @include theme.custom-property('tooltip-background', 'box-model-background-surface');
+  @include theme.custom-property('tooltip-text-color', 'box-model-text-primary');
+  --tooltip-border-radius: #{tokens.$component-tooltip-border-radius};
+  --tooltip-padding: #{tokens.$component-tooltip-padding};
+  --tooltip-shadow: #{tokens.$component-tooltip-shadow};
+  --tooltip-font-family: #{tokens.$typography-roles-caption-font-family};
+  --tooltip-font-size: #{tokens.$typography-roles-caption-font-size};
+  --tooltip-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  --tooltip-line-height: #{tokens.$typography-roles-caption-line-height};
+  --tooltip-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
+  --tooltip-offset: 0.5rem;
+}
+
+:host .tooltip-box__container {
+  display: inline-flex;
+  align-items: center;
+}
+
+:host .tooltip-box__trigger-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  anchor-name: --tooltip-anchor;
+}
+
+:host .tooltip-box__default-trigger {
+  font-size: 0.875rem;
+  border-bottom: 1px dashed currentColor;
+  cursor: help;
+  padding-bottom: 0.1rem;
+}
+
+:host .tooltip-box__content {
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-text-color);
+  border-radius: var(--tooltip-border-radius);
+  padding: var(--tooltip-padding);
+  box-shadow: var(--tooltip-shadow);
+  font-family: var(--tooltip-font-family);
+  font-size: var(--tooltip-font-size);
+  font-weight: var(--tooltip-font-weight);
+  line-height: var(--tooltip-line-height);
+  letter-spacing: var(--tooltip-letter-spacing);
+  max-width: 22rem;
+
+  pointer-events: none;
+  position: absolute;
+  position-anchor: --tooltip-anchor;
+}
+
+:host .tooltip-box__content:popover-open {
+  pointer-events: auto;
+}
+
+@supports (anchor-name: --tooltip-anchor) {
+  :host .tooltip-box__trigger-wrapper > * {
+    anchor-name: --tooltip-anchor;
+  }
+
+  :host .tooltip-box__content {
+    position: fixed;
+    position-anchor: --tooltip-anchor;
+    inset: auto auto anchor(top) anchor(center);
+    translate: -50% 0;
+  }
+
+  :host .tooltip-box__content[data-placement='bottom'] {
+    inset: anchor(bottom) auto auto anchor(center);
+    translate: -50% 0;
+  }
+
+  :host .tooltip-box__content[data-placement='left'] {
+    inset: anchor(center) auto auto auto;
+    right: auto;
+    left: auto;
+    translate: 0 -50%;
+  }
+
+  :host .tooltip-box__content[data-placement='right'] {
+    inset: anchor(center) auto auto anchor(right);
+    translate: 0 -50%;
+  }
+}

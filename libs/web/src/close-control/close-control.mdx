@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as CloseControlStories from './close-control.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={CloseControlStories} />
+
+# Close Control
+
+Reusable close affordance rendered as a boxed icon button.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { CloseControlBox } from '@box-model/web/close-control';
+  `}
+/>
+
+<Canvas of={CloseControlStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={CloseControlStories} />

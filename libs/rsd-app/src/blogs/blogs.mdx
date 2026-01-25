@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as BlogsStories from './blogs.stories';
+
+<Meta of={BlogsStories} />
+
+# Blogs
+
+Blog index screen that surfaces Box Model UI updates.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { BlogsScreen } from '@box-model/rsd-app';
+  `}
+/>
+
+<Canvas of={BlogsStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={BlogsStories} />

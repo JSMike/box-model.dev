@@ -1,0 +1,49 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: flex;
+  gap: #{tokens.$space-scale-100};
+  align-items: flex-start;
+  line-height: #{tokens.$typography-line-height-normal};
+  font-family: #{tokens.$typography-roles-code-font-family};
+  font-size: #{tokens.$typography-roles-code-font-size};
+  @include theme.custom-property('terminal-line-text', 'box-model-text-primary');
+  @include theme.custom-property('terminal-line-prompt', 'box-model-text-success');
+  @include theme.custom-property('terminal-line-success', 'box-model-text-success');
+  @include theme.custom-property('terminal-line-info', 'box-model-text-accent');
+  color: var(--terminal-line-text);
+}
+
+.terminal-line__prompt {
+  color: var(--terminal-line-prompt);
+  user-select: none;
+}
+
+.terminal-line__content {
+  flex: 1;
+  word-break: break-all;
+}
+
+.terminal-line__cursor {
+  display: inline-block;
+  animation: terminal-line-blink #{tokens.$motion-duration-slow} step-end infinite;
+}
+
+:host([variant='success']) .terminal-line__content {
+  color: var(--terminal-line-success);
+}
+
+:host([variant='info']) .terminal-line__content {
+  color: var(--terminal-line-info);
+}
+
+:host([variant='prompt']) .terminal-line__content {
+  color: inherit;
+}
+
+@keyframes terminal-line-blink {
+  50% {
+    opacity: 0;
+  }
+}

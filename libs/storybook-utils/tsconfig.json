@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "jsx": "react-jsx",
+    "types": ["../web/src/types/react"],
+    "moduleResolution": "bundler"
+  },
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": [
+    "src",
+    "../web/src"
+  ]
+}

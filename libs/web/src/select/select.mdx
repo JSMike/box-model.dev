@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as SelectBoxStories from './select.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={SelectBoxStories} />
+
+# Select Box
+
+A styled wrapper for native `<select>` elements that keeps padding, typography, and trigger icon spacing consistent with the design system.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { SelectBox } from '@box-model/web/select';
+  `}
+/>
+
+<Canvas of={SelectBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={SelectBoxStories} />

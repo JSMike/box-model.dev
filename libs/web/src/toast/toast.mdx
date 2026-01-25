@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ToastBoxStories from './toast.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ToastBoxStories} />
+
+# Toast Box
+
+Surface transient feedback anchored to the corner of the viewport.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { ToastBox } from '@box-model/web/toast';
+  `}
+/>
+
+<Canvas of={ToastBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ToastBoxStories} />

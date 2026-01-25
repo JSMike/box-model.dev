@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as CloseControlStories from './close-control.stories';
+
+<Meta of={CloseControlStories} />
+
+# Close control
+
+Dismiss control for overlays and alerts, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { CloseControl } from '@box-model/rsd/close-control';
+  `}
+/>
+
+<Canvas of={CloseControlStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={CloseControlStories} />

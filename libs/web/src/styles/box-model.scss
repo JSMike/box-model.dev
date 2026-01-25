@@ -1,0 +1,19 @@
+@forward './box-model-light';
+@forward './box-model-dark';
+@use './theme';
+@use './reset';
+@use './variables';
+@use './typography';
+@use './layout';
+@use './layers';
+
+:root {
+  @include theme.register-theme-vars();
+  @include theme.apply-theme(light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include theme.apply-theme(dark);
+  }
+}

@@ -1,0 +1,43 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { ColorTable, surfaces, text, borders, brand, interactive } from '@box-model/storybook-utils';
+
+<Meta title="Styles/Colors" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Color tokens
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/theme' as theme;
+
+    .panel {
+        @include theme.property(background-color, 'box-model-background-surface');
+        @include theme.property(color, 'box-model-text-primary');
+        border: 1px solid theme.value('box-model-border-default');
+    }
+  `}
+/>
+
+## Semantic theme tokens
+
+### Surfaces and overlays
+
+<ColorTable rows={surfaces} />
+
+### Text
+
+<ColorTable rows={text} />
+
+### Borders
+
+<ColorTable rows={borders} />
+
+### Brand accents
+
+<ColorTable rows={brand} />
+
+### Interactive roles
+
+<ColorTable rows={interactive} />

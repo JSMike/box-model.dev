@@ -1,0 +1,25 @@
+import { Canvas, Controls, Meta, Source, Story } from '@storybook/addon-docs/blocks';
+import * as ButtonBoxStories from './button.stories.ts'
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ButtonBoxStories} />
+
+# Button Box
+
+A box for your buttons.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { ButtonBox } from '@box-model/web/button';
+  `}
+/>
+
+<Canvas of={ButtonBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ButtonBoxStories} />
+

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as TooltipStories from './tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+Simple tooltip wrapper using the native title attribute.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Tooltip } from '@box-model/rsd/tooltip';
+  `}
+/>
+
+<Canvas of={TooltipStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={TooltipStories} />

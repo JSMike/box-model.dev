@@ -1,0 +1,106 @@
+@use 'sass:list';
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+$loading-sequence: (1, 2, 3, 6, 9, 8, 7, 4);
+$loading-sequence-length: list.length($loading-sequence);
+$loading-static-opacities: (1, 0.85, 0.7, 0.55, 0.4, 0.25, 0.1, 0.05);
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: #{tokens.$space-scale-100};
+  --loading-size: #{tokens.$size-control-height-sm};
+  --loading-gap: #{tokens.$space-scale-025};
+  --loading-speed: #{tokens.$motion-duration-slower};
+  --loading-delay-step: calc(#{tokens.$motion-duration-slower} / #{$loading-sequence-length});
+  --loading-opacity: #{tokens.$color-alpha-20};
+  @include theme.custom-property('loading-color', 'box-model-text-primary');
+  color: var(--loading-color);
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.loading-box__grid {
+  width: var(--loading-size);
+  height: var(--loading-size);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--loading-gap);
+}
+
+.loading-box__cell {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: transparent;
+  border: #{tokens.$size-border-width-hairline} solid var(--loading-color);
+  opacity: var(--loading-opacity);
+  animation: loading-box-pulse var(--loading-speed) linear infinite;
+  box-sizing: border-box;
+}
+
+.loading-box__cell:nth-child(5) {
+  border: none;
+  opacity: 0;
+  animation: none;
+}
+
+@for $index from 1 through $loading-sequence-length {
+  $cell: list.nth($loading-sequence, $index);
+  $offset: $index - 1;
+  .loading-box__cell:nth-child(#{$cell}) {
+    animation-delay: calc(var(--loading-delay-step) * #{$offset});
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-box__cell {
+    animation: none;
+    opacity: var(--loading-opacity);
+    background-color: transparent;
+  }
+
+  @for $index from 1 through $loading-sequence-length {
+    $cell: list.nth($loading-sequence, $index);
+    $opacity: list.nth($loading-static-opacities, $index);
+    .loading-box__cell:nth-child(#{$cell}) {
+      background-color: var(--loading-color);
+      opacity: #{$opacity};
+    }
+  }
+}
+
+.loading-box__label {
+  font-size: #{tokens.$typography-font-size-sm};
+  line-height: #{tokens.$typography-line-height-normal};
+  color: inherit;
+}
+
+:host(:not([label-visible])) .loading-box__label {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@keyframes loading-box-pulse {
+  0% {
+    background-color: var(--loading-color);
+    opacity: 1;
+  }
+  60% {
+    background-color: transparent;
+    opacity: var(--loading-opacity);
+  }
+  100% {
+    background-color: var(--loading-color);
+    opacity: 1;
+  }
+}

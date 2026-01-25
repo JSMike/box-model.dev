@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ListStories from './list.stories';
+
+<Meta of={ListStories} />
+
+# List
+
+Styled ordered or unordered list.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { List } from '@box-model/rsd/list';
+  `}
+/>
+
+<Canvas of={ListStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ListStories} />

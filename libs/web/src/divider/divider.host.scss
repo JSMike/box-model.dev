@@ -1,0 +1,13 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: block;
+  --divider-color: #{tokens.$component-divider-color};
+  --divider-thickness: #{tokens.$component-divider-thickness};
+  --divider-spacing: #{tokens.$component-divider-spacing};
+}
+
+:host([orientation='vertical']) {
+  display: inline-flex;
+  height: 100%;
+}

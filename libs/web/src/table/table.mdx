@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as TableBoxStories from './table.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={TableBoxStories} />
+
+# Table Box
+
+Applies consistent styling to tabular data.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { TableBox } from '@box-model/web/table';
+  `}
+/>
+
+<Canvas of={TableBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={TableBoxStories} />

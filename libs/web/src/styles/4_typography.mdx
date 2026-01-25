@@ -1,0 +1,58 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Styles/Typography" parameters={{ previewTabs: { canvas: { hidden: true } } }} />
+
+# Typography mixins
+
+The mixins in `libs/web/src/styles/_typography.scss` keep product copy aligned with the Box Model scale. They pair the correct font family, weight, and line-height with the tokens defined in `_theme.scss` so that typography styles respond automatically to theme changes.
+
+## Base font
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/typography' as typography;
+    .body-copy {
+      @include typography.base-font();
+    }
+  `}
+/>
+
+`base-font()` sets the sans-serif stack, normal line-height, and primary text color token. Apply it to containers so nested elements inherit the proper defaults.
+
+## Heading scale
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/typography' as typography;
+    h1 {
+      @include typography.heading('3xl');
+    }
+    h2 {
+      @include typography.heading('2xl');
+    }
+  `}
+/>
+
+`heading($size)` accepts any key from the scale (`xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`) and applies the matching font-size with the semibold weight. Use these mixins instead of hard-coded pixel values so heading hierarchy stays consistent between apps.
+
+## Monospace text
+
+<Source
+  dark={true}
+  language="css"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/typography' as typography;
+    .code-block {
+      @include typography.monospace();
+    }
+  `}
+/>
+
+`monospace()` switches to the mono stack while keeping the base font size. It is ideal for inline code, log output, and any developer-centric UI controls.

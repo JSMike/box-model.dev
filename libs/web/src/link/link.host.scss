@@ -1,0 +1,58 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  --link-font-family: #{tokens.$typography-roles-body-font-family};
+  --link-font-weight: #{tokens.$typography-roles-body-font-weight};
+  --link-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  --link-line-height: #{tokens.$typography-roles-body-line-height};
+  --link-font-size: #{tokens.$typography-font-size-md};
+  --link-gap: #{tokens.$space-scale-050};
+  --link-underline-offset: #{tokens.$space-scale-025};
+  --link-decoration-thickness: #{tokens.$size-border-width-hairline};
+  --link-transition-duration: #{tokens.$motion-interaction-press-duration};
+  --link-transition-easing: #{tokens.$motion-interaction-press-easing};
+  @include theme.custom-property('link-focus-ring-color', 'box-model-focus-ring');
+  --link-focus-ring-width: #{tokens.$size-border-width-thick};
+  --link-focus-ring-offset: #{tokens.$component-button-focus-offset};
+  --link-focus-ring-shadow: #{tokens.$shadow-glow-focus};
+  @include theme.custom-property('link-disabled-color', 'box-model-disabled-text');
+  @include theme.custom-property('link-color', 'box-model-text-accent');
+  @include theme.custom-property('link-hover-color', 'box-model-brand-primary-intense');
+  @include theme.custom-property('link-active-color', 'box-model-brand-primary-strong');
+  @include theme.custom-property('link-visited-color', 'box-model-brand-primary-strong');
+}
+
+:host([variant='secondary']) {
+  @include theme.custom-property('link-color', 'box-model-text-secondary');
+  @include theme.custom-property('link-hover-color', 'box-model-text-primary');
+  @include theme.custom-property('link-active-color', 'box-model-text-primary');
+  @include theme.custom-property('link-visited-color', 'box-model-text-secondary');
+}
+
+:host([variant='tertiary']) {
+  @include theme.custom-property('link-color', 'box-model-text-tertiary');
+  @include theme.custom-property('link-hover-color', 'box-model-text-secondary');
+  @include theme.custom-property('link-active-color', 'box-model-text-primary');
+  @include theme.custom-property('link-visited-color', 'box-model-text-tertiary');
+}
+
+:host([size='xs']) {
+  --link-font-size: #{tokens.$typography-font-size-xs};
+  --link-line-height: #{tokens.$typography-line-height-snug};
+}
+
+:host([size='sm']) {
+  --link-font-size: #{tokens.$typography-font-size-sm};
+  --link-line-height: #{tokens.$typography-line-height-snug};
+}
+
+:host([size='lg']) {
+  --link-font-size: #{tokens.$typography-font-size-lg};
+  --link-line-height: #{tokens.$typography-line-height-normal};
+}
+
+:host([size='xl']) {
+  --link-font-size: #{tokens.$typography-font-size-xl};
+  --link-line-height: #{tokens.$typography-line-height-normal};
+}

@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as SkeletonStories from './skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+Placeholder block for loading states.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Skeleton } from '@box-model/rsd/skeleton';
+  `}
+/>
+
+<Canvas of={SkeletonStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={SkeletonStories} />

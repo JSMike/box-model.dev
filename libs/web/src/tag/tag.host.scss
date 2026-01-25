@@ -1,0 +1,42 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: inline-flex;
+  --tag-background: #{tokens.$component-tag-neutral-background};
+  --tag-text-color: #{tokens.$component-tag-neutral-text};
+  --tag-border-color: #{tokens.$component-tag-neutral-border};
+  --tag-border-width: #{tokens.$size-border-width-hairline};
+  --tag-radius: #{tokens.$component-tag-radius};
+  --tag-gap: #{tokens.$component-tag-gap};
+  --tag-padding: #{tokens.$component-tag-padding};
+  --tag-font-family: #{tokens.$typography-roles-caption-font-family};
+  --tag-font-size: #{tokens.$typography-roles-caption-font-size};
+  --tag-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  --tag-line-height: #{tokens.$typography-roles-caption-line-height};
+  --tag-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
+  --tag-text-transform: uppercase;
+}
+
+:host([variant='info']) {
+  --tag-background: #{tokens.$component-tag-info-background};
+  --tag-text-color: #{tokens.$component-tag-info-text};
+  --tag-border-color: #{tokens.$component-tag-info-border};
+}
+
+:host([variant='success']) {
+  --tag-background: #{tokens.$component-tag-success-background};
+  --tag-text-color: #{tokens.$component-tag-success-text};
+  --tag-border-color: #{tokens.$component-tag-success-border};
+}
+
+:host([variant='warning']) {
+  --tag-background: #{tokens.$component-tag-warning-background};
+  --tag-text-color: #{tokens.$component-tag-warning-text};
+  --tag-border-color: #{tokens.$component-tag-warning-border};
+}
+
+:host([variant='danger']) {
+  --tag-background: #{tokens.$component-tag-danger-background};
+  --tag-text-color: #{tokens.$component-tag-danger-text};
+  --tag-border-color: #{tokens.$component-tag-danger-border};
+}

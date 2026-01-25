@@ -1,0 +1,35 @@
+:host(:not([has-close-control])) alert-box {
+  grid-template-columns: auto 1fr;
+}
+
+alert-box {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: var(--alert-gap);
+  padding: var(--alert-padding);
+  border-radius: var(--alert-radius);
+  border: var(--alert-border-width) solid var(--alert-border-color);
+  background-color: var(--alert-background);
+  color: var(--alert-text-color);
+  font-family: var(--alert-font-family);
+  font-size: var(--alert-font-size);
+  font-weight: var(--alert-font-weight);
+  line-height: var(--alert-line-height);
+}
+
+alert-box p {
+  margin: 0;
+}
+
+alert-box status-icon-box {
+  align-self: flex-start;
+}
+
+:host([has-close-control]) alert-box {
+  grid-template-columns: auto 1fr auto;
+}
+
+alert-box close-control-box {
+  margin-left: auto;
+}

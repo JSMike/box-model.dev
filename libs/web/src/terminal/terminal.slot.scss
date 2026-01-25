@@ -1,0 +1,13 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+terminal-box {
+  color: var(--terminal-text, #{theme.value('box-model-text-primary')});
+  font-family: var(--terminal-font-family, #{tokens.$typography-roles-code-font-family});
+  font-size: var(--terminal-font-size, #{tokens.$typography-roles-code-font-size});
+  line-height: var(--terminal-line-height, #{tokens.$typography-line-height-normal});
+}
+
+terminal-box code {
+  font-family: var(--terminal-font-family, #{tokens.$typography-roles-code-font-family});
+}

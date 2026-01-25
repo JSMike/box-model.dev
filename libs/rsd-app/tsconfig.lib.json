@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@box-model/tokens/tokens.stylex": ["dist/libs/tokens/tokens.stylex.ts"],
+      "@box-model/tokens/*": ["dist/libs/tokens/*"],
+      "@box-model/rsd": ["dist/libs/rsd/index.d.ts"],
+      "@box-model/rsd/*": ["dist/libs/rsd/*/index.d.ts", "dist/libs/rsd/*"]
+    }
+  },
+  "include": [
+    "src",
+    "../../dist/libs/tokens/tokens.stylex.ts"
+  ],
+  "exclude": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.stories.mdx",
+    "**/*.mdx"
+  ]
+}

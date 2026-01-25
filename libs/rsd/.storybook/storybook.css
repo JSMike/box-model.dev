@@ -1,0 +1,14 @@
+/**
+ * Storybook-specific styles for @box-model/rsd
+ * These are web/Storybook only and won't affect the library on native platforms
+ */
+@import '../../../dist/libs/tokens/tokens.css';
+
+body.rsd-theme-light,
+body.rsd-theme-dark {
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-md);
+  line-height: var(--typography-line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-canvas);
+}

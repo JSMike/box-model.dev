@@ -1,0 +1,7 @@
+{
+  "name": "@box-model/web",
+  "type": "module",
+  "dependencies": {
+    "lit": "^3.3.1"
+  }
+}

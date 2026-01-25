@@ -1,0 +1,11 @@
+ [mcpServers.playwright]
+ command = "npx"
+ args = [
+   "playwright-mcp",
+   "--browser",
+   "chrome",
+   "--headless",
+   "true",
+   "--config",
+   "./playwright.mcp.config.json"
+ ]

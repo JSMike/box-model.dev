@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as CheckboxStories from './checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Binary selection control built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Checkbox } from '@box-model/rsd/checkbox';
+  `}
+/>
+
+<Canvas of={CheckboxStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={CheckboxStories} />

@@ -1,0 +1,54 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+@use '../textarea/textarea-text-field' as textField;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: #{tokens.$space-scale-075};
+  --textarea-font-family: #{tokens.$typography-roles-body-font-family};
+  --textarea-font-size: #{tokens.$typography-roles-body-font-size};
+  --textarea-font-weight: #{tokens.$typography-roles-body-font-weight};
+  --textarea-line-height: #{tokens.$typography-roles-body-line-height};
+  --textarea-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  @include theme.custom-property('textarea-text-color', 'box-model-text-primary');
+  @include theme.custom-property('textarea-background', 'box-model-background-surface');
+  @include theme.custom-property('textarea-border-color', 'box-model-border-default');
+  @include theme.custom-property('textarea-border-color-hover', 'box-model-border-strong');
+  @include theme.custom-property('textarea-border-color-focus', 'box-model-primary-focus-ring');
+  --textarea-border-radius: 0;
+  --textarea-border-width: #{tokens.$component-input-border-width};
+  --textarea-padding-block: #{tokens.$component-input-padding-block};
+  --textarea-padding-inline: #{tokens.$component-input-padding-inline};
+  --textarea-min-height: 6rem;
+  --textarea-transition-duration: #{tokens.$motion-interaction-press-duration};
+  --textarea-transition-easing: #{tokens.$motion-interaction-press-easing};
+  --textarea-focus-shadow: #{tokens.$shadow-glow-focus};
+  @include theme.custom-property('textarea-placeholder-color', 'box-model-text-secondary');
+}
+
+.wysiwyg-box__toolbar {
+  border: none;
+  background-color: transparent;
+  @include theme.property(color, 'box-model-text-primary');
+  padding: 0;
+}
+
+textarea-box {
+  border: none;
+  padding: 0;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+
+  textarea {
+    @include textField.text-field;
+  }
+}
+
+
+.wysiwyg-box__helper {
+  margin: 0;
+  font-size: 0.85rem;
+  @include theme.property(color, 'box-model-text-tertiary');
+}

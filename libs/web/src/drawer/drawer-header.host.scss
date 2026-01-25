@@ -1,0 +1,8 @@
+@use '@box-model/tokens/tokens' as tokens;
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: #{tokens.$component-drawer-body-gap};
+  color: #{tokens.$component-drawer-header-text};
+}

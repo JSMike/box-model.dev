@@ -1,0 +1,80 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: contents;
+  --dialog-width: #{tokens.$component-dialog-width};
+  --dialog-max-width: #{tokens.$component-dialog-max-width};
+  @include theme.custom-property('dialog-background', 'box-model-background-elevated');
+  @include theme.custom-property('dialog-border', 'box-model-border-strong');
+  --dialog-border-width: #{tokens.$component-dialog-border-width};
+  --dialog-shadow: #{tokens.$component-dialog-shadow};
+  --dialog-gap: #{tokens.$component-dialog-gap};
+  --dialog-overlay: #{tokens.$component-dialog-overlay};
+  --dialog-header-padding: #{tokens.$component-dialog-header-padding};
+  @include theme.custom-property('dialog-header-text', 'box-model-text-primary');
+  --dialog-body-padding: #{tokens.$component-dialog-body-padding};
+  @include theme.custom-property('dialog-body-text', 'box-model-text-primary');
+  --dialog-footer-padding: #{tokens.$component-dialog-footer-padding};
+  --dialog-footer-gap: #{tokens.$component-dialog-footer-gap};
+  --dialog-close-size: #{tokens.$component-close-control-size};
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+dialog[open] {
+  border: var(--dialog-border-width) solid var(--dialog-border);
+  padding: 0;
+  width: min(var(--dialog-width), var(--dialog-max-width));
+  background: var(--dialog-background);
+  box-shadow: var(--dialog-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap);
+}
+
+dialog::backdrop {
+  background: var(--dialog-overlay);
+}
+
+.dialog-box__close {
+  position: absolute;
+  top: var(--dialog-gap);
+  right: var(--dialog-gap);
+}
+
+.dialog-box__close[hidden] {
+  display: none;
+}
+
+.dialog-box__section--header {
+  padding: var(--dialog-header-padding);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--dialog-gap);
+  position: relative;
+  padding-right: calc(var(--dialog-gap) + var(--dialog-close-size));
+  color: var(--dialog-header-text);
+}
+
+.dialog-box__section--header[hidden] {
+  display: none;
+}
+
+:host(:not([has-close-control])) .dialog-box__section--header {
+  padding-right: var(--dialog-header-padding);
+}
+
+.dialog-box__section--footer {
+  padding: var(--dialog-footer-padding);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--dialog-footer-gap);
+}
+
+.dialog-box__section--body {
+  padding: var(--dialog-body-padding);
+  color: var(--dialog-body-text);
+}

@@ -1,0 +1,27 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as StatusIconStories from './status-icon.stories';
+
+<Meta of={StatusIconStories} />
+
+# StatusIcon
+
+Status indicator icons for feedback states, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { StatusIcon } from '@box-model/rsd/status-icon';
+  `}
+/>
+
+<Canvas of={StatusIconStories.Canvas} />
+<Controls />
+
+## All Variants
+
+<Canvas of={StatusIconStories.AllVariants} />
+
+<ComponentDocs of={StatusIconStories} />

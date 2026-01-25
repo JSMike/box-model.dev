@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as ColumnsStories from './columns.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={ColumnsStories} />
+
+# Columns Box
+
+`columns-box` renders its slotted children in an auto-fit grid with configurable gaps and minimum widths.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="js"
+  code={`
+    import { ColumnsBox } from '@box-model/web/columns';
+  `}
+/>
+
+<Canvas of={ColumnsStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={ColumnsStories} />

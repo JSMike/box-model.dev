@@ -1,0 +1,24 @@
+toolbar-box {
+  button,
+  [role='button'] {
+    border: 1px solid transparent;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+    border-radius: 0;
+    transition: background-color 120ms ease, border-color 120ms ease;
+
+    &:hover {
+      background-color: rgba(71, 85, 105, 0.08);
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(59, 130, 246, 0.8);
+      outline-offset: 2px;
+    }
+  }
+}

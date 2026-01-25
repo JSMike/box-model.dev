@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as InputBoxStories from './input.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={InputBoxStories} />
+
+# Input Box
+
+Wraps native form controls so they inherit Box Model tokens and states.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { InputBox } from '@box-model/web/input';
+  `}
+/>
+
+<Canvas of={InputBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={InputBoxStories} />

@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as TagBoxStories from './tag.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={TagBoxStories} />
+
+# Tag Box
+
+Pills for metadata, statuses, and taxonomy chips.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { TagBox } from '@box-model/web/tag';
+  `}
+/>
+
+<Canvas of={TagBoxStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={TagBoxStories} />

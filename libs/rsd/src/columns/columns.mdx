@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ColumnsStories from './columns.stories';
+
+<Meta of={ColumnsStories} />
+
+# Columns
+
+Responsive columns wrapper using min-width wrapping.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Columns } from '@box-model/rsd/columns';
+  `}
+/>
+
+<Canvas of={ColumnsStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ColumnsStories} />

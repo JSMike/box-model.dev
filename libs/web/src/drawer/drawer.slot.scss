@@ -1,0 +1,17 @@
+drawer-box {
+  display: block;
+}
+
+drawer-box > * {
+  margin: 0;
+}
+
+drawer-box [slot='heading'],
+drawer-box [slot='actions'],
+drawer-box [slot='close-control'] {
+  margin: 0;
+}
+
+drawer-box > close-control-box[slot='close-control'] {
+  --close-size: var(--drawer-close-size);
+}

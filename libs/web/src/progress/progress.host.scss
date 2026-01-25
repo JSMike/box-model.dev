@@ -1,0 +1,45 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  width: 100%;
+  --progress-height: #{tokens.$component-progress-height};
+  --progress-track: #{tokens.$component-progress-track};
+  --progress-indicator: #{tokens.$component-progress-indicator};
+  --progress-radius: #{tokens.$component-progress-radius};
+  --progress-animation-duration: #{tokens.$component-progress-animation-duration};
+  padding: #{tokens.$space-scale-050} 0;
+  display: flex;
+  flex-direction: column;
+  gap: #{tokens.$space-scale-050};
+}
+
+:host .progress-box__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  @include theme.property(color, 'box-model-text-secondary');
+}
+
+:host .progress-box__percent {
+  margin-inline-start: #{tokens.$space-scale-100};
+  font-weight: 600;
+  @include theme.property(color, 'box-model-text-primary');
+}
+
+:host .progress-box__track {
+  width: 100%;
+  height: var(--progress-height);
+  background: var(--progress-track);
+  border-radius: var(--progress-radius);
+  overflow: hidden;
+}
+
+:host .progress-box__indicator {
+  height: 100%;
+  background: var(--progress-indicator);
+  border-radius: var(--progress-radius);
+  transition: width var(--progress-animation-duration) ease;
+}

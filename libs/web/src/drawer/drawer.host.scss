@@ -1,0 +1,131 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: contents;
+  --drawer-width: #{tokens.$component-drawer-width};
+  --drawer-max-width: #{tokens.$component-drawer-max-width};
+  --drawer-size: 20rem;
+  --drawer-size-block: 15rem;
+  @include theme.custom-property('drawer-background', 'box-model-background-elevated');
+  @include theme.custom-property('drawer-border', 'box-model-border-strong');
+  --drawer-border-width: #{tokens.$component-drawer-border-width};
+  --drawer-shadow: #{tokens.$component-drawer-shadow};
+  --drawer-overlay: #{tokens.$component-drawer-overlay-color};
+  --drawer-header-padding: #{tokens.$component-drawer-header-padding};
+  @include theme.custom-property('drawer-header-text', 'box-model-text-primary');
+  --drawer-body-padding: #{tokens.$component-drawer-body-padding};
+  --drawer-body-gap: #{tokens.$component-drawer-body-gap};
+  --drawer-footer-padding: #{tokens.$component-drawer-footer-padding};
+  --drawer-footer-gap: #{tokens.$component-drawer-footer-gap};
+  --drawer-close-size: #{tokens.$component-close-control-size};
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+}
+
+dialog::backdrop {
+  background: var(--drawer-overlay);
+}
+
+.drawer-box__panel {
+  position: fixed;
+  background: var(--drawer-background);
+  border-left: var(--drawer-border-width) solid var(--drawer-border);
+  box-shadow: var(--drawer-shadow);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+:host([placement='right']) .drawer-box__panel {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(var(--drawer-size), var(--drawer-max-width));
+  height: 100%;
+}
+
+:host([placement='left']) .drawer-box__panel {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(var(--drawer-size), var(--drawer-max-width));
+  height: 100%;
+  border-left: none;
+  border-right: var(--drawer-border-width) solid var(--drawer-border);
+}
+
+:host([placement='top']) .drawer-box__panel {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--drawer-size-block, var(--drawer-size));
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--drawer-border-width) solid var(--drawer-border);
+}
+
+:host([placement='bottom']) .drawer-box__panel {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--drawer-size-block, var(--drawer-size));
+  border-left: none;
+  border-right: none;
+  border-top: var(--drawer-border-width) solid var(--drawer-border);
+}
+
+.drawer-box__section--header {
+  padding: var(--drawer-header-padding);
+  color: var(--drawer-header-text);
+  display: flex;
+  align-items: center;
+  gap: var(--drawer-body-gap);
+}
+
+.drawer-box__section--header[hidden] {
+  display: none;
+}
+
+.drawer-box__close {
+  margin-left: auto;
+}
+
+.drawer-box__close[hidden] {
+  display: none;
+}
+
+.drawer-box__section--body {
+  padding: var(--drawer-body-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--drawer-body-gap);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.drawer-box__section--footer {
+  padding: var(--drawer-footer-padding);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--drawer-footer-gap);
+}

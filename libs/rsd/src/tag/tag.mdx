@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as TagStories from './tag.stories';
+
+<Meta of={TagStories} />
+
+# Tag
+
+Pills for metadata, statuses, and taxonomy chips, built with React Strict DOM.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Tag } from '@box-model/rsd/tag';
+  `}
+/>
+
+<Canvas of={TagStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={TagStories} />

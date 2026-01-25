@@ -1,0 +1,36 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: inline-flex;
+  width: auto;
+  --input-font-family: #{tokens.$typography-roles-body-font-family};
+  --input-font-size: #{tokens.$typography-roles-body-font-size};
+  --input-font-weight: #{tokens.$typography-roles-body-font-weight};
+  --input-line-height: #{tokens.$typography-roles-body-line-height};
+  --input-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  @include theme.custom-property('input-background', 'box-model-background-elevated');
+  @include theme.custom-property('input-background-read-only', 'box-model-background-surface');
+  --input-border-radius: #{tokens.$component-input-border-radius};
+  --input-border-width: #{tokens.$component-input-border-width};
+  @include theme.custom-property('input-border-color', 'box-model-border-default');
+  @include theme.custom-property('input-border-color-hover', 'box-model-border-strong');
+  @include theme.custom-property('input-border-color-focus', 'box-model-border-focus');
+  --input-padding-block: #{tokens.$component-input-padding-block};
+  --input-padding-inline: #{tokens.$component-input-padding-inline};
+  --input-min-height: #{tokens.$component-input-min-height};
+  @include theme.custom-property('input-text-color', 'box-model-text-primary');
+  @include theme.custom-property('input-placeholder-color', 'box-model-text-tertiary');
+  --input-icon-color: #{tokens.$component-input-icon};
+  --input-focus-shadow: #{tokens.$component-input-focus-shadow};
+  --input-disabled-background: #{tokens.$component-input-disabled-background};
+  --input-disabled-text: #{tokens.$component-input-disabled-text};
+  --input-disabled-border-color: #{tokens.$component-input-disabled-border-color};
+  --input-transition-duration: #{tokens.$motion-duration-fast};
+  --input-transition-easing: #{tokens.$motion-easing-standard};
+}
+
+:host([fullwidth]) {
+  display: flex;
+  width: 100%;
+}

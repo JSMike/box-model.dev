@@ -1,0 +1,34 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as MarkdownStories from './markdown.stories';
+
+<Meta of={MarkdownStories} />
+
+# Markdown
+
+Container for markdown-rendered content, built with React Strict DOM.
+
+This component provides a styled container for markdown content. The actual
+markdown parsing should be handled at the application level using an appropriate
+library for your platform:
+
+- **Web**: Use `markdown-it`, `remark`, or similar
+- **Native**: Use `react-native-markdown-display` or similar
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Markdown } from '@box-model/rsd/markdown';
+  `}
+/>
+
+<Canvas of={MarkdownStories.Canvas} />
+<Controls />
+
+## Rich Content
+
+<Canvas of={MarkdownStories.RichContent} />
+
+<ComponentDocs of={MarkdownStories} />

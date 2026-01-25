@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A box for your buttons—React Strict DOM edition.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { Button } from '@box-model/rsd/button';
+  `}
+/>
+
+<Canvas of={ButtonStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={ButtonStories} />

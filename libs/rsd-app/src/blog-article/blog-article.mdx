@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as BlogArticleStories from './blog-article.stories';
+
+<Meta of={BlogArticleStories} />
+
+# Blog Article
+
+Blog article detail screen for the Box Model RSD app.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="tsx"
+  code={`
+    import { BlogArticleScreen } from '@box-model/rsd-app';
+  `}
+/>
+
+<Canvas of={BlogArticleStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={BlogArticleStories} />

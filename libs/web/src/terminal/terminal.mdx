@@ -1,0 +1,24 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import * as TerminalStories from './terminal.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={TerminalStories} />
+
+# Terminal Box
+
+`terminal-box` frames command output while `terminal-line-box` handles prompts, success states, and cursor ticks.
+
+<Source
+  dark={true}
+  format='dedent'
+  language="js"
+  code={`
+    import { TerminalBox, TerminalLineBox } from '@box-model/web/terminal';
+  `}
+/>
+
+<Canvas of={TerminalStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={TerminalStories} />

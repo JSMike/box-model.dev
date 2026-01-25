@@ -1,0 +1,18 @@
+card-box {
+  display: block;
+}
+
+card-box > * {
+  margin: 0;
+}
+
+card-box [slot='header'],
+card-box [slot='footer'],
+card-box [slot='actions'],
+card-box [slot='close-control'] {
+  margin: 0;
+}
+
+card-box > close-control-box[slot='close-control'] {
+  --close-size: var(--card-close-size);
+}

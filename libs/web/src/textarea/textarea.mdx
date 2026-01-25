@@ -1,0 +1,15 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as TextareaStories from './textarea.stories.ts';
+import { ComponentDocs } from '@box-model/storybook-utils';
+
+<Meta of={TextareaStories} />
+
+# Textarea Box
+
+`textarea-box` wraps a native `<textarea>` passed through its slot, applying Box Model spacing, typography, and focus states without reimplementing form behavior.
+
+<Canvas of={TextareaStories.Canvas} />
+<Controls />
+
+
+<ComponentDocs of={TextareaStories} />

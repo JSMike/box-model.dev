@@ -1,0 +1,9 @@
+@use './theme';
+
+@mixin box-model-apply-light {
+  @include theme.apply-theme(light);
+}
+
+.box-model-theme-light {
+  @include box-model-apply-light();
+}

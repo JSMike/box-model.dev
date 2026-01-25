@@ -1,0 +1,69 @@
+{
+  "name": "rsd-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/rsd-app/src",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": [
+    "tokens",
+    "web"
+  ],
+  "// targets": "to see all targets run: nx show project rsd-app --web",
+  "targets": {
+    "build": {
+      "dependsOn": ["build-lib", "build-storybook"]
+    },
+    "build-lib": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/rsd-app",
+        "viteConfig": "libs/rsd-app/vite.config.ts"
+      },
+      "dependsOn": ["^build-lib"]
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4402,
+        "configDir": "libs/rsd-app/.storybook"
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/storybook/rsd-app",
+        "configDir": "libs/rsd-app/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vitest:test",
+      "options": {
+        "config": "libs/rsd-app/vite.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    }
+  }
+}

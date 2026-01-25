@@ -1,0 +1,46 @@
+@use '@box-model/tokens/tokens' as tokens;
+@use '../styles/theme' as theme;
+
+:host {
+  display: block;
+  --radio-fieldset-border: #{tokens.$component-input-border-color-rest};
+  --radio-fieldset-radius: #{tokens.$component-input-border-radius};
+  --radio-fieldset-padding: #{tokens.$component-input-padding-block} #{tokens.$component-input-padding-inline};
+  --radio-gap: #{tokens.$component-list-gap};
+  @include theme.custom-property('radio-label-color', 'box-model-text-primary');
+  @include theme.custom-property('radio-helper-color', 'box-model-text-secondary');
+  @include theme.custom-property('radio-legend-color', 'box-model-text-primary');
+  --radio-control-size: 1.25rem;
+  --radio-border-width: #{tokens.$component-input-border-width};
+  @include theme.custom-property('radio-border-color', 'box-model-border-default');
+  @include theme.custom-property('radio-border-color-checked', 'box-model-feedback-info-border');
+  @include theme.custom-property('radio-background', 'box-model-background-elevated');
+  @include theme.custom-property('radio-background-checked', 'box-model-feedback-info-surface');
+  @include theme.custom-property('radio-indicator-color', 'box-model-feedback-info-icon');
+}
+
+fieldset {
+  border: var(--radio-border-width) solid var(--radio-fieldset-border);
+  border-radius: var(--radio-fieldset-radius);
+  padding: var(--radio-fieldset-padding);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--radio-gap);
+}
+
+legend {
+  margin-bottom: 0.5rem;
+  font-weight: #{tokens.$typography-roles-body-strong-font-weight};
+  color: var(--radio-legend-color);
+}
+
+legend[hidden] {
+  display: none;
+}
+
+.radio-group__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--radio-gap);
+}

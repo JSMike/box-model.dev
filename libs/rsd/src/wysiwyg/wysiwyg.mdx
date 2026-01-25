@@ -1,0 +1,23 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/addon-docs/blocks';
+import { ComponentDocs } from '@box-model/storybook-utils';
+import * as WysiwygStories from './wysiwyg.stories';
+
+<Meta of={WysiwygStories} />
+
+# WYSIWYG
+
+Lightweight markdown-friendly editor scaffold.
+
+<Source
+  dark={true}
+  format="dedent"
+  language="tsx"
+  code={`
+    import { Wysiwyg } from '@box-model/rsd/wysiwyg';
+  `}
+/>
+
+<Canvas of={WysiwygStories.Canvas} />
+<Controls />
+
+<ComponentDocs of={WysiwygStories} />

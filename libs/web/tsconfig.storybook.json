@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noPropertyAccessFromIndexSignature": false,
+    "jsx": "react-jsx",
+    "noImplicitAny": false
+  },
+  "exclude": ["src/**/*.spec.ts"],
+  "include": [
+    ".storybook",
+    "src",
+    "../storybook-utils"
+  ]
+}
