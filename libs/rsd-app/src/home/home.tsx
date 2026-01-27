@@ -413,6 +413,9 @@ export function HomeScreen() {
               >
                 Developer Blog
               </Button>
+              <Button href="https://github.com/JSMike/box-model.dev" target="_blank" rel="noreferrer" variant="ghost">
+                Open Storybook
+              </Button>
             </html.div>
           </html.div>
           <html.div style={styles.heroPanel}>

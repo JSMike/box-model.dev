@@ -2,6 +2,8 @@
 
 A design system that thinks inside the box. No cutting corners—this design system provides framework-agnostic web components (for Angular, Vue, vanilla JS, or any framework) and cross-platform React components via React Strict DOM (for React web, Android, and iOS). Built with accessibility and developer experience as first-class priorities.
 
+**Live site:** [box-model.dev](https://box-model.dev)
+
 ## What's in the Box?
 
 This is an Nx monorepo containing design tokens, component libraries, and demo applications.

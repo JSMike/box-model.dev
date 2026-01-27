@@ -119,6 +119,9 @@ export default function HomePage() {
             <ButtonBox variant="secondary">
               <a href="/blogs">Developer Blog</a>
             </ButtonBox>
+            <ButtonBox variant="tertiary">
+              <a href="https://github.com/JSMike/box-model.dev">GitHub</a>
+            </ButtonBox>
           </div>
         </div>
         <div className={styles.heroPanel}>
