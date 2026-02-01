@@ -15,11 +15,13 @@ This document defines the issue tracking and workflow requirements for AI agents
 ### 1. Before Starting Work
 - Check if the work relates to an existing issue in `.issues/`. Never create duplicates.
 - If your tool supports issue commands, use `/issue match <description>`.
+- Exception: If the user explicitly asks to create a new issue, skip searching for an existing issue and proceed with creation.
 
 ### 2. Starting New Work
 - Create a new issue folder with `issue.md` and start a plan in `plan.md`.
 - If your tool supports issue commands, use `/issue create <title>`.
 - Plan file is saved to `.issues/BOX-N/plan.md`.
+- When first creating an issue, ask clarifying questions about any gaps in the requirements that would be helpful to consider before offering to implement, as needed.
 
 ### 3. Resuming Existing Work
 - Read `issue.md` for requirements, `plan.md` for approach, and the latest `summary-N.md` for context.
@@ -32,6 +34,16 @@ This document defines the issue tracking and workflow requirements for AI agents
 - Implementing changes
 - Any modifications to issue files
 - If your tool supports issue commands, use `/issue session <id>` to create the next `summary-N.md`.
+
+#### Micro-change Exception (Docs/Admin Only)
+You may append an **Addendum** to the most recent summary instead of creating a new summary *only* when **all** of the following are true:
+- Exactly **one file** changed and **≤ 20 lines** total.
+- **No behavior change** (docs/comments/wording/formatting only).
+- **No new deps**, **no schema changes**, **no migrations**, **no script/flag changes**.
+- **No user-facing output changes** (including logs).
+- The change is made **in the same session** and the prior summary has not been used for handoff.
+
+If any condition is not met, create a new `summary-N.md`.
 
 ### 5. Submitting for Review
 - **Do not mark issues `done` yourself.** When implementation is complete, set status to `review`.
@@ -64,6 +76,8 @@ This document defines the issue tracking and workflow requirements for AI agents
 
 **Date:** YYYY-MM-DD
 
+**Prompt/Ask:** Briefly state the user request that triggered this work.
+
 ## Completed
 - What was accomplished
 - Commits made
@@ -71,6 +85,9 @@ This document defines the issue tracking and workflow requirements for AI agents
 ## Current Status
 - Where the issue stands
 - Blockers or concerns
+
+## Plan Coverage
+- Plan items addressed in this session (if applicable).
 
 ## Files Changed
 - `path/to/file` - description
