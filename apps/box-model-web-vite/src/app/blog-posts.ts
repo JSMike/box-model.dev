@@ -10,6 +10,86 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'ai-workflow-methodology',
+    slug: 'ai-workflow-methodology',
+    title: 'AI-Workflow: a durable operating model for AI-assisted delivery',
+    date: '2026-02-06',
+    excerpt:
+      'AI-Workflow turns one-off chat work into a durable delivery loop: issue first, plan explicitly, log every session, and only close work after verification.',
+    tags: ['process', 'workflow'],
+    content: `AI-Workflow is a simple rule with strong consequences: **every task is tracked in files, not just chat history**.
+
+The method treats AI work like engineering work. Instead of hoping context survives across tools or sessions, it stores requirements, plans, and progress in a shared ${'`'}.issues/${'`'} audit trail.
+
+## What it is trying to fix
+
+Without structure, AI collaboration breaks down in predictable ways:
+
+- Work starts before requirements are written down.
+- The same task gets recreated because no one can quickly see what already exists.
+- Sessions end with no durable handoff.
+- Work is called "done" before anyone verifies behavior.
+
+AI-Workflow addresses those failure modes directly.
+
+## The core contract
+
+Each task gets an issue folder with standardized records:
+
+${'```'}text
+.issues/
+├── index.md
+└── ISSUE-N/
+    ├── issue.md
+    ├── plan.md
+    ├── summary-1.md
+    ├── summary-2.md
+    └── summary.md
+${'```'}
+
+From ${'`'}AI-WORKFLOW.md${'`'} and ${'`'}.issues/README.md${'`'} in the starter repo, the required flow is:
+
+1. **Match before create.** Search existing issues first to avoid duplicates.
+2. **Create issue + plan.** Capture scope in ${'`'}issue.md${'`'} and execution path in ${'`'}plan.md${'`'}.
+3. **Implement against the plan.** Keep work scoped to the active issue.
+4. **Record every session.** After any work, add ${'`'}summary-N.md${'`'} (micro-change addendum only for very small docs/admin edits).
+5. **Stop at review first.** Do not jump straight to ${'`'}done${'`'}.
+6. **Close only after verification.** Then write final ${'`'}summary.md${'`'} as the completion record.
+
+Status values (${ '`' }idea${ '`' }, ${ '`' }backlog${ '`' }, ${ '`' }ready${ '`' }, ${ '`' }in-progress${ '`' }, ${ '`' }review${ '`' }, ${ '`' }done${ '`' }) make progress legible across humans and tools.
+
+## How it works in real usage (LM-44)
+
+${'`'}../library-metrics/.issues/LM-44${'`'} is a practical example:
+
+- Starter repo: [JSMike/ai-workflow-starter](https://github.com/JSMike/ai-workflow-starter)
+- The ask was to seed ${'`'}../ai-workflow-starter${'`'} with reusable workflow docs and starter issue structure.
+- The plan listed exact files to create/update (workflow docs, command docs, ${'`'}.issues${'`'} templates, starter README).
+- Session summaries documented what changed and how to verify it.
+- The issue was moved to ${'`'}review${'`'} after implementation, not ${'`'}done${'`'}, preserving the external verification gate.
+
+The resulting starter repo now includes cross-tool entry points (${ '`' }AGENTS.md${ '`' }, ${ '`' }CLAUDE.md${ '`' }, Copilot/GitLab instructions), optional ${'`'}/issue${'`'} command docs, and a pre-seeded ${'`'}ISSUE-1${'`'} capturing the original prompt.
+
+## What this methodology is intended to accomplish
+
+- **Durable memory:** Context lives in repo files, not a single chat window.
+- **Reliable handoff:** Any teammate or model can resume by reading ${'`'}issue.md${'`'} + ${'`'}plan.md${'`'} + latest ${'`'}summary-N.md${'`'}.
+- **Auditability:** Stakeholders can see what was requested, what changed, and how to verify.
+- **Quality gates:** ${'`'}review${'`'} before ${'`'}done${'`'} prevents silent, unverified closures.
+- **Tool portability:** The format is provider-agnostic, so Codex, Claude, Copilot, and others can share the same workflow contract.
+
+## Future considerations and extendability
+
+The starter repo also treats AI-Workflow as an extensible baseline, not a fixed endpoint:
+
+- Move from file-only issue storage to a local SQLite + MCP-backed model for richer querying and orchestration.
+- Add routing/skill logic that keeps only the active issue in immediate context while full history remains accessible for audit.
+- Sync AI-Workflow issue IDs and statuses with external systems (Jira, GitHub Issues, GitLab Issues) so delivery tracking and audit artifacts stay aligned across tools.
+
+AI-Workflow does not make AI "smarter." It makes delivery more dependable by forcing clarity, traceability, and verification into every task.
+`,
+  },
+  {
     id: 'styling-the-light-dom',
     slug: 'styling-the-light-dom',
     title: "Don't use ::slotted() to style slotted content",

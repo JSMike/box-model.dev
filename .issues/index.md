@@ -1,6 +1,6 @@
 # Issue Index
 
-Generated: 2026-01-25
+Generated: 2026-02-06
 
 ## By Status
 
@@ -55,6 +55,7 @@ Generated: 2026-01-25
 
 | ID                          | Title                                              | Completed  |
 | --------------------------- | -------------------------------------------------- | ---------- |
+| [BOX-52](./BOX-52/issue.md) | Write AI-Workflow methodology blog post from LM-44 and starter repo | 2026-02-06 |
 | [BOX-51](./BOX-51/issue.md) | Migrate deprecated SafeAreaView usage to safe-area-context | 2026-01-25 |
 | [BOX-50](./BOX-50/issue.md) | Regenerate Expo Android project to remove EdgeToEdge theme | 2026-01-25 |
 | [BOX-46](./BOX-46/issue.md) | Fix StyleX Babel config resolution for .stylex tokens | 2026-01-25 |
