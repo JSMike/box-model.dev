@@ -4,16 +4,27 @@
 :host {
   display: block;
   overflow-x: auto;
+  /** Table background. */
   @include theme.custom-property('table-background', 'box-model-background-surface');
+  /** Table header background. */
   @include theme.custom-property('table-header-background', 'table-section-background');
+  /** Table footer background. */
   @include theme.custom-property('table-footer-background', 'table-section-background');
+  /** Table header text. */
   @include theme.custom-property('table-header-text', 'box-model-text-primary');
+  /** Table body text. */
   @include theme.custom-property('table-body-text', 'box-model-text-primary');
+  /** Table row border. */
   @include theme.custom-property('table-row-border', 'box-model-border-subtle');
+  /** Table row hover. */
   @include theme.custom-property('table-row-hover', 'box-model-background-content');
+  /** Table cell padding. */
   --table-cell-padding: #{tokens.$component-table-cell-padding};
+  /** Table border width. */
   --table-border-width: #{tokens.$component-table-border-width};
+  /** Table row base. */
   --table-row-base: #{theme.value('box-model-background-canvas')};
+  /** Table row zebra. */
   --table-row-zebra: transparent;
 }
 

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+
+  /** Background color for the widget. */
+  --widget-bg: blue;
+
+  /**
+   * Border color
+   * for the widget chrome.
+   */
+  --widget-border: red;
+}
+
+:host([variant='a']) {
+  --widget-bg: green;
+}

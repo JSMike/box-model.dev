@@ -6,10 +6,26 @@ import slotStyles from './card.slot.scss?inline';
 
 export const CardBox = 'card-box';
 
+/**
+ * Content card with optional header, footer, and actions.
+ * @slot - Default slot content.
+ * @slot actions - Optional action controls.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @slot footer - Footer content.
+ * @slot header - Header content.
+ * @csspart actions - Actions region.
+ * @csspart body - Body region.
+ * @csspart close - Close control wrapper.
+ * @csspart footer - Footer region.
+ * @csspart header - Header region.
+ * @csspart surface - Outer surface of the component.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(CardBox)
 export class Card extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Whether the card is interactive. */
   @property({ type: Boolean, reflect: true }) public interactive = false;
 
   @state() private hasHeader = false;
@@ -76,7 +92,7 @@ export class Card extends LitElement {
 
   private dispatchCloseEvent() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })

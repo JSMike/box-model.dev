@@ -3,21 +3,37 @@
 
 :host {
   display: contents;
+  /** Drawer width. */
   --drawer-width: #{tokens.$component-drawer-width};
+  /** Drawer max width. */
   --drawer-max-width: #{tokens.$component-drawer-max-width};
+  /** Drawer size. */
   --drawer-size: 20rem;
+  /** Drawer size block. */
   --drawer-size-block: 15rem;
+  /** Drawer background. */
   @include theme.custom-property('drawer-background', 'box-model-background-elevated');
+  /** Drawer border. */
   @include theme.custom-property('drawer-border', 'box-model-border-strong');
+  /** Drawer border width. */
   --drawer-border-width: #{tokens.$component-drawer-border-width};
+  /** Drawer shadow. */
   --drawer-shadow: #{tokens.$component-drawer-shadow};
+  /** Drawer overlay. */
   --drawer-overlay: #{tokens.$component-drawer-overlay-color};
+  /** Drawer header padding. */
   --drawer-header-padding: #{tokens.$component-drawer-header-padding};
+  /** Drawer header text. */
   @include theme.custom-property('drawer-header-text', 'box-model-text-primary');
+  /** Drawer body padding. */
   --drawer-body-padding: #{tokens.$component-drawer-body-padding};
+  /** Drawer body gap. */
   --drawer-body-gap: #{tokens.$component-drawer-body-gap};
+  /** Drawer footer padding. */
   --drawer-footer-padding: #{tokens.$component-drawer-footer-padding};
+  /** Drawer footer gap. */
   --drawer-footer-gap: #{tokens.$component-drawer-footer-gap};
+  /** Drawer close size. */
   --drawer-close-size: #{tokens.$component-close-control-size};
 }
 

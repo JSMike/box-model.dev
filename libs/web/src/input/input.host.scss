@@ -4,29 +4,53 @@
 :host {
   display: inline-flex;
   width: auto;
+  /** Input font family. */
   --input-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Input font size. */
   --input-font-size: #{tokens.$typography-roles-body-font-size};
+  /** Input font weight. */
   --input-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Input line height. */
   --input-line-height: #{tokens.$typography-roles-body-line-height};
+  /** Input letter spacing. */
   --input-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  /** Input background. */
   @include theme.custom-property('input-background', 'box-model-background-elevated');
+  /** Input background read only. */
   @include theme.custom-property('input-background-read-only', 'box-model-background-surface');
+  /** Input border radius. */
   --input-border-radius: #{tokens.$component-input-border-radius};
+  /** Input border width. */
   --input-border-width: #{tokens.$component-input-border-width};
+  /** Input border color. */
   @include theme.custom-property('input-border-color', 'box-model-border-default');
+  /** Input border color hover. */
   @include theme.custom-property('input-border-color-hover', 'box-model-border-strong');
+  /** Input border color focus. */
   @include theme.custom-property('input-border-color-focus', 'box-model-border-focus');
+  /** Input padding block. */
   --input-padding-block: #{tokens.$component-input-padding-block};
+  /** Input padding inline. */
   --input-padding-inline: #{tokens.$component-input-padding-inline};
+  /** Input min height. */
   --input-min-height: #{tokens.$component-input-min-height};
+  /** Input text color. */
   @include theme.custom-property('input-text-color', 'box-model-text-primary');
+  /** Input placeholder color. */
   @include theme.custom-property('input-placeholder-color', 'box-model-text-tertiary');
+  /** Input icon color. */
   --input-icon-color: #{tokens.$component-input-icon};
+  /** Input focus shadow. */
   --input-focus-shadow: #{tokens.$component-input-focus-shadow};
+  /** Input disabled background. */
   --input-disabled-background: #{tokens.$component-input-disabled-background};
+  /** Input disabled text. */
   --input-disabled-text: #{tokens.$component-input-disabled-text};
+  /** Input disabled border color. */
   --input-disabled-border-color: #{tokens.$component-input-disabled-border-color};
+  /** Input transition duration. */
   --input-transition-duration: #{tokens.$motion-duration-fast};
+  /** Input transition easing. */
   --input-transition-easing: #{tokens.$motion-easing-standard};
 }
 

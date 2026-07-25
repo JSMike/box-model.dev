@@ -6,6 +6,10 @@ import slotStyles from './dialog-footer.slot.scss?inline';
 
 export const DialogFooterBox = 'dialog-footer-box';
 
+/**
+ * Footer layout helper for dialogs.
+ * @slot - Default slot content.
+ */
 @customElement(DialogFooterBox)
 export class DialogFooter extends LitElement {
   static override styles = unsafeCSS(styles);

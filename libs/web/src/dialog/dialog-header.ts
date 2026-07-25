@@ -6,6 +6,10 @@ import slotStyles from './dialog-header.slot.scss?inline';
 
 export const DialogHeaderBox = 'dialog-header-box';
 
+/**
+ * Header layout helper for dialogs.
+ * @slot - Default slot content.
+ */
 @customElement(DialogHeaderBox)
 export class DialogHeader extends LitElement {
   static override styles = unsafeCSS(styles);

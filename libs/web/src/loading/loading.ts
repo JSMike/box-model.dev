@@ -6,10 +6,17 @@ export const LoadingBox = 'loading-box';
 
 const CELL_COUNT = 9;
 
+/**
+ * Loading indicator.
+ * @slot - Default slot content.
+ * @csspart grid - Layout grid.
+ * @csspart label - Label region.
+ */
 @customElement(LoadingBox)
 export class Loading extends LitElement {
   static override styles = unsafeCSS(styles);
 
+  /** Whether the loading label is visible. */
   @property({ type: Boolean, attribute: 'label-visible', reflect: true })
   public labelVisible = false;
 

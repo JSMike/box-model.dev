@@ -161,6 +161,7 @@ declare module 'react/jsx-runtime' {
     }
     interface IntrinsicAttributes {
       'onclose'?: (event: CustomEvent<unknown>) => void;
+      'oninput'?: (event: CustomEvent<unknown>) => void;
     }
   }
 }

@@ -2,16 +2,27 @@
 
 :host {
   display: block;
+  /** Alert background. */
   --alert-background: #{tokens.$component-alert-info-background};
+  /** Alert border color. */
   --alert-border-color: #{tokens.$component-alert-info-border};
+  /** Alert text color. */
   --alert-text-color: #{tokens.$component-alert-info-text};
+  /** Alert radius. */
   --alert-radius: #{tokens.$component-alert-radius};
+  /** Alert padding. */
   --alert-padding: #{tokens.$component-alert-padding};
+  /** Alert gap. */
   --alert-gap: #{tokens.$component-alert-gap};
+  /** Alert border width. */
   --alert-border-width: #{tokens.$size-border-width-hairline};
+  /** Alert font family. */
   --alert-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Alert font size. */
   --alert-font-size: #{tokens.$typography-roles-body-font-size};
+  /** Alert font weight. */
   --alert-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Alert line height. */
   --alert-line-height: #{tokens.$typography-roles-body-line-height};
 }
 

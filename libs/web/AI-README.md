@@ -81,6 +81,8 @@ Each component in `libs/web/src/<component>/`:
 }
 ```
 
+**Public CSS custom properties (CEM):** Stem-prefixed custom properties (`--<component>-*`, matching the tag stem) that are public API **must be declared in the primary `:host { ... }` block**, with a JSDoc-style comment above each for the description. Variant/media blocks may override values of props already declared in the base block; do not introduce new public props only under `:host([…])` or media queries — the CEM collector only publishes props from the primary `:host` block and warns on stem-prefixed declarations that appear only outside it.
+
 ### Slot Styles (`<component>.slot.scss`)
 
 For styling slotted content (light DOM):

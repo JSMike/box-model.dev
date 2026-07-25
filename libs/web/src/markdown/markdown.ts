@@ -40,6 +40,11 @@ type LinkContext = {
 
 export const MarkdownBox = 'markdown-box';
 
+/**
+ * Renders markdown content into HTML.
+ * @slot - Default slot content.
+ * @csspart content - Primary content region.
+ */
 @customElement(MarkdownBox)
 export class Markdown extends LitElement {
   static override styles = unsafeCSS(hostStyles);
@@ -51,6 +56,7 @@ export class Markdown extends LitElement {
   private initialRawContent?: string;
   private hasHandledFirstSlotChange = false;
 
+  /** Automatically convert URLs into links. */
   @property({ type: Boolean, reflect: true }) linkify = true;
 
   private readonly markdown = this.createMarkdownRenderer();

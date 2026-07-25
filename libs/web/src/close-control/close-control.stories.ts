@@ -33,31 +33,31 @@ const meta: Docs = {
     },
     slots: {},
     cssProperties: {
-      '--close-size': {
+      '--close-control-size': {
         description: 'Width and height of the button.',
         defaultValue: 'var(--component-close-control-size)',
       },
-      '--close-border-width': {
+      '--close-control-border-width': {
         description: 'Border width around the button.',
         defaultValue: 'var(--component-close-control-border-width)',
       },
-      '--close-background': {
+      '--close-control-background': {
         description: 'Background color in the resting state.',
         defaultValue: 'var(--box-model-background-elevated)',
       },
-      '--close-background-hover': {
+      '--close-control-background-hover': {
         description: 'Background color on hover.',
         defaultValue: 'var(--box-model-background-content)',
       },
-      '--close-background-active': {
+      '--close-control-background-active': {
         description: 'Background color when pressed.',
         defaultValue: 'var(--box-model-background-sunken)',
       },
-      '--close-border-color': {
+      '--close-control-border-color': {
         description: 'Border color of the control.',
         defaultValue: 'var(--box-model-border-strong)',
       },
-      '--close-icon-color': {
+      '--close-control-icon-color': {
         description: 'Stroke color of the close icon and focus ring.',
         defaultValue: 'var(--box-model-text-primary)',
       },

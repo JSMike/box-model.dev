@@ -4,27 +4,49 @@
 :host {
   display: inline-flex;
   width: auto;
+  /** Select font family. */
   --select-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Select font size. */
   --select-font-size: #{tokens.$typography-roles-body-font-size};
+  /** Select font weight. */
   --select-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Select line height. */
   --select-line-height: #{tokens.$typography-roles-body-line-height};
+  /** Select letter spacing. */
   --select-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  /** Select background. */
   @include theme.custom-property('select-background', 'box-model-background-elevated');
+  /** Select border radius. */
   --select-border-radius: #{tokens.$component-input-border-radius};
+  /** Select border width. */
   --select-border-width: #{tokens.$component-input-border-width};
+  /** Select border color. */
   @include theme.custom-property('select-border-color', 'box-model-border-default');
+  /** Select border color hover. */
   @include theme.custom-property('select-border-color-hover', 'box-model-border-strong');
+  /** Select border color focus. */
   @include theme.custom-property('select-border-color-focus', 'box-model-border-focus');
+  /** Select padding block. */
   --select-padding-block: #{tokens.$component-input-padding-block};
+  /** Select padding inline. */
   --select-padding-inline: #{tokens.$component-input-padding-inline};
+  /** Select min height. */
   --select-min-height: #{tokens.$component-input-min-height};
+  /** Select text color. */
   @include theme.custom-property('select-text-color', 'box-model-text-primary');
+  /** Select icon color. */
   @include theme.custom-property('select-icon-color', 'box-model-text-primary');
+  /** Select icon space. */
   --select-icon-space: 1.5rem;
+  /** Select disabled background. */
   --select-disabled-background: #{tokens.$component-input-disabled-background};
+  /** Select disabled text. */
   --select-disabled-text: #{tokens.$component-input-disabled-text};
+  /** Select disabled border color. */
   --select-disabled-border-color: #{tokens.$component-input-disabled-border-color};
+  /** Select transition duration. */
   --select-transition-duration: #{tokens.$motion-duration-fast};
+  /** Select transition easing. */
   --select-transition-easing: #{tokens.$motion-easing-standard};
 }
 

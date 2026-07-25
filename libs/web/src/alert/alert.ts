@@ -9,10 +9,17 @@ export type AlertVariant = 'info' | 'success' | 'warning' | 'danger';
 
 export const AlertBox = 'alert-box';
 
+/**
+ * Inline alert for status messaging.
+ * @slot - Default slot content.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(AlertBox)
 export class Alert extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: AlertVariant = 'info';
   @state() private hasCloseControl = false;
 
@@ -65,7 +72,7 @@ export class Alert extends LitElement {
 
   private emitClose() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })

@@ -8,9 +8,13 @@
   line-height: #{tokens.$typography-line-height-normal};
   font-family: #{tokens.$typography-roles-code-font-family};
   font-size: #{tokens.$typography-roles-code-font-size};
+  /** Terminal line text. */
   @include theme.custom-property('terminal-line-text', 'box-model-text-primary');
+  /** Terminal line prompt. */
   @include theme.custom-property('terminal-line-prompt', 'box-model-text-success');
+  /** Terminal line success. */
   @include theme.custom-property('terminal-line-success', 'box-model-text-success');
+  /** Terminal line info. */
   @include theme.custom-property('terminal-line-info', 'box-model-text-accent');
   color: var(--terminal-line-text);
 }

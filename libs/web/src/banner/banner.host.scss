@@ -2,13 +2,21 @@
 
 :host {
   display: block;
+  /** Banner padding. */
   --banner-padding: #{tokens.$component-banner-padding};
+  /** Banner gap. */
   --banner-gap: #{tokens.$component-banner-gap};
+  /** Banner border width. */
   --banner-border-width: #{tokens.$component-banner-border-width};
+  /** Banner border radius. */
   --banner-border-radius: #{tokens.$component-card-border-radius};
+  /** Banner background. */
   --banner-background: #{tokens.$component-banner-default-background};
+  /** Banner border. */
   --banner-border: #{tokens.$component-banner-default-border};
+  /** Banner text. */
   --banner-text: #{tokens.$component-banner-default-text};
+  /** Banner close size. */
   --banner-close-size: #{tokens.$component-close-control-size};
 }
 

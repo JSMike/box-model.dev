@@ -25,3 +25,4 @@ We introduced a fallback palette earlier in this task; to ship confidently we sh
 
 ## References
 - Related files: `libs/web/src/stat/stat.host.scss`, `libs/tokens/`
+- Related: [BOX-57](../BOX-57/issue.md) (broader default-token AA failures from Angular CEM integration)

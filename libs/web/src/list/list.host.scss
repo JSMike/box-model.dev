@@ -3,11 +3,18 @@
 
 :host {
   display: block;
+  /** List padding. */
   --list-padding: #{tokens.$component-list-padding};
+  /** List gap. */
   --list-gap: #{tokens.$component-list-gap};
+  /** List marker color. */
   --list-marker-color: #{tokens.$component-list-marker-color};
+  /** List background. */
   --list-background: #{tokens.$component-list-background};
+  /** List border. */
   --list-border: #{tokens.$component-list-border};
+  /** List border width. */
   --list-border-width: #{tokens.$component-list-border-width};
+  /** List marker color. */
   @include theme.custom-property('list-marker-color', 'box-model-text-primary');
 }

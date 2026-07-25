@@ -13,5 +13,5 @@ banner-box [slot='close-control'] {
 }
 
 banner-box > close-control-box[slot='close-control'] {
-  --close-size: var(--banner-close-size, 1.5rem);
+  --close-control-size: var(--banner-close-size, 1.5rem);
 }

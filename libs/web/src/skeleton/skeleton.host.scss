@@ -7,14 +7,19 @@
   overflow: hidden;
   width: var(--skeleton-width, 100%);
   height: var(--skeleton-height, #{tokens.$component-skeleton-height});
+  /** Skeleton base. */
   @include theme.custom-property('skeleton-base', 'box-model-background-sunken');
+  /** Skeleton surface. */
   @include theme.custom-property('skeleton-surface', 'box-model-background-surface');
+  /** Skeleton highlight. */
   @include theme.custom-property('skeleton-highlight', 'box-model-text-secondary');
+  /** Skeleton base color. */
   --skeleton-base-color: color-mix(
     in srgb,
     var(--skeleton-base, #{tokens.$component-skeleton-background}) 75%,
     #000 25%
   );
+  /** Skeleton highlight color. */
   --skeleton-highlight-color: color-mix(
     in srgb,
     var(--skeleton-surface, #{tokens.$color-background-surface-light}) 55%,
@@ -22,6 +27,7 @@
   );
   background: var(--skeleton-base-color);
   border-radius: #{tokens.$component-skeleton-border-radius};
+  /** Skeleton animation duration. */
   --skeleton-animation-duration: 2.8s;
   box-shadow: inset 0 0 0 1px color-mix(
       in srgb,

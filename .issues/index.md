@@ -1,6 +1,6 @@
 # Issue Index
 
-Generated: 2026-02-06
+Generated: 2026-07-13
 
 ## By Status
 
@@ -18,6 +18,9 @@ Generated: 2026-02-06
 
 | ID                          | Title                                                  | Complexity | Priority |
 | --------------------------- | ------------------------------------------------------ | ---------- | -------- |
+| [BOX-56](./BOX-56/issue.md) | progress-box lacks an accessible name                  | low/medium | high     |
+| [BOX-57](./BOX-57/issue.md) | Default theme/token combinations fail WCAG AA contrast | medium/high | high    |
+| [BOX-58](./BOX-58/issue.md) | slotStyleService constructable stylesheet portability  | medium     | medium   |
 | [BOX-8](./BOX-8/issue.md)   | Button hover states fail contrast                      | low/medium | high     |
 | [BOX-9](./BOX-9/issue.md)   | Borders/outlines lack contrast against surfaces        | low/medium | high     |
 | [BOX-1](./BOX-1/issue.md)   | Complete component API docs coverage                   | low/medium | medium   |
@@ -48,8 +51,11 @@ Generated: 2026-02-06
 
 ### Review
 
-| ID  | Title | Complexity | PR  |
-| --- | ----- | ---------- | --- |
+| ID                          | Title                                        | Complexity | PR  |
+| --------------------------- | -------------------------------------------- | ---------- | --- |
+| [BOX-55](./BOX-55/issue.md) | CEM generator hardening (review remediation) | medium/high | -  |
+| [BOX-54](./BOX-54/issue.md) | Angular-ready CEM typing (fable-feedback)    | high       | -   |
+| [BOX-53](./BOX-53/issue.md) | Custom Elements Manifest generators refactor | high       | -   |
 
 ### Done
 

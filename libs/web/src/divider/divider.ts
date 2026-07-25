@@ -8,10 +8,16 @@ export type DividerOrientation = 'horizontal' | 'vertical';
 
 export const DividerBox = 'divider-box';
 
+/**
+ * Horizontal or vertical divider.
+ * @slot - Default slot content.
+ * @csspart line - Divider line.
+ */
 @customElement(DividerBox)
 export class Divider extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Orientation of the divider. */
   @property({ type: String, reflect: true }) public orientation: DividerOrientation = 'horizontal';
 
   override connectedCallback() {

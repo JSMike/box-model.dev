@@ -6,6 +6,11 @@ import slotStyles from './terminal.slot.scss?inline';
 
 export const TerminalBox = 'terminal-box';
 
+/**
+ * Terminal-style output surface.
+ * @slot - Default slot content.
+ * @csspart surface - Outer surface of the component.
+ */
 @customElement(TerminalBox)
 export class Terminal extends LitElement {
   static override styles = unsafeCSS(hostStyles);

@@ -11,7 +11,9 @@ const srcDir = path.resolve(__dirname, 'src');
 const entryDirectories = fs
   .readdirSync(srcDir, { withFileTypes: true })
   .filter(
-    (entry) => entry.isDirectory() && fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
+    (entry) =>
+      entry.isDirectory() &&
+      fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
   )
   .map((entry) => entry.name);
 
@@ -58,7 +60,11 @@ export default defineConfig(() => ({
     viteStaticCopy({
       targets: [
         {
-          src: '*.md',
+          src: 'README.md',
+          dest: '.',
+        },
+        {
+          src: path.resolve(__dirname, '../../LICENSE'),
           dest: '.',
         },
         {
@@ -68,6 +74,10 @@ export default defineConfig(() => ({
         {
           src: 'src/styles/**/*.scss',
           dest: 'styles',
+        },
+        {
+          src: 'src/custom-elements.json',
+          dest: '.',
         },
       ],
     }),
@@ -113,25 +123,47 @@ export default defineConfig(() => ({
       plugins: [
         generatePackageJson({
           inputFolder: __dirname,
-          baseContents: (pkg: any) => ({
+          baseContents: (pkg) => ({
             ...pkg,
-            exports: Object.keys(entryPoints).reduce((acc: any, entry: string) => {
-              acc[`./${entry}`] = {
-                types: `./${entry}/index.d.ts`,
-                default: `./${entry}.js`
-              };
-              return acc;
-            }, {
-              './package.json': {
-                default: './package.json'
-              },
-              './styles/*': {
-                default: './styles/*'
-              },
-            }),
-          })
-        })
-      ]
+            // Element registration is a side effect of importing entry chunks.
+            // Do not set sideEffects:false — bundlers would tree-shake @customElement.
+            // Cover entry chunks and shared hashed runtime (e.g. lit-*.js).
+            sideEffects: ['./*.js'],
+            exports: Object.keys(entryPoints)
+              .sort()
+              .reduce<Record<string, { types?: string; default: string }>>(
+                (acc, entry) => {
+                  const exportEntry = {
+                    types: `./${entry}/index.d.ts`,
+                    default: `./${entry}.js`,
+                  };
+                  if (entry === 'index') {
+                    acc['.'] = {
+                      types: './index.d.ts',
+                      default: './index.js',
+                    };
+                    return acc;
+                  }
+                  // Extensionless (package convention) + .js (CEM / Node resolvers)
+                  acc[`./${entry}`] = exportEntry;
+                  acc[`./${entry}.js`] = exportEntry;
+                  return acc;
+                },
+                {
+                  './package.json': {
+                    default: './package.json',
+                  },
+                  './custom-elements.json': {
+                    default: './custom-elements.json',
+                  },
+                  './styles/*': {
+                    default: './styles/*',
+                  },
+                }
+              ),
+          }),
+        }),
+      ],
     },
   },
   test: {
@@ -139,7 +171,9 @@ export default defineConfig(() => ({
     watch: false,
     globals: true,
     environment: 'jsdom',
-    include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: [
+      '{src,tests,generators}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+    ],
     setupFiles: ['./vitest.setup.ts'],
     reporters: ['default'],
     coverage: {

@@ -5,6 +5,7 @@ dist
 tmp
 out-tsc
 libs/web/src/styles/_tokens.scss
+libs/web/src/custom-elements.json
 libs/rsd/src/tokens/tokens.stylex.ts
 libs/rsd-app/src/tokens/tokens.stylex.ts
 

@@ -6,10 +6,17 @@ import slotStyles from './radio.slot.scss?inline';
 
 export const RadioGroupBox = 'radio-group-box';
 
+/**
+ * Grouped radio options in a fieldset.
+ * @slot - Default slot content.
+ * @slot legend - Legend content for the fieldset.
+ * @csspart content - Primary content region.
+ */
 @customElement(RadioGroupBox)
 export class RadioGroup extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Legend text when the legend slot is empty. */
   @property({ type: String }) public legend = '';
 
   override connectedCallback() {

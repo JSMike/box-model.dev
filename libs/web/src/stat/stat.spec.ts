@@ -1,5 +1,6 @@
 import { fixture, html } from '@open-wc/testing';
-import { Stat } from './stat';
+import './stat';
+import type { Stat } from './stat';
 
 describe('stat-box', () => {
   beforeEach(async () => {
@@ -14,7 +15,9 @@ describe('stat-box', () => {
     `);
 
     await element.updateComplete;
-    const labelSlot = element.shadowRoot?.querySelector('slot[name="title"]') as HTMLSlotElement | null;
+    const labelSlot = element.shadowRoot?.querySelector(
+      'slot[name="title"]'
+    ) as HTMLSlotElement | null;
     const value = element.shadowRoot?.querySelector('.stat-box__value');
     const delta = element.shadowRoot?.querySelector('.stat-box__delta');
 
@@ -22,6 +25,6 @@ describe('stat-box', () => {
 
     expect(assignedLabel?.textContent?.trim()).to.equal('Incidents');
     expect(value?.textContent).to.equal('24');
-    expect(delta?.textContent).to.equal('-4%');
+    expect(delta?.textContent?.trim()).to.equal('-4%');
   });
 });

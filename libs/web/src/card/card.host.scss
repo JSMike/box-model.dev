@@ -3,17 +3,29 @@
 
 :host {
   display: block;
+  /** Card background. */
   --card-background: var(--box-model-background-surface, #{tokens.$component-card-background});
+  /** Card border color. */
   --card-border-color: var(--box-model-border-strong, #{tokens.$component-card-border-color});
+  /** Card border width. */
   --card-border-width: #{tokens.$component-card-border-width};
+  /** Card border radius. */
   --card-border-radius: #{tokens.$component-card-border-radius};
+  /** Card padding. */
   --card-padding: #{tokens.$component-card-padding};
+  /** Card gap. */
   --card-gap: #{tokens.$component-card-gap};
+  /** Card shadow. */
   --card-shadow: #{tokens.$component-card-shadow-rest};
+  /** Card shadow hover. */
   --card-shadow-hover: #{tokens.$component-card-shadow-hover};
+  /** Card transition duration. */
   --card-transition-duration: #{tokens.$motion-duration-fast};
+  /** Card transition easing. */
   --card-transition-easing: #{tokens.$motion-easing-standard};
+  /** Card close size. */
   --card-close-size: #{tokens.$component-close-control-size};
+  /** Card text color. */
   @include theme.custom-property('card-text-color', 'box-model-text-primary');
 }
 

@@ -13,5 +13,5 @@ dialog-box [slot='close-control'] {
 }
 
 dialog-box > close-control-box[slot='close-control'] {
-  --close-size: var(--dialog-close-size);
+  --close-control-size: var(--dialog-close-size);
 }

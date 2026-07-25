@@ -8,6 +8,13 @@ export const TerminalLineBox = 'terminal-line-box';
 
 export type TerminalLineVariant = 'prompt' | 'success' | 'info';
 
+/**
+ * Single line within a terminal surface.
+ * @slot - Default slot content.
+ * @csspart content - Primary content region.
+ * @csspart cursor - Terminal cursor.
+ * @csspart prompt - Terminal prompt.
+ */
 @customElement(TerminalLineBox)
 export class TerminalLine extends LitElement {
   static override styles = unsafeCSS(hostStyles);
@@ -21,7 +28,9 @@ export class TerminalLine extends LitElement {
     });
   }
 
+  /** Visual variant of the component. */
   @property({ reflect: true }) variant: TerminalLineVariant = 'prompt';
+  /** Whether to show a terminal cursor. */
   @property({ type: Boolean, reflect: true }) cursor = false;
 
   override render() {

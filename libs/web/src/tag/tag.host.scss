@@ -2,18 +2,31 @@
 
 :host {
   display: inline-flex;
+  /** Tag background. */
   --tag-background: #{tokens.$component-tag-neutral-background};
+  /** Tag text color. */
   --tag-text-color: #{tokens.$component-tag-neutral-text};
+  /** Tag border color. */
   --tag-border-color: #{tokens.$component-tag-neutral-border};
+  /** Tag border width. */
   --tag-border-width: #{tokens.$size-border-width-hairline};
+  /** Tag radius. */
   --tag-radius: #{tokens.$component-tag-radius};
+  /** Tag gap. */
   --tag-gap: #{tokens.$component-tag-gap};
+  /** Tag padding. */
   --tag-padding: #{tokens.$component-tag-padding};
+  /** Tag font family. */
   --tag-font-family: #{tokens.$typography-roles-caption-font-family};
+  /** Tag font size. */
   --tag-font-size: #{tokens.$typography-roles-caption-font-size};
+  /** Tag font weight. */
   --tag-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  /** Tag line height. */
   --tag-line-height: #{tokens.$typography-roles-caption-line-height};
+  /** Tag letter spacing. */
   --tag-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
+  /** Tag text transform. */
   --tag-text-transform: uppercase;
 }
 

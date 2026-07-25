@@ -41,10 +41,17 @@ const ACTIONS: {
 
 export const WysiwygBox = 'wysiwyg-box';
 
+/**
+ * Markdown authoring toolbar with textarea.
+ * @slot - Default slot content.
+ * @csspart helper - Helper text region.
+ * @csspart toolbar - Toolbar region.
+ */
 @customElement(WysiwygBox)
 export class Wysiwyg extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Current value. */
   @property({ type: String }) value = '';
   @state() private textarea?: HTMLTextAreaElement;
   @query('slot') private editorSlot?: HTMLSlotElement;

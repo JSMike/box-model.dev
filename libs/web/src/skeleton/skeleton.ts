@@ -6,12 +6,19 @@ import slotStyles from './skeleton.slot.scss?inline';
 
 export const SkeletonBox = 'skeleton-box';
 
+/**
+ * Placeholder skeleton for loading states.
+ * @slot - Default slot content.
+ */
 @customElement(SkeletonBox)
 export class Skeleton extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Explicit width of the skeleton. */
   @property({ type: String }) public width?: string;
+  /** Explicit height of the skeleton. */
   @property({ type: String }) public height?: string;
+  /** Whether the skeleton shimmer animation is enabled. */
   @property({ type: Boolean, reflect: true }) public animated = true;
 
   override connectedCallback() {

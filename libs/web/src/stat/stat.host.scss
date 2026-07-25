@@ -4,21 +4,30 @@
 :host {
   display: flex;
   flex-direction: column;
+  /** Stat padding. */
   --stat-padding: #{tokens.$component-stat-padding};
+  /** Stat gap. */
   --stat-gap: #{tokens.$component-stat-gap};
   gap: var(--stat-gap);
   padding: var(--stat-padding);
+  /** Stat background. */
   @include theme.custom-property('stat-background', 'box-model-background-elevated');
+  /** Stat border. */
   @include theme.custom-property('stat-border', 'box-model-border-strong');
   background: var(--stat-background);
+  /** Stat border width. */
   --stat-border-width: #{tokens.$component-stat-border-width};
   border-width: var(--stat-border-width);
   border-style: dashed;
   border-color: var(--stat-border);
   border-radius: 0;
+  /** Stat title color. */
   @include theme.custom-property('stat-title-color', 'box-model-text-secondary');
+  /** Stat value color. */
   @include theme.custom-property('stat-value-color', 'box-model-text-primary');
+  /** Stat delta color base. */
   @include theme.custom-property('stat-delta-color-base', 'box-model-content-border');
+  /** Stat delta color. */
   --stat-delta-color: var(--stat-delta-color-base);
 }
 

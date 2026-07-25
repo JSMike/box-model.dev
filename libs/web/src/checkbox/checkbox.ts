@@ -6,10 +6,17 @@ import slotStyles from './checkbox.slot.scss?inline';
 
 export const CheckboxGroupBox = 'checkbox-group-box';
 
+/**
+ * Grouped checkbox options in a fieldset.
+ * @slot - Default slot content.
+ * @slot legend - Legend content for the fieldset.
+ * @csspart content - Primary content region.
+ */
 @customElement(CheckboxGroupBox)
 export class CheckboxGroup extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Legend text when the legend slot is empty. */
   @property({ type: String }) public legend = '';
 
   override connectedCallback() {
