@@ -29,16 +29,14 @@ for (const directory of entryDirectories) {
 }
 
 const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
-const litChunkMatchers = [
-  '/node_modules/lit',
-  '/node_modules/lit-html',
-  '/node_modules/@lit/reactive-element',
-];
-
-const isLitModule = (id: string) => {
-  const normalizedId = id.replace(/\\/g, '/');
-  return litChunkMatchers.some((match) => normalizedId.includes(match));
-};
+const isLitImport = (id: string): boolean =>
+  id === 'lit' ||
+  id.startsWith('lit/') ||
+  id === 'lit-html' ||
+  id.startsWith('lit-html/') ||
+  id === 'lit-element' ||
+  id.startsWith('lit-element/') ||
+  id.startsWith('@lit/');
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -109,17 +107,9 @@ export default defineConfig(() => ({
       formats: ['es' as const],
     },
     rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: [],
-      output: {
-        manualChunks(id) {
-          if (isLitModule(id)) {
-            return 'lit';
-          }
-
-          return undefined;
-        },
-      },
+      // Let npm consumers share and deduplicate Lit with other component libraries.
+      // A future self-contained CDN distribution can bundle Lit separately.
+      external: isLitImport,
       plugins: [
         generatePackageJson({
           inputFolder: __dirname,
@@ -127,7 +117,7 @@ export default defineConfig(() => ({
             ...pkg,
             // Element registration is a side effect of importing entry chunks.
             // Do not set sideEffects:false — bundlers would tree-shake @customElement.
-            // Cover entry chunks and shared hashed runtime (e.g. lit-*.js).
+            // Cover all emitted entry and shared JavaScript chunks.
             sideEffects: ['./*.js'],
             exports: Object.keys(entryPoints)
               .sort()

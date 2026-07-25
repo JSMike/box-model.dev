@@ -143,3 +143,5 @@ out
 # Expo generated native folders (regenerate with `expo prebuild`)
 apps/box-model-rsd-expo/android/
 apps/box-model-rsd-expo/ios/
+
+.claude/worktrees
