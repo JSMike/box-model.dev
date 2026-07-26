@@ -8,7 +8,6 @@ export * from './card/index.js';
 export * from './checkbox/index.js';
 export * from './close-control/index.js';
 export * from './columns/index.js';
-export * from './common/index.js';
 export * from './dialog/index.js';
 export * from './divider/index.js';
 export * from './drawer/index.js';

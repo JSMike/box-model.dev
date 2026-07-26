@@ -97,7 +97,7 @@ const meta: Docs = {
       },
       '--tooltip-offset': {
         description: 'Offset used when positioning the tooltip.',
-        defaultValue: '-2.5rem',
+        defaultValue: '0.5rem',
       },
     },
     cssParts: {
@@ -129,11 +129,11 @@ export const Canvas: Story = {
       <span>${text}</span>
     </tooltip-box>
 
-    <tooltip-box default-placement="bottom">
+    <tooltip-box default-placement="${defaultPlacement}">
       <span slot="trigger">
         Read the fine print
       </span>
-      <span>This tooltip appears below the trigger and only on hover or focus.</span>
+      <span>This tooltip follows the selected placement and only appears on hover or focus.</span>
     </tooltip-box>
   `,
   decorators: [

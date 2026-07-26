@@ -17,25 +17,34 @@ export const preview: Preview = {
         dark: 'box-model-theme-dark',
       },
       defaultTheme: 'light',
-      parentSelector: 'body'
+      parentSelector: 'body',
     }),
     withThemeBackground,
   ],
   parameters: {
     options: {
-      storySort: 'alphabetical-by-kind',
+      storySort: {
+        method: 'alphabetical-by-kind',
+        order: [
+          'Introduction',
+          'Changelog',
+          'Framework typings',
+          'Test setup',
+          '*',
+        ],
+      },
     },
     controls: { expanded: true },
     docs: {
       inlineStories: true,
       iframeHeight: '200px',
-      source: { 
-        excludeDecorators: true
-      }
+      source: {
+        excludeDecorators: true,
+      },
     },
     tags: ['autodocs'],
     backgrounds: { disable: true },
-  }
+  },
 };
 
 export default preview;

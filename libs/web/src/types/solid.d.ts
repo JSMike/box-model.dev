@@ -2,127 +2,177 @@
 
 import type { JSX as SolidJSX } from 'solid-js/jsx-runtime';
 
-type SolidIntrinsicElements = SolidJSX.IntrinsicElements;
+type ComponentElementMap = {
+  'alert-box': import('../alert/alert.js').Alert;
+  'badge-box': import('../badge/badge.js').Badge;
+  'banner-box': import('../banner/banner.js').Banner;
+  'button-box': import('../button/button.js').Button;
+  'card-box': import('../card/card.js').Card;
+  'checkbox-group-box': import('../checkbox/checkbox.js').CheckboxGroup;
+  'close-control-box': import('../close-control/close-control.js').CloseControl;
+  'columns-box': import('../columns/columns.js').Columns;
+  'dialog-box': import('../dialog/dialog.js').Dialog;
+  'dialog-footer-box': import('../dialog/dialog-footer.js').DialogFooter;
+  'dialog-header-box': import('../dialog/dialog-header.js').DialogHeader;
+  'divider-box': import('../divider/divider.js').Divider;
+  'drawer-box': import('../drawer/drawer.js').Drawer;
+  'drawer-header-box': import('../drawer/drawer-header.js').DrawerHeader;
+  'input-box': import('../input/input.js').Input;
+  'link-box': import('../link/link.js').Link;
+  'list-box': import('../list/list.js').List;
+  'loading-box': import('../loading/loading.js').Loading;
+  'markdown-box': import('../markdown/markdown.js').Markdown;
+  'progress-box': import('../progress/progress.js').Progress;
+  'radio-group-box': import('../radio/radio.js').RadioGroup;
+  'select-box': import('../select/select.js').Select;
+  'skeleton-box': import('../skeleton/skeleton.js').Skeleton;
+  'stat-box': import('../stat/stat.js').Stat;
+  'status-icon-box': import('../status-icon/status-icon.js').StatusIcon;
+  'table-box': import('../table/table.js').Table;
+  'tag-box': import('../tag/tag.js').Tag;
+  'terminal-box': import('../terminal/terminal.js').Terminal;
+  'terminal-line-box': import('../terminal/terminal-line.js').TerminalLine;
+  'textarea-box': import('../textarea/textarea.js').Textarea;
+  'toast-box': import('../toast/toast.js').Toast;
+  'toolbar-box': import('../toolbar/toolbar.js').Toolbar;
+  'tooltip-box': import('../tooltip/tooltip.js').Tooltip;
+  'wysiwyg-box': import('../wysiwyg/wysiwyg.js').Wysiwyg;
+};
+
 type ComponentAttributeMap = {
   'alert-box': {
-    'variant': import('../alert/alert').Alert['variant'];
+    'variant': import('../alert/alert.js').Alert['variant'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'banner-box': {
-    'variant': import('../banner/banner').Banner['variant'];
+    'variant': import('../banner/banner.js').Banner['variant'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'button-box': {
-    'size': import('../button/button').Button['size'];
-    'variant': import('../button/button').Button['variant'];
+    'size': import('../button/button.js').Button['size'];
+    'variant': import('../button/button.js').Button['variant'];
   };
   'card-box': {
-    'hoverable': import('../card/card').Card['hoverable'];
+    'hoverable': import('../card/card.js').Card['hoverable'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'checkbox-group-box': {
-    'legend': import('../checkbox/checkbox').CheckboxGroup['legend'];
+    'legend': import('../checkbox/checkbox.js').CheckboxGroup['legend'];
   };
   'close-control-box': {
-    'label': import('../close-control/close-control').CloseControl['label'];
+    'label': import('../close-control/close-control.js').CloseControl['label'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'columns-box': {
-    'gap': import('../columns/columns').Columns['gap'];
-    'min-width': import('../columns/columns').Columns['minWidth'];
+    'gap': import('../columns/columns.js').Columns['gap'];
+    'min-width': import('../columns/columns.js').Columns['minWidth'];
   };
   'dialog-box': {
-    'no-backdrop-close': import('../dialog/dialog').Dialog['noBackdropClose'];
-    'open': import('../dialog/dialog').Dialog['open'];
+    'no-backdrop-close': import('../dialog/dialog.js').Dialog['noBackdropClose'];
+    'open': import('../dialog/dialog.js').Dialog['open'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'divider-box': {
-    'orientation': import('../divider/divider').Divider['orientation'];
+    'orientation': import('../divider/divider.js').Divider['orientation'];
   };
   'drawer-box': {
-    'no-backdrop-close': import('../drawer/drawer').Drawer['noBackdropClose'];
-    'open': import('../drawer/drawer').Drawer['open'];
-    'placement': import('../drawer/drawer').Drawer['placement'];
+    'no-backdrop-close': import('../drawer/drawer.js').Drawer['noBackdropClose'];
+    'open': import('../drawer/drawer.js').Drawer['open'];
+    'placement': import('../drawer/drawer.js').Drawer['placement'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'input-box': {
-    'fullwidth': import('../input/input').Input['fullwidth'];
+    'fullwidth': import('../input/input.js').Input['fullwidth'];
   };
   'link-box': {
-    'size': import('../link/link').Link['size'];
-    'variant': import('../link/link').Link['variant'];
+    'size': import('../link/link.js').Link['size'];
+    'variant': import('../link/link.js').Link['variant'];
   };
   'list-box': {
-    'ordered': import('../list/list').List['ordered'];
+    'ordered': import('../list/list.js').List['ordered'];
   };
   'loading-box': {
-    'label-visible': import('../loading/loading').Loading['labelVisible'];
+    'label-visible': import('../loading/loading.js').Loading['labelVisible'];
   };
   'markdown-box': {
-    'linkify': import('../markdown/markdown').Markdown['linkify'];
+    'linkify': import('../markdown/markdown.js').Markdown['linkify'];
   };
   'progress-box': {
-    'label': import('../progress/progress').Progress['label'];
-    'max': import('../progress/progress').Progress['max'];
-    'value': import('../progress/progress').Progress['value'];
+    'label': import('../progress/progress.js').Progress['label'];
+    'max': import('../progress/progress.js').Progress['max'];
+    'value': import('../progress/progress.js').Progress['value'];
   };
   'radio-group-box': {
-    'legend': import('../radio/radio').RadioGroup['legend'];
+    'legend': import('../radio/radio.js').RadioGroup['legend'];
   };
   'select-box': {
-    'fullwidth': import('../select/select').Select['fullwidth'];
+    'fullwidth': import('../select/select.js').Select['fullwidth'];
   };
   'skeleton-box': {
-    'animated': import('../skeleton/skeleton').Skeleton['animated'];
-    'height': import('../skeleton/skeleton').Skeleton['height'];
-    'width': import('../skeleton/skeleton').Skeleton['width'];
+    'animated': import('../skeleton/skeleton.js').Skeleton['animated'];
+    'height': import('../skeleton/skeleton.js').Skeleton['height'];
+    'width': import('../skeleton/skeleton.js').Skeleton['width'];
   };
   'stat-box': {
-    'delta': import('../stat/stat').Stat['delta'];
-    'show-trend-indicator': import('../stat/stat').Stat['showTrendIndicator'];
-    'trend': import('../stat/stat').Stat['trend'];
-    'value': import('../stat/stat').Stat['value'];
+    'delta': import('../stat/stat.js').Stat['delta'];
+    'show-trend-indicator': import('../stat/stat.js').Stat['showTrendIndicator'];
+    'trend': import('../stat/stat.js').Stat['trend'];
+    'value': import('../stat/stat.js').Stat['value'];
   };
   'status-icon-box': {
-    'label': import('../status-icon/status-icon').StatusIcon['label'];
-    'variant': import('../status-icon/status-icon').StatusIcon['variant'];
+    'label': import('../status-icon/status-icon.js').StatusIcon['label'];
+    'variant': import('../status-icon/status-icon.js').StatusIcon['variant'];
   };
   'table-box': {
-    'zebra': import('../table/table').Table['zebra'];
+    'zebra': import('../table/table.js').Table['zebra'];
   };
   'tag-box': {
-    'variant': import('../tag/tag').Tag['variant'];
+    'variant': import('../tag/tag.js').Tag['variant'];
   };
   'terminal-line-box': {
-    'cursor': import('../terminal/terminal-line').TerminalLine['cursor'];
-    'variant': import('../terminal/terminal-line').TerminalLine['variant'];
+    'cursor': import('../terminal/terminal-line.js').TerminalLine['cursor'];
+    'variant': import('../terminal/terminal-line.js').TerminalLine['variant'];
   };
   'textarea-box': {
-    'fullwidth': import('../textarea/textarea').Textarea['fullwidth'];
+    'fullwidth': import('../textarea/textarea.js').Textarea['fullwidth'];
   };
   'toast-box': {
-    'variant': import('../toast/toast').Toast['variant'];
+    'variant': import('../toast/toast.js').Toast['variant'];
+    'on:close'?: (event: CustomEvent<void>) => void;
   };
   'tooltip-box': {
-    'default-placement': import('../tooltip/tooltip').Tooltip['defaultPlacement'];
-    'label': import('../tooltip/tooltip').Tooltip['label'];
+    'default-placement': import('../tooltip/tooltip.js').Tooltip['defaultPlacement'];
+    'label': import('../tooltip/tooltip.js').Tooltip['label'];
   };
   'wysiwyg-box': {
-    'value': import('../wysiwyg/wysiwyg').Wysiwyg['value'];
+    'value': import('../wysiwyg/wysiwyg.js').Wysiwyg['value'];
+    'on:input'?: (event: Event) => void;
   };
 };
 
-type ComponentTagName = keyof ComponentAttributeMap;
-type HtmlTagName = keyof HTMLElementTagNameMap;
-type BaseSolidProps<Tag extends HtmlTagName> = Tag extends keyof SolidIntrinsicElements
-  ? SolidIntrinsicElements[Tag]
-  : SolidJSX.HTMLAttributes<HTMLElementTagNameMap[Tag]>;
+type ComponentTagName = keyof ComponentElementMap;
+type BaseSolidProps<Tag extends ComponentTagName> = SolidJSX.HTMLAttributes<
+  ComponentElementMap[Tag]
+>;
 
 type ComponentIntrinsicElements = {
-  [Tag in ComponentTagName]: [keyof ComponentAttributeMap[Tag]] extends [never]
-    ? BaseSolidProps<Tag>
-    : Omit<BaseSolidProps<Tag>, keyof ComponentAttributeMap[Tag]> &
-        Partial<ComponentAttributeMap[Tag]>;
+  [Tag in ComponentTagName]: Tag extends keyof ComponentAttributeMap
+    ? [keyof ComponentAttributeMap[Tag]] extends [never]
+      ? BaseSolidProps<Tag>
+      : Omit<BaseSolidProps<Tag>, keyof ComponentAttributeMap[Tag]> &
+          Partial<ComponentAttributeMap[Tag]>
+    : BaseSolidProps<Tag>;
 };
 
 declare module 'solid-js/jsx-runtime' {
   namespace JSX {
+    interface CustomEvents {
+      'close': CustomEvent<void>;
+      'input': Event;
+    }
     interface IntrinsicElements {
       'alert-box': ComponentIntrinsicElements['alert-box'];
+      'badge-box': ComponentIntrinsicElements['badge-box'];
       'banner-box': ComponentIntrinsicElements['banner-box'];
       'button-box': ComponentIntrinsicElements['button-box'];
       'card-box': ComponentIntrinsicElements['card-box'];
@@ -130,8 +180,11 @@ declare module 'solid-js/jsx-runtime' {
       'close-control-box': ComponentIntrinsicElements['close-control-box'];
       'columns-box': ComponentIntrinsicElements['columns-box'];
       'dialog-box': ComponentIntrinsicElements['dialog-box'];
+      'dialog-footer-box': ComponentIntrinsicElements['dialog-footer-box'];
+      'dialog-header-box': ComponentIntrinsicElements['dialog-header-box'];
       'divider-box': ComponentIntrinsicElements['divider-box'];
       'drawer-box': ComponentIntrinsicElements['drawer-box'];
+      'drawer-header-box': ComponentIntrinsicElements['drawer-header-box'];
       'input-box': ComponentIntrinsicElements['input-box'];
       'link-box': ComponentIntrinsicElements['link-box'];
       'list-box': ComponentIntrinsicElements['list-box'];
@@ -145,21 +198,13 @@ declare module 'solid-js/jsx-runtime' {
       'status-icon-box': ComponentIntrinsicElements['status-icon-box'];
       'table-box': ComponentIntrinsicElements['table-box'];
       'tag-box': ComponentIntrinsicElements['tag-box'];
+      'terminal-box': ComponentIntrinsicElements['terminal-box'];
       'terminal-line-box': ComponentIntrinsicElements['terminal-line-box'];
       'textarea-box': ComponentIntrinsicElements['textarea-box'];
       'toast-box': ComponentIntrinsicElements['toast-box'];
+      'toolbar-box': ComponentIntrinsicElements['toolbar-box'];
       'tooltip-box': ComponentIntrinsicElements['tooltip-box'];
       'wysiwyg-box': ComponentIntrinsicElements['wysiwyg-box'];
-      'badge-box': BaseSolidProps<'badge-box'>;
-      'dialog-footer-box': BaseSolidProps<'dialog-footer-box'>;
-      'dialog-header-box': BaseSolidProps<'dialog-header-box'>;
-      'drawer-header-box': BaseSolidProps<'drawer-header-box'>;
-      'terminal-box': BaseSolidProps<'terminal-box'>;
-      'toolbar-box': BaseSolidProps<'toolbar-box'>;
-    }
-    interface IntrinsicAttributes {
-      'onclose'?: (event: CustomEvent<unknown>) => void;
-      'oninput'?: (event: CustomEvent<unknown>) => void;
     }
   }
 }

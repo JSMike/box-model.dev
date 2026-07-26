@@ -1,0 +1,281 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Test setup" />
+
+# Testing with jsdom
+
+jsdom models DOM structure and events, but it does not implement every browser API used by custom
+elements. Tests that render Box Model components should install predictable substitutes for
+constructed stylesheets, `adoptedStyleSheets`, observers, Web Animations, and native dialog
+methods.
+
+These shims make component state and event tests deterministic. They do not simulate layout,
+observer thresholds, animation timing, focus trapping, backdrop behavior, or CSS Anchor
+Positioning. Keep those assertions in browser tests.
+
+## Install
+
+<Source
+  dark={true}
+  format="dedent"
+  language="bash"
+  code={`
+    npm install --save-dev @lit-labs/ssr-dom-shim
+
+`}
+/>
+
+[`@lit-labs/ssr-dom-shim`](https://www.npmjs.com/package/@lit-labs/ssr-dom-shim) exports minimal
+implementations but does not install them on `globalThis`. The setup files below install its
+`CSSStyleSheet`, add mutable `adoptedStyleSheets` collections, and use each test runner's mock
+functions for the remaining APIs.
+
+## Vitest
+
+Add the setup file to the Vitest configuration:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    // vite.config.ts
+    import { defineConfig } from 'vitest/config';
+
+    export default defineConfig({
+      test: {
+        environment: 'jsdom',
+        setupFiles: ['./test/vitest.setup.ts'],
+      },
+    });
+
+`}
+/>
+
+Create `test/vitest.setup.ts`:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    import { CSSStyleSheet as CSSStyleSheetShim } from '@lit-labs/ssr-dom-shim';
+    import { vi } from 'vitest';
+
+    vi.stubGlobal('CSSStyleSheet', CSSStyleSheetShim);
+    vi.spyOn(CSSStyleSheet.prototype, 'replaceSync');
+
+    const adopted = new WeakMap<Document | ShadowRoot, CSSStyleSheet[]>();
+
+    for (const prototype of [Document.prototype, ShadowRoot.prototype]) {
+      if ('adoptedStyleSheets' in prototype) continue;
+
+      Object.defineProperty(prototype, 'adoptedStyleSheets', {
+        configurable: true,
+        get(this: Document | ShadowRoot) {
+          let styles = adopted.get(this);
+          if (styles === undefined) {
+            styles = [];
+            adopted.set(this, styles);
+          }
+          return styles;
+        },
+        set(this: Document | ShadowRoot, styles: CSSStyleSheet[]) {
+          adopted.set(this, [...styles]);
+        },
+      });
+    }
+
+    vi.stubGlobal(
+      'ResizeObserver',
+      vi.fn(() => ({
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+      })),
+    );
+
+    vi.stubGlobal(
+      'IntersectionObserver',
+      vi.fn(() => ({
+        root: null,
+        rootMargin: '0px',
+        thresholds: [0],
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+        takeRecords: vi.fn(() => []),
+      })),
+    );
+
+    Object.defineProperty(Element.prototype, 'getAnimations', {
+      configurable: true,
+      value: vi.fn(() => []),
+    });
+
+    const dialogPrototype =
+      globalThis.HTMLDialogElement?.prototype ??
+      (Object.getPrototypeOf(
+        document.createElement('dialog'),
+      ) as HTMLDialogElement);
+
+    const ensureDialogMethod = (
+      method: 'showModal' | 'close',
+      implementation: (this: HTMLDialogElement) => void,
+    ) => {
+      if (typeof dialogPrototype[method] === 'function') return;
+
+      Object.defineProperty(dialogPrototype, method, {
+        configurable: true,
+        value: vi.fn(implementation),
+        writable: true,
+      });
+    };
+
+    ensureDialogMethod('showModal', function showModal(this: HTMLDialogElement) {
+      this.open = true;
+      this.setAttribute('open', '');
+    });
+
+    ensureDialogMethod('close', function close(this: HTMLDialogElement) {
+      if (!this.open) return;
+      this.open = false;
+      this.removeAttribute('open');
+      this.dispatchEvent(new Event('close'));
+    });
+
+`}
+/>
+
+## Jest
+
+Configure Jest to load a setup file after the jsdom environment:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    // jest.config.ts
+    import type { Config } from 'jest';
+
+    const config: Config = {
+      testEnvironment: 'jsdom',
+      setupFilesAfterEnv: ['<rootDir>/test/jest.setup.ts'],
+    };
+
+    export default config;
+
+`}
+/>
+
+Create `test/jest.setup.ts`:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    import { CSSStyleSheet as CSSStyleSheetShim } from '@lit-labs/ssr-dom-shim';
+    import { jest } from '@jest/globals';
+
+    Object.defineProperty(globalThis, 'CSSStyleSheet', {
+      configurable: true,
+      writable: true,
+      value: CSSStyleSheetShim,
+    });
+    jest.spyOn(CSSStyleSheet.prototype, 'replaceSync');
+
+    const adopted = new WeakMap<Document | ShadowRoot, CSSStyleSheet[]>();
+
+    for (const prototype of [Document.prototype, ShadowRoot.prototype]) {
+      if ('adoptedStyleSheets' in prototype) continue;
+
+      Object.defineProperty(prototype, 'adoptedStyleSheets', {
+        configurable: true,
+        get(this: Document | ShadowRoot) {
+          let styles = adopted.get(this);
+          if (styles === undefined) {
+            styles = [];
+            adopted.set(this, styles);
+          }
+          return styles;
+        },
+        set(this: Document | ShadowRoot, styles: CSSStyleSheet[]) {
+          adopted.set(this, [...styles]);
+        },
+      });
+    }
+
+    Object.defineProperty(globalThis, 'ResizeObserver', {
+      configurable: true,
+      writable: true,
+      value: jest.fn(() => ({
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+      })),
+    });
+
+    Object.defineProperty(globalThis, 'IntersectionObserver', {
+      configurable: true,
+      writable: true,
+      value: jest.fn(() => ({
+        root: null,
+        rootMargin: '0px',
+        thresholds: [0],
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+        disconnect: jest.fn(),
+        takeRecords: jest.fn(() => []),
+      })),
+    });
+
+    Object.defineProperty(Element.prototype, 'getAnimations', {
+      configurable: true,
+      value: jest.fn(() => []),
+    });
+
+    const dialogPrototype =
+      globalThis.HTMLDialogElement?.prototype ??
+      (Object.getPrototypeOf(
+        document.createElement('dialog'),
+      ) as HTMLDialogElement);
+
+    const ensureDialogMethod = (
+      method: 'showModal' | 'close',
+      implementation: (this: HTMLDialogElement) => void,
+    ) => {
+      if (typeof dialogPrototype[method] === 'function') return;
+
+      Object.defineProperty(dialogPrototype, method, {
+        configurable: true,
+        value: jest.fn(implementation),
+        writable: true,
+      });
+    };
+
+    ensureDialogMethod('showModal', function showModal(this: HTMLDialogElement) {
+      this.open = true;
+      this.setAttribute('open', '');
+    });
+
+    ensureDialogMethod('close', function close(this: HTMLDialogElement) {
+      if (!this.open) return;
+      this.open = false;
+      this.removeAttribute('open');
+      this.dispatchEvent(new Event('close'));
+    });
+
+`}
+/>
+
+## Dialog test boundary
+
+The setup only supplies `showModal()` and `close()` when jsdom does not already provide them.
+`showModal()` sets both the `open` property and attribute. `close()` is a no-op for a closed
+dialog; for an open dialog it clears the property and attribute before dispatching `close`.
+
+This is enough for component state and event tests, but it does not reproduce the browser's
+top layer, modal focus behavior, backdrop, keyboard dismissal, or accessibility tree. Validate
+those behaviors in a real browser.

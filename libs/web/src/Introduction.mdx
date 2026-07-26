@@ -20,6 +20,55 @@ Box Model UI is a playful nod to the CSS box model—the kind of design system a
   `}
 />
 
+Register the complete library or import only the component entrypoints the application uses:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    import '@box-model/web';
+    // Or: import '@box-model/web/tooltip';
+  `}
+/>
+
+### Tooltip support in older browsers
+
+`tooltip-box` uses CSS Anchor Positioning. Modern browsers support it natively. Applications that
+support older browsers can install the
+[OddBird CSS Anchor Positioning polyfill](https://github.com/oddbird/css-anchor-positioning):
+
+<Source
+  dark={true}
+  format="dedent"
+  language="bash"
+  code={`
+    npm install @oddbird/css-anchor-positioning
+  `}
+/>
+
+Box Model UI uses Lit constructed stylesheets, so initialize the constructed-stylesheet integration
+before importing the components:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="ts"
+  code={`
+    if (!('anchorName' in document.documentElement.style)) {
+      const { patchAndPolyfillConstructedStylesheets } =
+        await import('@oddbird/css-anchor-positioning/fn');
+
+      patchAndPolyfillConstructedStylesheets();
+    }
+
+    await import('@box-model/web');
+  `}
+/>
+
+The polyfill is an application-level compatibility choice and is not included in
+`@box-model/web`.
+
 ## Design Principles
 
 - **Predictable structure** – Each component ships with host styles plus a `.slot.scss` file that handles light-DOM selectors via `slotStyleService`. Never use `::slotted()`; instead scope selectors like `card-box [slot='header']` so specificity behaves.

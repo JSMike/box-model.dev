@@ -6,6 +6,7 @@ import {
   type ComponentMeta,
   type ComponentMetadataResult,
 } from './component-metadata.js';
+import { isPublicLibraryEntryDirectory } from './library-entrypoints.js';
 
 type DirectoryResult = {
   updated: boolean;
@@ -44,7 +45,9 @@ export async function emitTagNameMaps(
     }
   }
 
-  const rootUpdated = await emitRootIndex(updates.map((entry) => entry.name));
+  const rootUpdated = await emitRootIndex(
+    updates.map((entry) => entry.name).filter(isPublicLibraryEntryDirectory)
+  );
 
   if (updates.length) {
     const changed = updates

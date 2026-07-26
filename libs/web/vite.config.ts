@@ -6,13 +6,16 @@ import fs from 'node:fs';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
+import { isPublicLibraryEntryDirectory } from './generators/library-entrypoints.js';
 
 const srcDir = path.resolve(__dirname, 'src');
+const outputPath = path.resolve(__dirname, '../../dist/libs/web');
 const entryDirectories = fs
   .readdirSync(srcDir, { withFileTypes: true })
   .filter(
     (entry) =>
       entry.isDirectory() &&
+      isPublicLibraryEntryDirectory(entry.name) &&
       fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
   )
   .map((entry) => entry.name);
@@ -62,6 +65,10 @@ export default defineConfig(() => ({
           dest: '.',
         },
         {
+          src: 'CHANGELOG.md',
+          dest: '.',
+        },
+        {
           src: path.resolve(__dirname, '../../LICENSE'),
           dest: '.',
         },
@@ -87,6 +94,15 @@ export default defineConfig(() => ({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
       pathsToAliases: false,
+      beforeWriteFile: (filePath) => {
+        const [topLevelDirectory] = path
+          .relative(outputPath, filePath)
+          .split(path.sep);
+        if (!isPublicLibraryEntryDirectory(topLevelDirectory)) {
+          return false;
+        }
+        return undefined;
+      },
     }),
   ],
   // Uncomment this if you are using workers.
@@ -96,7 +112,7 @@ export default defineConfig(() => ({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
-    outDir: '../../dist/libs/web',
+    outDir: outputPath,
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -120,11 +136,11 @@ export default defineConfig(() => ({
           baseContents: (pkg) => {
             const baseExports = pkg.exports as Record<
               string,
-              { types?: string; default: string }
+              { types?: string; default?: string }
             >;
             const exports = Object.keys(entryPoints)
               .sort()
-              .reduce<Record<string, { types?: string; default: string }>>(
+              .reduce<Record<string, { types?: string; default?: string }>>(
                 (acc, entry) => {
                   const exportEntry = {
                     types: `./${entry}/index.d.ts`,

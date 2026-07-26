@@ -143,4 +143,13 @@ describe('box-model-web agent skill', () => {
     expect(styles).toContain('@include theme.box-model-margin-container');
     expect(styles).toContain('@include typography.heading');
   });
+
+  it('documents the opt-in framework JSX declaration entrypoints', () => {
+    const skill = readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
+
+    expect(skill).toContain('@box-model/web/react');
+    expect(skill).toContain('@box-model/web/preact');
+    expect(skill).toContain('@box-model/web/solid');
+    expect(skill).toContain('compilerOptions.types');
+  });
 });
