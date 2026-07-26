@@ -10,6 +10,9 @@ import { ComponentDocs } from '@box-model/storybook-utils';
 
 Links accept `{variant="..." size="..."}` attributes and, when you add `{type="button"}`, the anchor is wrapped with `<button-box>` so it inherits button styling.
 
+Raw HTML is rendered as text. Markdown attributes are restricted to `type`, `variant`, and `size`;
+event-handler attributes and unsafe link protocols are not rendered.
+
 > 💡 When nesting `card` containers inside `columns`, start and end the `columns` block with four colons (`::::columns … ::::`) so the inner fences don’t prematurely close the grid.
 
 <Source

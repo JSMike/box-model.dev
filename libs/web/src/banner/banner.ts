@@ -101,6 +101,10 @@ export class Banner extends LitElement {
     );
   }
 
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
+  }
+
   override render() {
     return html`
       <div class="banner-box__surface" part="surface">
@@ -120,6 +124,7 @@ export class Banner extends LitElement {
           <slot
             name="close-control"
             @slotchange=${this.onCloseSlotChange}
+            @close=${this.handleSlottedClose}
             @click=${this.handleCloseClick}
           ></slot>
         </div>

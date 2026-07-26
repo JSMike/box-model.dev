@@ -18,18 +18,20 @@ export default function BlogsRoute() {
   );
 
   return (
-    <main className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
       <section aria-labelledby="blog-page-title">
-        <header className={styles.header}>
+        <header
+          className={`${styles.header} box-model-surface box-model-surface--prominent`}
+        >
           <h1 id="blog-page-title">Developer blog</h1>
           <p>
-            Release stories, migration guides, and riffs on why everything is still a box. This is
-            my soap-box for all things square.
+            Release stories, migration guides, and riffs on why everything is
+            still a box. This is my soap-box for all things square.
           </p>
         </header>
         <div className={styles.posts}>
           {sortedPosts.map((post, index) => (
-            <CardBox key={post.id} id={post.id} interactive>
+            <CardBox key={post.id} id={post.id} hoverable>
               <div slot="header">
                 <h3>{post.title}</h3>
                 <div className={styles.meta}>

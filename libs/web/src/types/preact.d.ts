@@ -21,7 +21,7 @@ type ComponentAttributeMap = {
     'variant': Signalish<import('../button/button').Button['variant'] | undefined>;
   };
   'card-box': {
-    'interactive': Signalish<import('../card/card').Card['interactive'] | undefined>;
+    'hoverable': Signalish<import('../card/card').Card['hoverable'] | undefined>;
   };
   'checkbox-group-box': {
     'legend': Signalish<import('../checkbox/checkbox').CheckboxGroup['legend'] | undefined>;
@@ -62,6 +62,7 @@ type ComponentAttributeMap = {
     'linkify': Signalish<import('../markdown/markdown').Markdown['linkify'] | undefined>;
   };
   'progress-box': {
+    'label': Signalish<import('../progress/progress').Progress['label'] | undefined>;
     'max': Signalish<import('../progress/progress').Progress['max'] | undefined>;
     'value': Signalish<import('../progress/progress').Progress['value'] | undefined>;
   };

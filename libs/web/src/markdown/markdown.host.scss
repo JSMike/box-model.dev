@@ -1,4 +1,5 @@
 @use '@box-model/tokens/tokens' as tokens;
+@use '../styles/surface' as surface;
 @use '../styles/theme' as theme;
 
 :host {
@@ -7,6 +8,11 @@
   font-family: #{tokens.$typography-roles-body-font-family};
   font-size: #{tokens.$typography-roles-body-font-size};
   line-height: #{tokens.$typography-roles-body-line-height};
+  /** Fenced-code block shadow. */
+  --markdown-code-shadow: var(
+    --box-model-shadow-offset-sm,
+    #{tokens.$shadow-offset-sm}
+  );
 }
 
 .markdown-box__source {
@@ -61,17 +67,23 @@
     @include theme.property(background-color, 'box-model-background-surface');
     padding: #{tokens.$space-scale-150};
     overflow-x: auto;
+
     &:has(code) {
+      @include surface.frame();
+
+      --box-model-surface-padding: #{tokens.$space-scale-150};
+      --box-model-surface-shadow: var(--markdown-code-shadow);
+
       padding-top: 0;
     }
+
     @include theme.property(color, 'box-model-text-primary');
   }
 
   blockquote {
     margin: #{tokens.$space-stack-base} #{tokens.$space-scale-150};
     padding: #{tokens.$space-scale-150};
-    border: #{tokens.$size-border-width-hairline} solid
-      var(--box-model-border-subtle, #{tokens.$color-border-subtle});
+    border: #{tokens.$size-border-width-hairline} solid var(--box-model-border-subtle, #{tokens.$color-border-subtle});
     @include theme.property(background-color, 'box-model-background-surface');
     @include theme.property(color, 'box-model-text-primary');
     position: relative;

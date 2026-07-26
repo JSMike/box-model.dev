@@ -6,6 +6,7 @@
 @use './typography';
 @use './layout';
 @use './layers';
+@use './surface-utilities';
 
 :root {
   @include theme.register-theme-vars();

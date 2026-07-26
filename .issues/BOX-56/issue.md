@@ -1,17 +1,18 @@
 # BOX-56: progress-box lacks an accessible name
 
 <!-- Metadata -->
-| Field        | Value        |
-|--------------|--------------|
-| Status       | ready        |
-| Owner        | Agent        |
-| Complexity   | low/medium   |
-| Created      | 2026-07-13   |
-| Source       | Angular CEM integration (BOX-55) |
-| External     |              |
-| Blocks       |              |
-| Blocked-by   |              |
-| Priority     | high         |
+
+| Field      | Value                            |
+| ---------- | -------------------------------- |
+| Status     | review                           |
+| Owner      | Agent                            |
+| Complexity | low/medium                       |
+| Created    | 2026-07-13                       |
+| Source     | Angular CEM integration (BOX-55) |
+| External   |                                  |
+| Blocks     |                                  |
+| Blocked-by |                                  |
+| Priority   | high                             |
 
 ## Summary
 
@@ -25,10 +26,10 @@ Relevant source: `libs/web/src/progress/progress.ts` (track with `role="progress
 
 ## Acceptance Criteria
 
-- [ ] Add a reflected `label` property/attribute (or equivalent naming API) used to set `aria-label` (or wire `aria-labelledby` to a stable labelled element) on the internal progressbar
-- [ ] Document the naming API in Storybook / component docs; clarify relationship to the default slot if both remain
-- [ ] Add accessibility unit/integration tests that fail when the progressbar has no accessible name and pass with the new API
-- [ ] Confirm AXE `aria-progressbar-name` is cleared for the documented usage pattern
+- [x] Add a reflected `label` property/attribute (or equivalent naming API) used to set `aria-label` (or wire `aria-labelledby` to a stable labelled element) on the internal progressbar
+- [x] Document the naming API in Storybook / component docs; clarify relationship to the default slot if both remain
+- [x] Add accessibility unit/integration tests that fail when the progressbar has no accessible name and pass with the new API
+- [x] Confirm AXE `aria-progressbar-name` is cleared for the documented usage pattern
 
 ## References
 

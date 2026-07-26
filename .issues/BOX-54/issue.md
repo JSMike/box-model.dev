@@ -26,7 +26,7 @@ Close Angular `customElementsManifests` gaps identified in `fable-feedback.md`: 
 - [x] Checker fallback types for un-annotated properties
 - [x] `readonly` on readonly modifiers / getter-only accessors
 - [x] Angular check-type envelope lint during generation
-- [x] Single-collect generate pipeline; summary/description not duplicated; deprecated propagation
+- [x] Single-collect generate pipeline; `summary` contains the first paragraph and `description` contains the full JSDoc comment for consumer compatibility; deprecated propagation
 
 ## References
 

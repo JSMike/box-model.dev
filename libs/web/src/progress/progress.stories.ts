@@ -17,13 +17,18 @@ const meta: Docs = {
     },
     label: {
       control: 'text',
-      description: 'Optional helper text rendered below the bar',
+      description: 'Accessible name announced for the progressbar',
+    },
+    visibleLabel: {
+      control: 'text',
+      description: 'Optional visible label rendered above the bar',
     },
   },
   args: {
     value: 60,
     max: 100,
-    label: 'Uploading assets…',
+    label: 'File upload progress',
+    visibleLabel: 'Uploading assets…',
   },
   docs: {
     selector: 'progress-box',
@@ -39,10 +44,16 @@ const meta: Docs = {
         description: 'Maximum progress value used to compute the percentage.',
         defaultValue: 100,
       },
+      label: {
+        type: 'string',
+        description: 'Accessible name applied to the internal progressbar.',
+        defaultValue: 'Progress',
+      },
     },
     slots: {
       '': {
-        description: 'Optional label content displayed above the track alongside the percent.',
+        description:
+          'Optional visible label displayed above the track; set `label` separately for the accessible name.',
       },
     },
     cssProperties: {
@@ -88,9 +99,9 @@ const meta: Docs = {
 export default meta;
 
 export const Canvas: Story = {
-  render: ({ value, max, label }) => html`
-    <progress-box .value=${value} .max=${max}>
-      ${label ? html`<span>${label}</span>` : ''}
+  render: ({ value, max, label, visibleLabel }) => html`
+    <progress-box .value=${value} .max=${max} label=${label}>
+      ${visibleLabel ? html`<span>${visibleLabel}</span>` : ''}
     </progress-box>
   `,
 };

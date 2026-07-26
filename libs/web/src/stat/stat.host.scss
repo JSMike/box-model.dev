@@ -11,36 +11,67 @@
   gap: var(--stat-gap);
   padding: var(--stat-padding);
   /** Stat background. */
-  @include theme.custom-property('stat-background', 'box-model-background-elevated');
+  @include theme.custom-property(
+    'stat-background',
+    'box-model-background-elevated'
+  );
   /** Stat border. */
   @include theme.custom-property('stat-border', 'box-model-border-strong');
   background: var(--stat-background);
   /** Stat border width. */
   --stat-border-width: #{tokens.$component-stat-border-width};
+  /** Stat shadow. */
+  --stat-shadow: var(
+    --box-model-shadow-offset-sm,
+    #{tokens.$component-stat-shadow}
+  );
   border-width: var(--stat-border-width);
   border-style: dashed;
   border-color: var(--stat-border);
   border-radius: 0;
+  box-shadow: var(--stat-shadow);
   /** Stat title color. */
-  @include theme.custom-property('stat-title-color', 'box-model-text-secondary');
+  @include theme.custom-property(
+    'stat-title-color',
+    'box-model-text-secondary'
+  );
   /** Stat value color. */
   @include theme.custom-property('stat-value-color', 'box-model-text-primary');
   /** Stat delta color base. */
-  @include theme.custom-property('stat-delta-color-base', 'box-model-content-border');
+  @include theme.custom-property(
+    'stat-delta-color-base',
+    'box-model-content-border'
+  );
   /** Stat delta color. */
   --stat-delta-color: var(--stat-delta-color-base);
 }
 
 :host([trend='up']) {
-  @include theme.custom-property('stat-delta-color-base', 'box-model-feedback-success-border');
+  @include theme.custom-property(
+    'stat-delta-color-base',
+    'box-model-feedback-success-border'
+  );
 }
 
 :host([trend='down']) {
-  @include theme.custom-property('stat-delta-color-base', 'box-model-feedback-danger-border');
+  @include theme.custom-property(
+    'stat-delta-color-base',
+    'box-model-feedback-danger-border'
+  );
 }
 
 :host([trend='neutral']) {
-  @include theme.custom-property('stat-delta-color-base', 'box-model-content-border');
+  @include theme.custom-property(
+    'stat-delta-color-base',
+    'box-model-content-border'
+  );
+}
+
+@media (forced-colors: active) {
+  :host {
+    border-color: CanvasText;
+    box-shadow: none;
+  }
 }
 
 .stat-box__value {
@@ -78,8 +109,8 @@
   :host {
     --stat-delta-color: color-mix(
       in srgb,
-      var(--stat-delta-color-base) 30%,
-      var(--box-model-text-primary, #ffffff) 70%
+      var(--stat-delta-color-base) 25%,
+      var(--box-model-text-primary, #ffffff) 75%
     );
   }
 }

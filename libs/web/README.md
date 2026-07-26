@@ -44,11 +44,15 @@ The manifest is also available through the explicit `@box-model/web/custom-eleme
 
 ## Styles
 
-Theme and foundation styles are available from the `styles` export:
+Load the theme and foundation stylesheet once in the consuming application:
 
 ```scss
 @use '@box-model/web/styles/box-model';
 ```
+
+This initializes the page-level design tokens, light/dark color scheme, typography, and accessible
+default surfaces used by the components. The default theme follows `prefers-color-scheme`; apply
+`.box-model-theme-light` or `.box-model-theme-dark` to a subtree to force a scheme.
 
 Components use square edges and expose component-specific CSS custom properties documented in the
 manifest.

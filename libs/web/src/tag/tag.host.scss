@@ -27,7 +27,7 @@
   /** Tag letter spacing. */
   --tag-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
   /** Tag text transform. */
-  --tag-text-transform: uppercase;
+  --tag-text-transform: none;
 }
 
 :host([variant='info']) {

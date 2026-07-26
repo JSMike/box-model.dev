@@ -57,8 +57,8 @@ export class Drawer extends LitElement {
   override render() {
     return html`
       <dialog
-        @cancel=${this.handleCancel}
         @close=${this.handleNativeClose}
+        @click=${this.handleDialogClick}
       >
         <aside class="drawer-box__panel" part="panel" role="complementary">
           <div
@@ -71,6 +71,7 @@ export class Drawer extends LitElement {
               <slot
                 name="close-control"
                 @slotchange=${this.onCloseSlotChange}
+                @close=${this.handleSlottedClose}
                 @click=${this.handleCloseClick}
               ></slot>
             </div>
@@ -109,10 +110,15 @@ export class Drawer extends LitElement {
     this.emitClose();
   }
 
-  private handleCancel(event: Event) {
-    if (this.noBackdropClose) {
-      event.preventDefault();
+  private handleDialogClick(event: MouseEvent) {
+    if (event.target !== event.currentTarget || this.noBackdropClose) {
+      return;
     }
+    this.handleCloseRequest();
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   private handleNativeClose() {

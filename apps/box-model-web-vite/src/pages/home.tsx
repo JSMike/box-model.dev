@@ -1,114 +1,82 @@
+import { AlertBox } from '@box-model/web/alert';
 import { BadgeBox } from '@box-model/web/badge';
 import { ButtonBox } from '@box-model/web/button';
 import { CardBox } from '@box-model/web/card';
-import { StatBox, StatTrend } from '@box-model/web/stat';
+import { ColumnsBox } from '@box-model/web/columns';
 import { TagBox } from '@box-model/web/tag';
 import { TerminalBox, TerminalLineBox } from '@box-model/web/terminal';
 import { STORYBOOK_URL } from '../app/config';
 import styles from './home.module.scss';
 
-const tokenSets = [
-  { title: 'Spacing scale', detail: 'Stack, inline, gap: all pulled from the spacing tokens and mixins.', tags: ['space-2', 'space-4', 'space-6'] },
-  { title: 'Typography', detail: 'Mono by default, readable everywhere. Tokens for size, weight, and leading.', tags: ['font-body', 'font-mono', 'line-tight'] },
-  { title: 'Color semantics', detail: 'Canvas, surface, feedback colors all backed by light/dark values.', tags: ['background-surface', 'brand-primary', 'feedback-success'] },
-  { title: 'Motion', detail: 'Snappy transitions defined once. No ad-hoc easing curves sneaking in.', tags: ['ease-snappy', 'duration-120', 'duration-200'] },
+const alertExample = `<alert-box variant="success">
+  Ready to ship.
+</alert-box>`;
+
+const componentAreas = ['feedback', 'forms', 'content', 'data'];
+
+const layoutComponents = [
+  'columns-box',
+  'card-box',
+  'toolbar-box',
+  'divider-box',
 ];
 
-const themeSamples = [
+const colorTokens = [
   {
-    title: 'Light surfaces',
-    mixin: '@include theme.apply-theme(light);',
-    detail: 'Default canvas + surface tokens for docs and product UI.',
-    tokens: ['background-surface', 'text-primary', 'border-subtle'],
-    tone: 'light',
+    customProperty: '--box-model-brand-primary-emphasis',
+    value: '#88b2bd',
+    className: styles.swatchContent,
   },
   {
-    title: 'Dark lockup',
-    mixin: '@include theme.force-theme(dark);',
-    detail: 'Use on media-led sections that need dark surfaces and inverse text.',
-    tokens: ['background-inverse', 'text-inverse', 'border-inverse'],
-    tone: 'dark',
-  },
-];
-
-const toolBox = [
-  {
-    label: 'Lit',
-    description: 'Lightweight web component base powering every box.',
-    docs: 'https://lit.dev/',
-    repo: 'https://github.com/lit/lit',
+    customProperty: '--box-model-feedback-warning-surface',
+    value: '#b08354',
+    className: styles.swatchMargin,
   },
   {
-    label: 'Nx',
-    description: 'Task runner and monorepo tooling for builds, linting, and tests.',
-    docs: 'https://nx.dev/',
-    repo: 'https://github.com/nrwl/nx',
+    customProperty: '--box-model-feedback-success-surface',
+    value: '#b8c480',
+    className: styles.swatchPadding,
   },
   {
-    label: 'Storybook',
-    description: 'Docs and playground that mirror production markup.',
-    docs: 'https://storybook.js.org/',
-    repo: 'https://github.com/storybookjs/storybook',
+    customProperty: '--box-model-border-background',
+    value: '#e4c482',
+    className: styles.swatchBorder,
   },
   {
-    label: 'Vite + Vitest',
-    description: 'Fast builds and tests for a square developer loop.',
-    docs: 'https://vitejs.dev/',
-    repo: 'https://github.com/vitejs/vite',
-  },
-  {
-    label: 'Style Dictionary',
-    description: 'Token pipeline that keeps design variables boxed and synced.',
-    docs: 'https://amzn.github.io/style-dictionary/',
-    repo: 'https://github.com/amzn/style-dictionary',
-  },
-  {
-    label: 'Sass',
-    description: 'Authoring layer for tokens and mixins without cutting corners.',
-    docs: 'https://sass-lang.com/',
-    repo: 'https://github.com/sass/dart-sass',
+    customProperty: '--box-model-background-surface',
+    value: '#4a4a4a',
+    className: styles.swatchSurface,
   },
 ];
 
-const boxTypes = [
-  {
-    title: 'Feedback boxes',
-    detail: 'Alerts, banners, badges, toasts, and status icons keep signals consistent.',
-    components: ['alert-box', 'banner-box', 'badge-box', 'toast-box', 'status-icon'],
-    trend: 'neutral' as StatTrend,
-  },
-  {
-    title: 'Data boxes',
-    detail: 'Stats, tables, lists, and columns surface numbers without rounded corners.',
-    components: ['stat-box', 'table-box', 'list-box', 'columns-box'],
-    trend: 'neutral' as StatTrend,
-  },
-  {
-    title: 'Form boxes',
-    detail: 'Inputs, selects, radios, checkboxes, and toolbars keep flows on a square grid.',
-    components: ['input-box', 'select-box', 'radio-box', 'checkbox-box', 'toolbar-box'],
-    trend: 'neutral' as StatTrend,
-  },
-  {
-    title: 'Content boxes',
-    detail: 'Cards, dialogs, drawers, tooltips, and links keep layouts boxed in.',
-    components: ['card-box', 'dialog-box', 'drawer-box', 'tooltip-box', 'link-box'],
-    trend: 'neutral' as StatTrend,
-  },
+const principles = [
+  'The box model lays the foundation.',
+  'Slots keep composition inside the box.',
+  'Tokens square away repeated decisions.',
+  'Constraints keep teams from getting boxed in.',
+  'Accessibility is never boxed out.',
 ];
 
 export default function HomePage() {
   return (
-    <main className={`${styles.page} ${styles.canvas}`}>
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className={`${styles.page} ${styles.canvas}`}
+    >
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
+        <div
+          className={`${styles.heroCopy} box-model-surface box-model-surface--prominent`}
+        >
           <hgroup>
             <h1>Box Model UI</h1>
-            <p>The design system that refuses to cut corners</p>
+            <p>A CSS-first web-component design system</p>
           </hgroup>
 
           <p className={styles.lede}>
-            Custom elements powered by Lit. Copy the markup straight from Storybook and start shipping with boxes.
+            Built on the box model. Predictable layers. Composed for clarity.
+            Made for developers who want the markup they see to be the markup
+            they ship.
           </p>
           <div className={styles.heroActions}>
             <ButtonBox>
@@ -117,126 +85,227 @@ export default function HomePage() {
               </a>
             </ButtonBox>
             <ButtonBox variant="secondary">
-              <a href="/blogs">Developer Blog</a>
+              <a href="/about">Why boxes?</a>
             </ButtonBox>
             <ButtonBox variant="tertiary">
               <a href="https://github.com/JSMike/box-model.dev">GitHub</a>
             </ButtonBox>
           </div>
         </div>
+
         <div className={styles.heroPanel}>
           <TerminalBox>
-            <TerminalLineBox variant="prompt">npm install @box-model/web</TerminalLineBox>
-            <TerminalLineBox variant="info">Using box-model UI</TerminalLineBox>
-            <TerminalLineBox variant="success">32+ boxes</TerminalLineBox>
-            <TerminalLineBox variant="success">1024+ tokens</TerminalLineBox>
-            <TerminalLineBox variant="success">0 rounded edges</TerminalLineBox>
-            <TerminalLineBox variant="prompt" cursor></TerminalLineBox>
+            <TerminalLineBox variant="prompt">
+              npm install @box-model/web
+            </TerminalLineBox>
+            <TerminalLineBox variant="info">
+              Unpacking Box Model UI...
+            </TerminalLineBox>
+            <TerminalLineBox variant="success">
+              34 custom elements ready
+            </TerminalLineBox>
+            <TerminalLineBox variant="success">
+              Tokens and themes loaded
+            </TerminalLineBox>
+            <TerminalLineBox variant="success">0 corners cut</TerminalLineBox>
+            <TerminalLineBox variant="prompt" cursor aria-hidden="true" />
           </TerminalBox>
         </div>
       </section>
-      <section className={`${styles.section}`}>
+
+      <section
+        className={styles.featureSection}
+        aria-labelledby="whats-in-the-box-title"
+      >
         <div className={styles.sectionHeader}>
-          <h2>Thinking inside the box</h2>
-          <p>A look at what's included in Box Model UI.</p>
-        </div>
-
-        <div className={styles.sectionBlock}>
-          <h3>The Boxes</h3>
-          <p className={styles.subtle}>Each box has a job, so every layer of the stack stays squared away.</p>
-          <div className={styles.statStack}>
-            {boxTypes.map((box) => (
-              <StatBox
-                key={box.title}
-                trend={box.trend}
-                value={box.title}
-                delta={box.detail}
-                show-trend-indicator={box.trend !== 'neutral'}
-              >
-                <span slot="title">{box.title}</span>
-                <div className={styles.tagRow}>
-                  {box.components.map((component) => (
-                    <TagBox key={component} variant="neutral">
-                      <span>{component}</span>
-                    </TagBox>
-                  ))}
-                </div>
-              </StatBox>
-            ))}
+          <div>
+            <h2 id="whats-in-the-box-title">What's in the box?</h2>
           </div>
+          <p>
+            Components, layout, tokens, and principles that keep interfaces
+            square, clear, and ready to compose.
+          </p>
         </div>
 
-        <div className={styles.sectionBlock}>
-          <h3>Tokens</h3>
-          <p className={styles.subtle}>Keep things straight and stop cutting corners with magic numbers.</p>
-          <div className={styles.tokenGrid}>
-            {tokenSets.map((set) => (
-              <CardBox key={set.title} className={styles.card}>
-                <h4 slot="header">{set.title}</h4>
-                <p className={styles.subtle}>{set.detail}</p>
-                <div className={styles.tagRow}>
-                  {set.tags.map((tag) => (
-                    <TagBox key={tag} variant="neutral">
-                      <span>{tag}</span>
-                    </TagBox>
-                  ))}
-                </div>
-              </CardBox>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.sectionBlock}>
-          <h3>Theming mixins</h3>
-          <p className={styles.subtle}>Swap from light to dark without unpacking. Just @mixin and match.</p>
-          <div className={styles.themeSamples}>
-            {themeSamples.map((sample) => (
-              <div
-                key={sample.title}
-                className={`${styles.themeCard} ${sample.tone === 'dark' ? styles.themeDark : styles.themeLight}`}
+        <div className={styles.featureGrid}>
+          <CardBox className={styles.featureCard}>
+            <div slot="header" className={styles.cardHeader}>
+              <TagBox variant="info">
+                <span>components</span>
+              </TagBox>
+              <h3>Boxes with a job to do.</h3>
+            </div>
+            <p className={styles.cardCopy}>
+              Compose feedback, controls, content, and data without hiding the
+              HTML that ships.
+            </p>
+            <div className={styles.componentSpecimen}>
+              <AlertBox variant="success">
+                <strong>Ready to ship.</strong>
+              </AlertBox>
+              <pre
+                className={styles.componentCode}
+                aria-label="Alert component markup"
               >
-                <div className={styles.themeHeader}>
-                  <BadgeBox>
-                    <span>{sample.title}</span>
-                  </BadgeBox>
-                  <pre className={styles.mixin}>
-                    <code>{sample.mixin}</code>
-                  </pre>
-                </div>
-                <p className={styles.subtle}>{sample.detail}</p>
-                <div className={styles.tagRow}>
-                  {sample.tokens.map((token) => (
-                    <TagBox key={token} variant="neutral">
-                      <span>{token}</span>
-                    </TagBox>
-                  ))}
-                </div>
+                <code>{alertExample}</code>
+              </pre>
+              <div className={styles.componentRow}>
+                <ButtonBox size="small">
+                  <a href={STORYBOOK_URL} target="_blank" rel="noreferrer">
+                    Explore
+                  </a>
+                </ButtonBox>
+                <TagBox variant="info">
+                  <span>typed</span>
+                </TagBox>
+                <BadgeBox>
+                  <span>34 elements</span>
+                </BadgeBox>
               </div>
-            ))}
-          </div>
+            </div>
+            <div slot="footer" className={styles.tagRow}>
+              {componentAreas.map((area) => (
+                <TagBox key={area} variant="neutral">
+                  <span>{area}</span>
+                </TagBox>
+              ))}
+            </div>
+          </CardBox>
+
+          <CardBox className={styles.featureCard}>
+            <div slot="header" className={styles.cardHeader}>
+              <TagBox variant="neutral">
+                <span>layout</span>
+              </TagBox>
+              <h3>Structure that stacks up.</h3>
+            </div>
+            <p className={styles.cardCopy}>
+              Arrange real content with responsive columns, shared gaps, and
+              surfaces that make hierarchy visible.
+            </p>
+            <div
+              className={styles.layoutSpecimen}
+              role="img"
+              aria-label="Page layout with header, navigation, content, and footer regions"
+            >
+              <div className={styles.layoutBand} aria-hidden="true">
+                header
+              </div>
+              <ColumnsBox
+                className={styles.layoutColumns}
+                gap="sm"
+                min-width="5rem"
+              >
+                <div className={styles.layoutPanel} aria-hidden="true">
+                  nav
+                </div>
+                <div
+                  className={`${styles.layoutPanel} ${styles.layoutContent}`}
+                  aria-hidden="true"
+                >
+                  content
+                </div>
+              </ColumnsBox>
+              <div className={styles.layoutBand} aria-hidden="true">
+                footer
+              </div>
+            </div>
+            <div slot="footer" className={styles.tagRow}>
+              {layoutComponents.map((component) => (
+                <TagBox key={component} variant="neutral">
+                  <span>{component}</span>
+                </TagBox>
+              ))}
+            </div>
+          </CardBox>
+
+          <CardBox className={styles.featureCard}>
+            <div slot="header" className={styles.cardHeader}>
+              <TagBox variant="success">
+                <span>tokens</span>
+              </TagBox>
+              <h3>System values you can see.</h3>
+            </div>
+            <p className={styles.cardCopy}>
+              Carry the box model's own color language through semantic,
+              platform-ready design decisions.
+            </p>
+            <ul className={styles.colorList} aria-label="Semantic color tokens">
+              {colorTokens.map((token) => (
+                <li key={token.customProperty}>
+                  <span
+                    className={`${styles.colorSwatch} ${token.className}`}
+                    aria-hidden="true"
+                  ></span>
+                  <code>{token.customProperty}</code>
+                  <span>{token.value}</span>
+                </li>
+              ))}
+            </ul>
+            <div slot="footer" className={styles.tagRow}>
+              <TagBox variant="neutral">
+                <span>color</span>
+              </TagBox>
+              <TagBox variant="neutral">
+                <span>spacing</span>
+              </TagBox>
+              <TagBox variant="neutral">
+                <span>type</span>
+              </TagBox>
+              <TagBox variant="neutral">
+                <span>shadow</span>
+              </TagBox>
+            </div>
+          </CardBox>
+
+          <CardBox className={styles.featureCard}>
+            <div slot="header" className={styles.cardHeader}>
+              <TagBox variant="info">
+                <span>principles</span>
+              </TagBox>
+              <h3>A square frame of mind.</h3>
+            </div>
+            <p className={styles.cardCopy}>
+              Think inside the box: slot content where it belongs, square away
+              repeated decisions, and keep the system open to everyone.
+            </p>
+            <ol className={styles.principleList}>
+              {principles.map((principle, index) => (
+                <li key={principle}>
+                  <BadgeBox>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                  </BadgeBox>
+                  <span>{principle}</span>
+                </li>
+              ))}
+            </ol>
+          </CardBox>
         </div>
       </section>
 
-      <section className={`${styles.section}`}>
-        <div className={styles.sectionHeader}>
-          <h2>The tool-box</h2>
-          <p>Square fundamentals we rely on, with docs one click away.</p>
+      <section
+        className={`${styles.closing} box-model-surface box-model-surface--prominent`}
+        aria-labelledby="ready-title"
+      >
+        <div className={styles.closingCopy}>
+          <BadgeBox>
+            <span>no corners cut</span>
+          </BadgeBox>
+          <h2 id="ready-title">Ready to think inside the box?</h2>
+          <p>
+            Install one package, copy real markup from Storybook, and unpack
+            only the components you need.
+          </p>
         </div>
-        <div className={styles.toolGrid}>
-          {toolBox.map((tool) => (
-            <CardBox key={tool.label} className={styles.card}>
-              <h4 slot="header">{tool.label}</h4>
-              <p className={styles.subtle}>{tool.description}</p>
-              <div className={styles.toolLinks}>
-                <a href={tool.docs} target="_blank" rel="noreferrer">
-                  Docs
-                </a>
-                <a href={tool.repo} target="_blank" rel="noreferrer">
-                  GitHub
-                </a>
-              </div>
-            </CardBox>
-          ))}
+        <div className={styles.closingActions}>
+          <ButtonBox>
+            <a href={STORYBOOK_URL} target="_blank" rel="noreferrer">
+              Explore the components
+            </a>
+          </ButtonBox>
+          <ButtonBox variant="secondary">
+            <a href="/blogs">Read the developer blog</a>
+          </ButtonBox>
         </div>
       </section>
     </main>

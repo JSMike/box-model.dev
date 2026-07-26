@@ -52,14 +52,14 @@ const meta: Docs = {
         },
         'no-backdrop-close': {
           type: 'boolean',
-          description: 'Prevents closing when the user clicks the backdrop or presses Escape.',
+          description: 'Prevents closing when the user clicks the backdrop. Escape remains enabled.',
           defaultValue: false,
           options: [true, false],
         },
       },
       events: {
         close: {
-          description: 'Emitted when the dialog closes (via close control or backdrop).',
+          description: 'Emitted when the dialog closes via close control, backdrop, or Escape.',
           detail: 'void',
         },
       },

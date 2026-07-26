@@ -105,7 +105,17 @@ const meta: Docs = {
         defaultValue: 'var(--typography-roles-body-line-height)',
       },
     },
-    cssParts: {},
+    cssParts: {
+      surface: {
+        description: 'Outer alert surface.',
+      },
+      content: {
+        description: 'Primary alert content region.',
+      },
+      close: {
+        description: 'Close control wrapper.',
+      },
+    },
     dependencies: {
       'close-control-box': {
         description: 'Optional dependency for dismissing the alert via the `close-control` slot.',

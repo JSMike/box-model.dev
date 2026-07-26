@@ -59,6 +59,7 @@ export class Toast extends LitElement {
         name="close-control"
         ?hidden=${!this.hasCloseControl}
         @slotchange=${this.handleCloseSlotChange}
+        @close=${this.handleSlottedClose}
         @click=${this.handleCloseClick}
       ></slot>
     `;
@@ -71,6 +72,10 @@ export class Toast extends LitElement {
   private handleCloseClick() {
     this.setAttribute('hidden', '');
     this.dispatchCloseEvent();
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   private dispatchCloseEvent() {

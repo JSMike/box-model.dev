@@ -59,7 +59,8 @@ const meta: Docs = {
       },
       trend: {
         type: 'StatTrend',
-        description: 'Controls the delta styling and optional indicator direction.',
+        description:
+          'Controls the delta styling and optional indicator direction.',
         defaultValue: 'neutral',
         options: trends,
       },
@@ -79,6 +80,10 @@ const meta: Docs = {
       },
     },
     cssProperties: {
+      '--stat-shadow': {
+        description: 'Crisp offset shadow behind the stat surface.',
+        defaultValue: 'var(--box-model-shadow-offset-sm)',
+      },
       '--stat-gap': {
         description: 'Vertical spacing between stat sections.',
         defaultValue: 'var(--component-stat-gap)',
@@ -114,7 +119,8 @@ const meta: Docs = {
         description: 'Span wrapping the delta string.',
       },
       'trend-icon': {
-        description: 'Directional icon shown when `show-trend-indicator` is true.',
+        description:
+          'Directional icon shown when `show-trend-indicator` is true.',
       },
     },
     dependencies: {},
@@ -124,7 +130,14 @@ const meta: Docs = {
 export default meta;
 
 export const Canvas: Story = {
-  render: ({ value, delta, trend, title, description, showTrendIndicator }) => html`
+  render: ({
+    value,
+    delta,
+    trend,
+    title,
+    description,
+    showTrendIndicator,
+  }) => html`
     <stat-box
       value=${value}
       trend="${trend}"

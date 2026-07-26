@@ -16,4 +16,13 @@ describe('progress-box', () => {
     ) as HTMLElement;
     expect(indicator.getAttribute('style')).to.contain('width: 100%');
   });
+
+  it('names the internal progressbar', async () => {
+    const element = await fixture<Progress>(
+      html`<progress-box label="File upload progress"></progress-box>`
+    );
+    const progressbar = element.shadowRoot?.querySelector('[role="progressbar"]');
+
+    expect(progressbar?.getAttribute('aria-label')).to.equal('File upload progress');
+  });
 });

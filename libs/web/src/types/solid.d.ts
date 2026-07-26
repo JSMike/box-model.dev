@@ -15,7 +15,7 @@ type ComponentAttributeMap = {
     'variant': import('../button/button').Button['variant'];
   };
   'card-box': {
-    'interactive': import('../card/card').Card['interactive'];
+    'hoverable': import('../card/card').Card['hoverable'];
   };
   'checkbox-group-box': {
     'legend': import('../checkbox/checkbox').CheckboxGroup['legend'];
@@ -56,6 +56,7 @@ type ComponentAttributeMap = {
     'linkify': import('../markdown/markdown').Markdown['linkify'];
   };
   'progress-box': {
+    'label': import('../progress/progress').Progress['label'];
     'max': import('../progress/progress').Progress['max'];
     'value': import('../progress/progress').Progress['value'];
   };

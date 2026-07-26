@@ -39,7 +39,7 @@ const styles = css.create({
     borderRadius: tagTokens.radius,
     borderWidth: sizeTokens.borderWidthHairline,
     borderStyle: 'solid',
-    textTransform: 'uppercase',
+    textTransform: 'none',
   },
   // Variants
   neutral: {
@@ -78,18 +78,8 @@ const styles = css.create({
  * <Tag variant="success">Active</Tag>
  * ```
  */
-export function Tag({
-  children,
-  variant = 'neutral',
-}: TagProps) {
+export function Tag({ children, variant = 'neutral' }: TagProps) {
   return (
-    <html.span
-      style={[
-        styles.base,
-        styles[variant],
-      ]}
-    >
-      {children}
-    </html.span>
+    <html.span style={[styles.base, styles[variant]]}>{children}</html.span>
   );
 }

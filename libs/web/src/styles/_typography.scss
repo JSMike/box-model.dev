@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@box-model/tokens/tokens' as tokens;
+@use './tokens' as tokens;
 @use './theme';
 
 $base-font-size: 16px;

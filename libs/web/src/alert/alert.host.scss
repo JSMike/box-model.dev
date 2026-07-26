@@ -43,3 +43,40 @@
   --alert-border-color: #{tokens.$component-alert-danger-border};
   --alert-text-color: #{tokens.$component-alert-danger-text};
 }
+
+.alert-box__surface {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: flex-start;
+  gap: var(--alert-gap);
+  padding: var(--alert-padding);
+  border-radius: var(--alert-radius);
+  border: var(--alert-border-width) solid var(--alert-border-color);
+  background-color: var(--alert-background);
+  color: var(--alert-text-color);
+  font-family: var(--alert-font-family);
+  font-size: var(--alert-font-size);
+  font-weight: var(--alert-font-weight);
+  line-height: var(--alert-line-height);
+}
+
+:host([has-close-control]) .alert-box__surface {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+status-icon-box {
+  align-self: flex-start;
+}
+
+.alert-box__content {
+  min-width: 0;
+}
+
+.alert-box__close {
+  align-self: flex-start;
+  justify-self: end;
+}
+
+.alert-box__close[hidden] {
+  display: none;
+}

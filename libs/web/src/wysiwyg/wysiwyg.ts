@@ -56,10 +56,13 @@ export class Wysiwyg extends LitElement {
   @state() private textarea?: HTMLTextAreaElement;
   @query('slot') private editorSlot?: HTMLSlotElement;
 
-  private readonly handleInput = () => {
+  private readonly handleInput = (event: Event) => {
+    // The slotted textarea's native input event would otherwise continue bubbling through the
+    // host in addition to the normalized host event dispatched below.
+    event.stopPropagation();
     if (!this.textarea) return;
     this.value = this.textarea.value;
-    this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+    this.emitInput();
   };
 
   override connectedCallback(): void {
@@ -238,6 +241,10 @@ export class Wysiwyg extends LitElement {
   private syncValue() {
     if (!this.textarea) return;
     this.value = this.textarea.value;
+    this.emitInput();
+  }
+
+  private emitInput() {
     this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
   }
 
@@ -251,6 +258,7 @@ export class Wysiwyg extends LitElement {
                 type="button"
                 data-action=${action.id}
                 title=${action.label}
+                aria-label=${action.label}
                 @click=${() => this.handleAction(action.id)}
               >
                 ${action.render ? action.render() : action.glyph ?? action.label}

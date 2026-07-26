@@ -22,6 +22,12 @@ Cards can wrap arbitrary markdown content.
 :::divider
 :::
 
+~~~html
+<alert-box variant="success">
+  Ready to ship.
+</alert-box>
+~~~
+
 ::::columns gap="md" min-width="15rem"
 :::card
 First card in a grid.
@@ -41,7 +47,8 @@ const meta: Docs = {
   argTypes: {
     content: {
       control: 'text',
-      description: 'Raw markdown passed through the default slot',
+      description:
+        'Markdown passed through the default slot; raw HTML is escaped',
     },
   },
   args: {
@@ -60,10 +67,17 @@ const meta: Docs = {
     },
     slots: {
       '': {
-        description: 'Raw markdown text supplied via the default slot.',
+        description:
+          'Markdown text supplied via the default slot. Raw HTML and unsupported attributes are not rendered.',
       },
     },
-    cssProperties: {},
+    cssProperties: {
+      '--markdown-code-shadow': {
+        description:
+          'Offset shadow passed to the shared surface frame used by fenced code blocks.',
+        defaultValue: 'var(--box-model-shadow-offset-sm)',
+      },
+    },
     cssParts: {
       content: {
         description: 'Rendered markdown container.',

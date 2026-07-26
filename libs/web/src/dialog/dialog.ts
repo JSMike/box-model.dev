@@ -83,10 +83,15 @@ export class Dialog extends LitElement {
     this.emitClose();
   }
 
-  private handleCancel(event: Event) {
-    if (this.noBackdropClose) {
-      event.preventDefault();
+  private handleDialogClick(event: MouseEvent) {
+    if (event.target !== event.currentTarget || this.noBackdropClose) {
+      return;
     }
+    this.handleCloseRequest();
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   private handleNativeClose() {
@@ -104,8 +109,8 @@ export class Dialog extends LitElement {
   override render() {
     return html`
       <dialog
-        @cancel=${this.handleCancel}
         @close=${this.handleNativeClose}
+        @click=${this.handleDialogClick}
       >
         <div
           class="dialog-box__section--header"
@@ -120,6 +125,7 @@ export class Dialog extends LitElement {
             <slot
               name="close-control"
               @slotchange=${this.onCloseSlotChange}
+              @close=${this.handleSlottedClose}
               @click=${this.handleCloseControlClick}
             ></slot>
           </div>

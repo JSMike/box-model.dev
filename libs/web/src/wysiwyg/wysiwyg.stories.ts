@@ -124,8 +124,9 @@ export const Canvas: Story = {
 
     return html`
       <div class="wysiwyg-story">
+        <label for="wysiwyg-story-editor">Markdown content</label>
         <wysiwyg-box @input=${handleInput}>
-          <textarea .value=${initialValue}></textarea>
+          <textarea id="wysiwyg-story-editor" .value=${initialValue}></textarea>
         </wysiwyg-box>
         <markdown-box>${initialValue}</markdown-box>
       </div>

@@ -46,6 +46,13 @@
         }
       }
     },
+    "test-a11y": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "command": "node libs/web/accessibility/axe-storybook.mjs"
+      }
+    },
     "test": {
       "executor": "@nx/vitest:test",
       "options": {

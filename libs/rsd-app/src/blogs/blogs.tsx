@@ -22,7 +22,7 @@ const intlDate = new Intl.DateTimeFormat('en-US', {
 const styles = css.create({
   page: {
     width: '100%',
-    maxWidth: 1100,
+    maxWidth: 1200,
     fontFamily: typographyTokens.fontFamilyMono,
     color: colorTextTokens.primary,
     boxSizing: 'border-box',
