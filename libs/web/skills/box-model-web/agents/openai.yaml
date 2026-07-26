@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Box Model Web'
+  short_description: 'Build with Box Model web components'
+  default_prompt: 'Use $box-model-web to compose an accessible interface with @box-model/web components.'

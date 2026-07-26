@@ -50,6 +50,7 @@ Generated: 2026-07-25
 
 | ID                          | Title                                                  | Complexity  | PR  |
 | --------------------------- | ------------------------------------------------------ | ----------- | --- |
+| [BOX-64](./BOX-64/issue.md) | Ship an agent skill with @box-model/web                | medium      | -   |
 | [BOX-62](./BOX-62/issue.md) | Establish crisp offset shadows as a surface primitive  | medium      | -   |
 | [BOX-63](./BOX-63/issue.md) | Refresh Vite showcase with Box Model surfaces          | medium      | -   |
 | [BOX-61](./BOX-61/issue.md) | Isolate alert layout from projected content/styles     | low/medium  | -   |

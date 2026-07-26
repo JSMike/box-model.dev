@@ -1187,15 +1187,23 @@ async function extractCssProperties(
       continue;
     }
 
-    const customPropMatch = trimmed.match(/^--([a-z0-9-]+)\s*:\s*(.+?);?\s*$/);
+    const customPropMatch = trimmed.match(/^--([a-z0-9-]+)\s*:\s*(.+)$/);
     if (customPropMatch) {
       const name = `--${customPropMatch[1]}`;
       if (matchesStem(customPropMatch[1], stem) && !seen.has(name)) {
+        const valueLines = [customPropMatch[2]];
+        while (
+          hasUnclosedCssValue(valueLines.join('\n')) &&
+          i + 1 < lines.length
+        ) {
+          i += 1;
+          valueLines.push(lines[i].trim());
+        }
         seen.add(name);
         props.push({
           name,
           description: pendingComment,
-          default: customPropMatch[2].replace(/;$/, '').trim(),
+          default: valueLines.join(' ').replace(/;$/, '').trim(),
         });
       }
       pendingComment = undefined;
@@ -1235,6 +1243,48 @@ async function extractCssProperties(
   );
 
   return props.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function hasUnclosedCssValue(value: string): boolean {
+  const closers = new Map([
+    ['(', ')'],
+    ['[', ']'],
+    ['{', '}'],
+  ]);
+  const stack: string[] = [];
+  let quote: "'" | '"' | undefined;
+  let escaped = false;
+
+  for (const character of value) {
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (character === '\\') {
+      escaped = true;
+      continue;
+    }
+    if (quote) {
+      if (character === quote) {
+        quote = undefined;
+      }
+      continue;
+    }
+    if (character === "'" || character === '"') {
+      quote = character;
+      continue;
+    }
+    const closer = closers.get(character);
+    if (closer !== undefined) {
+      stack.push(closer);
+      continue;
+    }
+    if (stack.at(-1) === character) {
+      stack.pop();
+    }
+  }
+
+  return quote !== undefined || stack.length > 0;
 }
 
 function warnStemPropsOutsidePrimaryHost(

@@ -74,6 +74,10 @@ export default defineConfig(() => ({
           dest: 'styles',
         },
         {
+          src: 'skills/box-model-web',
+          dest: 'skills',
+        },
+        {
           src: 'src/custom-elements.json',
           dest: '.',
         },
@@ -113,13 +117,12 @@ export default defineConfig(() => ({
       plugins: [
         generatePackageJson({
           inputFolder: __dirname,
-          baseContents: (pkg) => ({
-            ...pkg,
-            // Element registration is a side effect of importing entry chunks.
-            // Do not set sideEffects:false — bundlers would tree-shake @customElement.
-            // Cover all emitted entry and shared JavaScript chunks.
-            sideEffects: ['./*.js'],
-            exports: Object.keys(entryPoints)
+          baseContents: (pkg) => {
+            const baseExports = pkg.exports as Record<
+              string,
+              { types?: string; default: string }
+            >;
+            const exports = Object.keys(entryPoints)
               .sort()
               .reduce<Record<string, { types?: string; default: string }>>(
                 (acc, entry) => {
@@ -139,19 +142,18 @@ export default defineConfig(() => ({
                   acc[`./${entry}.js`] = exportEntry;
                   return acc;
                 },
-                {
-                  './package.json': {
-                    default: './package.json',
-                  },
-                  './custom-elements.json': {
-                    default: './custom-elements.json',
-                  },
-                  './styles/*': {
-                    default: './styles/*',
-                  },
-                }
-              ),
-          }),
+                { ...baseExports }
+              );
+
+            return {
+              ...pkg,
+              // Element registration is a side effect of importing entry chunks.
+              // Do not set sideEffects:false — bundlers would tree-shake @customElement.
+              // Cover all emitted entry and shared JavaScript chunks.
+              sideEffects: ['./*.js'],
+              exports,
+            };
+          },
         }),
       ],
     },
