@@ -16,6 +16,21 @@
         "parallel": false
       }
     },
+    "validate-skill": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "intent validate",
+        "cwd": "libs/web"
+      }
+    },
+    "validate-skill-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-lib"],
+      "options": {
+        "command": "intent validate",
+        "cwd": "dist/libs/web"
+      }
+    },
     "build-lib": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],

@@ -42,6 +42,36 @@ documentation, and referenced TypeScript types automatically.
 
 The manifest is also available through the explicit `@box-model/web/custom-elements.json` export.
 
+## Agent Skill
+
+The package ships a version-matched Agent Skill that teaches coding agents how to inspect the
+manifest, compose every component using Storybook-derived examples, and apply the published style
+utilities and Sass mixins.
+
+Projects using [TanStack Intent](https://tanstack.com/intent) can discover and load the installed
+skill:
+
+```bash
+npx @tanstack/intent@latest list
+npx @tanstack/intent@latest install
+npx @tanstack/intent@latest load @box-model/web#box-model-web
+```
+
+The underlying skill is installed at
+`node_modules/@box-model/web/skills/box-model-web/SKILL.md`. Its bundled manifest helper can query
+the package API without loading the complete JSON file into an agent's context.
+
+Maintainers can validate the source skill and package metadata with:
+
+```bash
+npx nx run web:validate-skill
+npx nx run web:validate-skill-package
+```
+
+The second command rebuilds the library and validates the package-shaped output, including the
+skill's final directory structure. The package carries the `tanstack-intent` npm keyword, so the
+public Intent registry discovers the skill automatically after publication.
+
 ## Styles
 
 Load the theme and foundation stylesheet once in the consuming application:

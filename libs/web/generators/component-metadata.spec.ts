@@ -96,6 +96,7 @@ describe('CEM generators', () => {
     expect(component.cssProperties.map((prop) => prop.name).sort()).toEqual([
       '--widget-bg',
       '--widget-border',
+      '--widget-shadow',
     ]);
     expect(
       component.cssProperties.find((prop) => prop.name === '--widget-bg')
@@ -105,6 +106,13 @@ describe('CEM generators', () => {
       component.cssProperties.find((prop) => prop.name === '--widget-border')
         ?.description
     ).toContain('Border color');
+    expect(
+      component.cssProperties.find((prop) => prop.name === '--widget-shadow')
+    ).toMatchObject({
+      description: 'Shadow for the widget.',
+      default:
+        'var( --box-model-shadow-offset-sm, #{tokens.$component-card-shadow-rest} )',
+    });
 
     const declaration = toDeclaration(component);
     expect(declaration.tagName).toBe('widget-box');

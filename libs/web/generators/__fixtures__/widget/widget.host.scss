@@ -4,6 +4,12 @@
   /** Background color for the widget. */
   --widget-bg: blue;
 
+  /** Shadow for the widget. */
+  --widget-shadow: var(
+    --box-model-shadow-offset-sm,
+    #{tokens.$component-card-shadow-rest}
+  );
+
   /**
    * Border color
    * for the widget chrome.
