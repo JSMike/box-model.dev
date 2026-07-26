@@ -14,5 +14,5 @@ card-box [slot='close-control'] {
 }
 
 card-box > close-control-box[slot='close-control'] {
-  --close-size: var(--card-close-size);
+  --close-control-size: var(--card-close-size);
 }

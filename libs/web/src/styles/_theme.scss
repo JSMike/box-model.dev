@@ -1,351 +1,363 @@
 @use 'sass:map';
-@use '@box-model/tokens/tokens' as tokens;
+@use './tokens' as tokens;
 
 $theme-values: (
   'box-model-background-canvas': (
     light: tokens.$color-background-canvas-light,
-    dark: tokens.$color-background-canvas-dark
+    dark: tokens.$color-background-canvas-dark,
   ),
   'box-model-background-surface': (
     light: tokens.$color-background-surface-light,
-    dark: tokens.$color-background-surface-dark
+    dark: tokens.$color-background-surface-dark,
   ),
   'box-model-background-elevated': (
     light: tokens.$color-background-elevated-light,
-    dark: tokens.$color-background-elevated-dark
+    dark: tokens.$color-background-elevated-dark,
   ),
   'box-model-background-sunken': (
     light: tokens.$color-background-sunken-light,
-    dark: tokens.$color-background-sunken-dark
+    dark: tokens.$color-background-sunken-dark,
   ),
   'box-model-background-content': (
     light: tokens.$color-background-content-light,
-    dark: tokens.$color-background-content-dark
+    dark: tokens.$color-background-content-dark,
   ),
   'box-model-background-inverse': (
     light: tokens.$color-background-inverse-light,
-    dark: tokens.$color-background-inverse-dark
+    dark: tokens.$color-background-inverse-dark,
   ),
   'box-model-background-scrim': (
     light: tokens.$color-background-scrim-light,
-    dark: tokens.$color-background-scrim-dark
+    dark: tokens.$color-background-scrim-dark,
   ),
   'table-zebra-surface': (
     light: tokens.$color-palette-surface-50,
-    dark: tokens.$color-palette-surface-700
+    dark: tokens.$color-palette-surface-700,
   ),
   'table-zebra-border': (
     light: tokens.$color-palette-border-200,
-    dark: tokens.$color-palette-border-800
+    dark: tokens.$color-palette-border-800,
   ),
   'table-zebra-padding': (
     light: tokens.$color-palette-padding-200,
-    dark: tokens.$color-palette-padding-800
+    dark: tokens.$color-palette-padding-800,
   ),
   'table-zebra-content': (
     light: tokens.$color-palette-content-200,
-    dark: tokens.$color-palette-content-800
+    dark: tokens.$color-palette-content-800,
   ),
   'table-zebra-margin': (
     light: tokens.$color-palette-margin-200,
-    dark: tokens.$color-palette-margin-800
+    dark: tokens.$color-palette-margin-800,
   ),
   'table-section-background': (
     light: tokens.$color-palette-surface-150,
-    dark: tokens.$color-palette-surface-800
+    dark: tokens.$color-palette-surface-800,
   ),
   'box-model-text-primary': (
     light: tokens.$color-text-primary-light,
-    dark: tokens.$color-text-primary-dark
+    dark: tokens.$color-text-primary-dark,
   ),
   'box-model-text-secondary': (
     light: tokens.$color-text-secondary-light,
-    dark: tokens.$color-text-secondary-dark
+    dark: tokens.$color-text-secondary-dark,
   ),
   'box-model-text-tertiary': (
     light: tokens.$color-text-tertiary-light,
-    dark: tokens.$color-text-tertiary-dark
+    dark: tokens.$color-text-tertiary-dark,
   ),
   'box-model-text-inverse': (
     light: tokens.$color-text-inverse-light,
-    dark: tokens.$color-text-inverse-dark
+    dark: tokens.$color-text-inverse-dark,
   ),
   'box-model-text-accent': (
     light: tokens.$color-text-accent-light,
-    dark: tokens.$color-text-accent-dark
+    dark: tokens.$color-text-accent-dark,
   ),
   'box-model-text-success': (
     light: tokens.$color-text-success-light,
-    dark: tokens.$color-text-success-dark
+    dark: tokens.$color-text-success-dark,
   ),
   'box-model-text-warning': (
     light: tokens.$color-text-warning-light,
-    dark: tokens.$color-text-warning-dark
+    dark: tokens.$color-text-warning-dark,
   ),
   'box-model-text-danger': (
     light: tokens.$color-text-danger-light,
-    dark: tokens.$color-text-danger-dark
+    dark: tokens.$color-text-danger-dark,
   ),
   'box-model-brand-primary-emphasis': (
     light: tokens.$color-brand-primary-emphasis-light,
-    dark: tokens.$color-brand-primary-emphasis-dark
+    dark: tokens.$color-brand-primary-emphasis-dark,
   ),
   'box-model-brand-primary-strong': (
     light: tokens.$color-brand-primary-strong-light,
-    dark: tokens.$color-brand-primary-strong-dark
+    dark: tokens.$color-brand-primary-strong-dark,
   ),
   'box-model-brand-primary-intense': (
     light: tokens.$color-brand-primary-intense-light,
-    dark: tokens.$color-brand-primary-intense-dark
+    dark: tokens.$color-brand-primary-intense-dark,
   ),
   'box-model-brand-primary-inverse': (
     light: tokens.$color-brand-primary-inverse-light,
-    dark: tokens.$color-brand-primary-inverse-dark
+    dark: tokens.$color-brand-primary-inverse-dark,
   ),
   'box-model-brand-primary-subtle': (
     light: tokens.$color-brand-primary-subtle-light,
-    dark: tokens.$color-brand-primary-subtle-dark
+    dark: tokens.$color-brand-primary-subtle-dark,
   ),
   'box-model-brand-accent-emphasis': (
     light: tokens.$color-brand-accent-emphasis-light,
-    dark: tokens.$color-brand-accent-emphasis-dark
+    dark: tokens.$color-brand-accent-emphasis-dark,
   ),
   'box-model-brand-accent-strong': (
     light: tokens.$color-brand-accent-strong-light,
-    dark: tokens.$color-brand-accent-strong-dark
+    dark: tokens.$color-brand-accent-strong-dark,
   ),
   'box-model-brand-accent-intense': (
     light: tokens.$color-brand-accent-intense-light,
-    dark: tokens.$color-brand-accent-intense-dark
+    dark: tokens.$color-brand-accent-intense-dark,
   ),
   'box-model-brand-accent-inverse': (
     light: tokens.$color-brand-accent-inverse-light,
-    dark: tokens.$color-brand-accent-inverse-dark
+    dark: tokens.$color-brand-accent-inverse-dark,
   ),
   'box-model-brand-accent-subtle': (
     light: tokens.$color-brand-accent-subtle-light,
-    dark: tokens.$color-brand-accent-subtle-dark
+    dark: tokens.$color-brand-accent-subtle-dark,
   ),
   'box-model-border-subtle': (
     light: tokens.$color-border-subtle-light,
-    dark: tokens.$color-border-subtle-dark
+    dark: tokens.$color-border-subtle-dark,
   ),
   'box-model-border-default': (
     light: tokens.$color-border-default-light,
-    dark: tokens.$color-border-default-dark
+    dark: tokens.$color-border-default-dark,
   ),
   'box-model-border-strong': (
     light: tokens.$color-border-strong-light,
-    dark: tokens.$color-border-strong-dark
+    dark: tokens.$color-border-strong-dark,
   ),
   'box-model-border-focus': (
     light: tokens.$color-border-focus-light,
-    dark: tokens.$color-border-focus-dark
+    dark: tokens.$color-border-focus-dark,
   ),
   'box-model-border-inverse': (
     light: tokens.$color-border-inverse-light,
-    dark: tokens.$color-border-inverse-dark
+    dark: tokens.$color-border-inverse-dark,
   ),
   'box-model-primary-rest': (
     light: tokens.$color-interactive-primary-rest-light,
-    dark: tokens.$color-interactive-primary-rest-dark
+    dark: tokens.$color-interactive-primary-rest-dark,
   ),
   'box-model-primary-hover': (
     light: tokens.$color-interactive-primary-hover-light,
-    dark: tokens.$color-interactive-primary-hover-dark
+    dark: tokens.$color-interactive-primary-hover-dark,
   ),
   'box-model-primary-active': (
     light: tokens.$color-interactive-primary-active-light,
-    dark: tokens.$color-interactive-primary-active-dark
+    dark: tokens.$color-interactive-primary-active-dark,
   ),
   'box-model-primary-text': (
     light: tokens.$color-interactive-primary-text-light,
-    dark: tokens.$color-interactive-primary-text-dark
+    dark: tokens.$color-interactive-primary-text-dark,
   ),
   'box-model-primary-focus-ring': (
     light: tokens.$color-interactive-primary-focus-ring-light,
-    dark: tokens.$color-interactive-primary-focus-ring-dark
+    dark: tokens.$color-interactive-primary-focus-ring-dark,
   ),
   'box-model-primary-focus-shadow': (
     light: tokens.$color-interactive-primary-focus-shadow-light,
-    dark: tokens.$color-interactive-primary-focus-shadow-dark
+    dark: tokens.$color-interactive-primary-focus-shadow-dark,
   ),
   'box-model-secondary-rest': (
     light: tokens.$color-interactive-secondary-rest-light,
-    dark: tokens.$color-interactive-secondary-rest-dark
+    dark: tokens.$color-interactive-secondary-rest-dark,
   ),
   'box-model-secondary-hover': (
     light: tokens.$color-interactive-secondary-hover-light,
-    dark: tokens.$color-interactive-secondary-hover-dark
+    dark: tokens.$color-interactive-secondary-hover-dark,
   ),
   'box-model-secondary-active': (
     light: tokens.$color-interactive-secondary-active-light,
-    dark: tokens.$color-interactive-secondary-active-dark
+    dark: tokens.$color-interactive-secondary-active-dark,
   ),
   'box-model-secondary-text': (
     light: tokens.$color-interactive-secondary-text-light,
-    dark: tokens.$color-interactive-secondary-text-dark
+    dark: tokens.$color-interactive-secondary-text-dark,
   ),
   'box-model-tertiary-rest': (
     light: tokens.$color-interactive-tertiary-rest-light,
-    dark: tokens.$color-interactive-tertiary-rest-dark
+    dark: tokens.$color-interactive-tertiary-rest-dark,
   ),
   'box-model-tertiary-text': (
     light: tokens.$color-interactive-tertiary-text-light,
-    dark: tokens.$color-interactive-tertiary-text-dark
+    dark: tokens.$color-interactive-tertiary-text-dark,
   ),
   'box-model-tertiary-hover': (
     light: tokens.$color-interactive-tertiary-hover-light,
-    dark: tokens.$color-interactive-tertiary-hover-dark
+    dark: tokens.$color-interactive-tertiary-hover-dark,
   ),
   'box-model-tertiary-active': (
     light: tokens.$color-interactive-tertiary-active-light,
-    dark: tokens.$color-interactive-tertiary-active-dark
+    dark: tokens.$color-interactive-tertiary-active-dark,
   ),
   'box-model-destructive-rest': (
     light: tokens.$color-interactive-destructive-rest-light,
-    dark: tokens.$color-interactive-destructive-rest-dark
+    dark: tokens.$color-interactive-destructive-rest-dark,
   ),
   'box-model-destructive-hover': (
     light: tokens.$color-interactive-destructive-hover-light,
-    dark: tokens.$color-interactive-destructive-hover-dark
+    dark: tokens.$color-interactive-destructive-hover-dark,
   ),
   'box-model-destructive-active': (
     light: tokens.$color-interactive-destructive-active-light,
-    dark: tokens.$color-interactive-destructive-active-dark
+    dark: tokens.$color-interactive-destructive-active-dark,
   ),
   'box-model-destructive-text': (
     light: tokens.$color-interactive-destructive-text-light,
-    dark: tokens.$color-interactive-destructive-text-dark
+    dark: tokens.$color-interactive-destructive-text-dark,
   ),
   'box-model-disabled-background': (
     light: tokens.$color-interactive-disabled-background-light,
-    dark: tokens.$color-interactive-disabled-background-dark
+    dark: tokens.$color-interactive-disabled-background-dark,
   ),
   'box-model-disabled-text': (
     light: tokens.$color-interactive-disabled-text-light,
-    dark: tokens.$color-interactive-disabled-text-dark
+    dark: tokens.$color-interactive-disabled-text-dark,
   ),
   'box-model-focus-ring': (
     light: tokens.$color-focus-ring-light,
-    dark: tokens.$color-focus-ring-dark
+    dark: tokens.$color-focus-ring-dark,
   ),
   'box-model-focus-shadow': (
     light: tokens.$color-focus-shadow-light,
-    dark: tokens.$color-focus-shadow-dark
+    dark: tokens.$color-focus-shadow-dark,
+  ),
+  'box-model-shadow-offset-xs': (
+    light: tokens.$shadow-offset-xs-light,
+    dark: tokens.$shadow-offset-xs-dark,
+  ),
+  'box-model-shadow-offset-sm': (
+    light: tokens.$shadow-offset-sm-light,
+    dark: tokens.$shadow-offset-sm-dark,
+  ),
+  'box-model-shadow-offset-md': (
+    light: tokens.$shadow-offset-md-light,
+    dark: tokens.$shadow-offset-md-dark,
   ),
   'box-model-feedback-success-surface': (
     light: tokens.$color-feedback-success-surface-light,
-    dark: tokens.$color-feedback-success-surface-dark
+    dark: tokens.$color-feedback-success-surface-dark,
   ),
   'box-model-feedback-success-border': (
     light: tokens.$color-feedback-success-border-light,
-    dark: tokens.$color-feedback-success-border-dark
+    dark: tokens.$color-feedback-success-border-dark,
   ),
   'box-model-feedback-success-text': (
     light: tokens.$color-feedback-success-text-light,
-    dark: tokens.$color-feedback-success-text-dark
+    dark: tokens.$color-feedback-success-text-dark,
   ),
   'box-model-feedback-success-icon': (
     light: tokens.$color-feedback-success-icon-light,
-    dark: tokens.$color-feedback-success-icon-dark
+    dark: tokens.$color-feedback-success-icon-dark,
   ),
   'box-model-feedback-warning-surface': (
     light: tokens.$color-feedback-warning-surface-light,
-    dark: tokens.$color-feedback-warning-surface-dark
+    dark: tokens.$color-feedback-warning-surface-dark,
   ),
   'box-model-feedback-warning-border': (
     light: tokens.$color-feedback-warning-border-light,
-    dark: tokens.$color-feedback-warning-border-dark
+    dark: tokens.$color-feedback-warning-border-dark,
   ),
   'box-model-feedback-warning-text': (
     light: tokens.$color-feedback-warning-text-light,
-    dark: tokens.$color-feedback-warning-text-dark
+    dark: tokens.$color-feedback-warning-text-dark,
   ),
   'box-model-feedback-warning-icon': (
     light: tokens.$color-feedback-warning-icon-light,
-    dark: tokens.$color-feedback-warning-icon-dark
+    dark: tokens.$color-feedback-warning-icon-dark,
   ),
   'box-model-feedback-danger-surface': (
     light: tokens.$color-feedback-danger-surface-light,
-    dark: tokens.$color-feedback-danger-surface-dark
+    dark: tokens.$color-feedback-danger-surface-dark,
   ),
   'box-model-feedback-danger-border': (
     light: tokens.$color-feedback-danger-border-light,
-    dark: tokens.$color-feedback-danger-border-dark
+    dark: tokens.$color-feedback-danger-border-dark,
   ),
   'box-model-feedback-danger-text': (
     light: tokens.$color-feedback-danger-text-light,
-    dark: tokens.$color-feedback-danger-text-dark
+    dark: tokens.$color-feedback-danger-text-dark,
   ),
   'box-model-feedback-danger-icon': (
     light: tokens.$color-feedback-danger-icon-light,
-    dark: tokens.$color-feedback-danger-icon-dark
+    dark: tokens.$color-feedback-danger-icon-dark,
   ),
   'box-model-feedback-info-surface': (
     light: tokens.$color-feedback-info-surface-light,
-    dark: tokens.$color-feedback-info-surface-dark
+    dark: tokens.$color-feedback-info-surface-dark,
   ),
   'box-model-feedback-info-border': (
     light: tokens.$color-feedback-info-border-light,
-    dark: tokens.$color-feedback-info-border-dark
+    dark: tokens.$color-feedback-info-border-dark,
   ),
   'box-model-feedback-info-text': (
     light: tokens.$color-feedback-info-text-light,
-    dark: tokens.$color-feedback-info-text-dark
+    dark: tokens.$color-feedback-info-text-dark,
   ),
   'box-model-feedback-info-icon': (
     light: tokens.$color-feedback-info-icon-light,
-    dark: tokens.$color-feedback-info-icon-dark
+    dark: tokens.$color-feedback-info-icon-dark,
   ),
   'box-model-margin-background': (
     light: tokens.$color-box-margin-background-light,
-    dark: tokens.$color-box-margin-background-dark
+    dark: tokens.$color-box-margin-background-dark,
   ),
   'box-model-margin-border': (
     light: tokens.$color-box-margin-border-light,
-    dark: tokens.$color-box-margin-border-dark
+    dark: tokens.$color-box-margin-border-dark,
   ),
   'box-model-margin-text': (
     light: tokens.$color-box-margin-text-light,
-    dark: tokens.$color-box-margin-text-dark
+    dark: tokens.$color-box-margin-text-dark,
   ),
   'box-model-border-background': (
     light: tokens.$color-box-border-background-light,
-    dark: tokens.$color-box-border-background-dark
+    dark: tokens.$color-box-border-background-dark,
   ),
   'box-model-border-border': (
     light: tokens.$color-box-border-border-light,
-    dark: tokens.$color-box-border-border-dark
+    dark: tokens.$color-box-border-border-dark,
   ),
   'box-model-border-text': (
     light: tokens.$color-box-border-text-light,
-    dark: tokens.$color-box-border-text-dark
+    dark: tokens.$color-box-border-text-dark,
   ),
   'box-model-padding-background': (
     light: tokens.$color-box-padding-background-light,
-    dark: tokens.$color-box-padding-background-dark
+    dark: tokens.$color-box-padding-background-dark,
   ),
   'box-model-padding-border': (
     light: tokens.$color-box-padding-border-light,
-    dark: tokens.$color-box-padding-border-dark
+    dark: tokens.$color-box-padding-border-dark,
   ),
   'box-model-padding-text': (
     light: tokens.$color-box-padding-text-light,
-    dark: tokens.$color-box-padding-text-dark
+    dark: tokens.$color-box-padding-text-dark,
   ),
   'box-model-content-background': (
     light: tokens.$color-box-content-background-light,
-    dark: tokens.$color-box-content-background-dark
+    dark: tokens.$color-box-content-background-dark,
   ),
   'box-model-content-border': (
     light: tokens.$color-box-content-border-light,
-    dark: tokens.$color-box-content-border-dark
+    dark: tokens.$color-box-content-border-dark,
   ),
   'box-model-content-text': (
     light: tokens.$color-box-content-text-light,
-    dark: tokens.$color-box-content-text-dark
-  )
+    dark: tokens.$color-box-content-text-dark,
+  ),
 );
 
 @function theme-token($name) {
@@ -416,26 +428,26 @@ $feedback-map: (
     surface: 'box-model-feedback-info-surface',
     border: 'box-model-feedback-info-border',
     text: 'box-model-feedback-info-text',
-    icon: 'box-model-feedback-info-icon'
+    icon: 'box-model-feedback-info-icon',
   ),
   success: (
     surface: 'box-model-feedback-success-surface',
     border: 'box-model-feedback-success-border',
     text: 'box-model-feedback-success-text',
-    icon: 'box-model-feedback-success-icon'
+    icon: 'box-model-feedback-success-icon',
   ),
   warning: (
     surface: 'box-model-feedback-warning-surface',
     border: 'box-model-feedback-warning-border',
     text: 'box-model-feedback-warning-text',
-    icon: 'box-model-feedback-warning-icon'
+    icon: 'box-model-feedback-warning-icon',
   ),
   danger: (
     surface: 'box-model-feedback-danger-surface',
     border: 'box-model-feedback-danger-border',
     text: 'box-model-feedback-danger-text',
-    icon: 'box-model-feedback-danger-icon'
-  )
+    icon: 'box-model-feedback-danger-icon',
+  ),
 );
 
 @mixin feedback-variant($variant, $prefix) {
@@ -454,23 +466,23 @@ $box-layer-map: (
   margin: (
     background: 'box-model-margin-background',
     border: 'box-model-margin-border',
-    text: 'box-model-margin-text'
+    text: 'box-model-margin-text',
   ),
   border: (
     background: 'box-model-border-background',
     border: 'box-model-border-border',
-    text: 'box-model-border-text'
+    text: 'box-model-border-text',
   ),
   padding: (
     background: 'box-model-padding-background',
     border: 'box-model-padding-border',
-    text: 'box-model-padding-text'
+    text: 'box-model-padding-text',
   ),
   content: (
     background: 'box-model-content-background',
     border: 'box-model-content-border',
-    text: 'box-model-content-text'
-  )
+    text: 'box-model-content-text',
+  ),
 );
 
 @mixin box-layer($layer, $prefix: 'box-layer') {
@@ -484,9 +496,15 @@ $box-layer-map: (
     --#{$prefix}-#{$role}: #{token-var($token)};
   }
 
-  background-color: var(--#{$prefix}-background, #{token-fallback(map.get($config, background))});
+  background-color: var(
+    --#{$prefix}-background,
+    #{token-fallback(map.get($config, background))}
+  );
   color: var(--#{$prefix}-text, #{token-fallback(map.get($config, text))});
-  border-color: var(--#{$prefix}-border, #{token-fallback(map.get($config, border))});
+  border-color: var(
+    --#{$prefix}-border,
+    #{token-fallback(map.get($config, border))}
+  );
 }
 
 @mixin box-model-margin-container {

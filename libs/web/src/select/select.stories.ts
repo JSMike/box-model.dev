@@ -130,8 +130,9 @@ export default meta;
 
 export const Canvas: Story = {
   render: ({ fullwidth }) => html`
+    <label for="select-box-example">Choose an option</label>
     <select-box ?fullwidth=${fullwidth}>
-      <select>
+      <select id="select-box-example">
         <option value="">Choose an option</option>
         <option value="alpha">Alpha</option>
         <option value="beta">Beta</option>

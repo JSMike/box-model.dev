@@ -6,25 +6,44 @@
   display: flex;
   flex-direction: column;
   gap: #{tokens.$space-scale-075};
-  --textarea-font-family: #{tokens.$typography-roles-body-font-family};
-  --textarea-font-size: #{tokens.$typography-roles-body-font-size};
-  --textarea-font-weight: #{tokens.$typography-roles-body-font-weight};
-  --textarea-line-height: #{tokens.$typography-roles-body-line-height};
-  --textarea-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
-  @include theme.custom-property('textarea-text-color', 'box-model-text-primary');
-  @include theme.custom-property('textarea-background', 'box-model-background-surface');
-  @include theme.custom-property('textarea-border-color', 'box-model-border-default');
-  @include theme.custom-property('textarea-border-color-hover', 'box-model-border-strong');
-  @include theme.custom-property('textarea-border-color-focus', 'box-model-primary-focus-ring');
-  --textarea-border-radius: 0;
-  --textarea-border-width: #{tokens.$component-input-border-width};
-  --textarea-padding-block: #{tokens.$component-input-padding-block};
-  --textarea-padding-inline: #{tokens.$component-input-padding-inline};
-  --textarea-min-height: 6rem;
-  --textarea-transition-duration: #{tokens.$motion-interaction-press-duration};
-  --textarea-transition-easing: #{tokens.$motion-interaction-press-easing};
-  --textarea-focus-shadow: #{tokens.$shadow-glow-focus};
-  @include theme.custom-property('textarea-placeholder-color', 'box-model-text-secondary');
+  /** Wysiwyg font family. */
+  --wysiwyg-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Wysiwyg font size. */
+  --wysiwyg-font-size: #{tokens.$typography-roles-body-font-size};
+  /** Wysiwyg font weight. */
+  --wysiwyg-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Wysiwyg line height. */
+  --wysiwyg-line-height: #{tokens.$typography-roles-body-line-height};
+  /** Wysiwyg letter spacing. */
+  --wysiwyg-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  /** Wysiwyg text color. */
+  @include theme.custom-property('wysiwyg-text-color', 'box-model-text-primary');
+  /** Wysiwyg background. */
+  @include theme.custom-property('wysiwyg-background', 'box-model-background-surface');
+  /** Wysiwyg border color. */
+  @include theme.custom-property('wysiwyg-border-color', 'box-model-border-default');
+  /** Wysiwyg border color hover. */
+  @include theme.custom-property('wysiwyg-border-color-hover', 'box-model-border-strong');
+  /** Wysiwyg border color focus. */
+  @include theme.custom-property('wysiwyg-border-color-focus', 'box-model-primary-focus-ring');
+  /** Wysiwyg border radius. */
+  --wysiwyg-border-radius: 0;
+  /** Wysiwyg border width. */
+  --wysiwyg-border-width: #{tokens.$component-input-border-width};
+  /** Wysiwyg padding block. */
+  --wysiwyg-padding-block: #{tokens.$component-input-padding-block};
+  /** Wysiwyg padding inline. */
+  --wysiwyg-padding-inline: #{tokens.$component-input-padding-inline};
+  /** Wysiwyg min height. */
+  --wysiwyg-min-height: 6rem;
+  /** Wysiwyg transition duration. */
+  --wysiwyg-transition-duration: #{tokens.$motion-interaction-press-duration};
+  /** Wysiwyg transition easing. */
+  --wysiwyg-transition-easing: #{tokens.$motion-interaction-press-easing};
+  /** Wysiwyg focus shadow. */
+  --wysiwyg-focus-shadow: #{tokens.$shadow-glow-focus};
+  /** Wysiwyg placeholder color. */
+  @include theme.custom-property('wysiwyg-placeholder-color', 'box-model-text-secondary');
 }
 
 .wysiwyg-box__toolbar {
@@ -40,6 +59,25 @@ textarea-box {
   width: 100%;
   display: block;
   box-sizing: border-box;
+  --textarea-font-family: var(--wysiwyg-font-family);
+  --textarea-font-size: var(--wysiwyg-font-size);
+  --textarea-font-weight: var(--wysiwyg-font-weight);
+  --textarea-line-height: var(--wysiwyg-line-height);
+  --textarea-letter-spacing: var(--wysiwyg-letter-spacing);
+  --textarea-text-color: var(--wysiwyg-text-color);
+  --textarea-background: var(--wysiwyg-background);
+  --textarea-border-color: var(--wysiwyg-border-color);
+  --textarea-border-color-hover: var(--wysiwyg-border-color-hover);
+  --textarea-border-color-focus: var(--wysiwyg-border-color-focus);
+  --textarea-border-radius: var(--wysiwyg-border-radius);
+  --textarea-border-width: var(--wysiwyg-border-width);
+  --textarea-padding-block: var(--wysiwyg-padding-block);
+  --textarea-padding-inline: var(--wysiwyg-padding-inline);
+  --textarea-min-height: var(--wysiwyg-min-height);
+  --textarea-transition-duration: var(--wysiwyg-transition-duration);
+  --textarea-transition-easing: var(--wysiwyg-transition-easing);
+  --textarea-focus-shadow: var(--wysiwyg-focus-shadow);
+  --textarea-placeholder-color: var(--wysiwyg-placeholder-color);
 
   textarea {
     @include textField.text-field;

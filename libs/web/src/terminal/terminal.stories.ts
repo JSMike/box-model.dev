@@ -14,7 +14,8 @@ const meta: Docs = {
       className: 'Terminal',
       slots: {
         '': {
-          description: 'Terminal line items, typically `<terminal-line-box>` elements.',
+          description:
+            'Terminal line items, typically `<terminal-line-box>` elements.',
         },
       },
       cssProperties: {
@@ -53,6 +54,10 @@ const meta: Docs = {
         '--terminal-border': {
           description: 'Border color of the terminal.',
           defaultValue: 'var(--box-model-border-default)',
+        },
+        '--terminal-shadow': {
+          description: 'Crisp offset shadow behind the terminal surface.',
+          defaultValue: 'var(--box-model-shadow-offset-sm)',
         },
       },
       cssParts: {
@@ -96,7 +101,7 @@ const meta: Docs = {
         },
         '--terminal-line-prompt': {
           description: 'Color for the prompt glyph.',
-          defaultValue: 'var(--box-model-text-success)',
+          defaultValue: 'var(--box-model-text-accent)',
         },
         '--terminal-line-success': {
           description: 'Text color when variant is success.',
@@ -128,10 +133,16 @@ export default meta;
 export const Canvas: Story = {
   render: () => html`
     <terminal-box>
-      <terminal-line-box variant="prompt">npm install @box-model/web</terminal-line-box>
+      <terminal-line-box variant="prompt"
+        >npm install @box-model/web</terminal-line-box
+      >
       <terminal-line-box variant="info">Using box-model CLI</terminal-line-box>
-      <terminal-line-box variant="success">Packages installed</terminal-line-box>
-      <terminal-line-box variant="prompt" cursor>npm run storybook</terminal-line-box>
+      <terminal-line-box variant="success"
+        >Packages installed</terminal-line-box
+      >
+      <terminal-line-box variant="prompt" cursor
+        >npm run storybook</terminal-line-box
+      >
     </terminal-box>
   `,
 };

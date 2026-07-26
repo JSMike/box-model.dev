@@ -3,16 +3,27 @@
 
 :host {
   display: inline-flex;
+  /** Tooltip background. */
   @include theme.custom-property('tooltip-background', 'box-model-background-surface');
+  /** Tooltip text color. */
   @include theme.custom-property('tooltip-text-color', 'box-model-text-primary');
+  /** Tooltip border radius. */
   --tooltip-border-radius: #{tokens.$component-tooltip-border-radius};
+  /** Tooltip padding. */
   --tooltip-padding: #{tokens.$component-tooltip-padding};
+  /** Tooltip shadow. */
   --tooltip-shadow: #{tokens.$component-tooltip-shadow};
+  /** Tooltip font family. */
   --tooltip-font-family: #{tokens.$typography-roles-caption-font-family};
+  /** Tooltip font size. */
   --tooltip-font-size: #{tokens.$typography-roles-caption-font-size};
+  /** Tooltip font weight. */
   --tooltip-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  /** Tooltip line height. */
   --tooltip-line-height: #{tokens.$typography-roles-caption-line-height};
+  /** Tooltip letter spacing. */
   --tooltip-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
+  /** Tooltip offset. */
   --tooltip-offset: 0.5rem;
 }
 

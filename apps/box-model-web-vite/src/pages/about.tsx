@@ -3,13 +3,13 @@ import styles from './about.module.scss';
 
 import boxModelLogo from '../assets/box-model-logo.svg';
 
-const aboutMarkdown = `
+const aboutHeadingMarkdown = `
 ## What is the box model?
+`;
 
-<img src="${boxModelLogo}" alt="Box Model logo" style="display: block; margin: 0 auto" />
-
+const aboutMarkdown = `
 The browser’s box model shows every element as a stack of margin, border, padding, and content. Inspecting it in devtools tells you why spacing feels right or wrong, why a hover shifts the layout, and where text actually sits inside its container. This design system borrows that mental model so spacing, layers, and colors stay predictable in both docs and production UI.
-This design system follows the box model very closely; theming is inspired by the tool itself, with primary, secondary, info, success, amd warning color palettes are derived directly from the box model’s layers.
+This design system follows the box model very closely; theming is inspired by the tool itself, with primary, secondary, info, success, and warning color palettes derived directly from the box model’s layers.
 
 ## Square reasoning
 
@@ -33,20 +33,22 @@ Surface-level UI is only part of the work. Box Model UI also includes content sc
 ## The 🎀 on the 📦
 
 > A design system succeeds when “throwaway” pages are still beautiful.
-> <cite>Codex / gpt-5.1-codex-max</cite>
+>
+> — Codex / gpt-5.1-codex-max
 
 The About page you are reading is written with Markdown that snaps into place with Box Model UI components.
 `;
 
 export default function AboutComponent() {
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
+      <section
+        className={`${styles.hero} box-model-surface box-model-surface--prominent`}
+      >
         <p className={styles.eyebrow}>About Box Model UI</p>
         <h1>Building boxes</h1>
         <p>
-          Box Model UI is a passion project by
-          {' '}
+          Box Model UI is a passion project by{' '}
           <a
             href="https://www.linkedin.com/in/michael-cebrian-94248378/"
             target="_blank"
@@ -54,16 +56,29 @@ export default function AboutComponent() {
           >
             Michael Cebrian
           </a>
-          . The code is currently kept in a locked box, but you can see some of my other projects and open-source contributions at
-          {' '}
-          <a href="https://github.com/jsmike" target="_blank" rel="noreferrer">
-            github.com/jsmike
+          . The source is available at{' '}
+          <a
+            href="https://github.com/JSMike/box-model.dev"
+            target="_blank"
+            rel="noreferrer"
+          >
+            github.com/JSMike/box-model.dev
           </a>
           .
         </p>
       </section>
 
-      <section className={styles.article}>
+      <section
+        className={`${styles.article} box-model-surface box-model-surface--flat`}
+      >
+        <MarkdownBox>{aboutHeadingMarkdown}</MarkdownBox>
+        <img
+          className={styles.logo}
+          src={boxModelLogo}
+          width="320"
+          height="240"
+          alt="Diagram of the Box Model margin, border, padding, and content layers"
+        />
         <MarkdownBox>{aboutMarkdown}</MarkdownBox>
       </section>
     </main>

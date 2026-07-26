@@ -7,8 +7,8 @@ export default {
     padding: { $value: '{space.layout.section.sm}' },
     gap: { $value: '{space.stack.relaxed}' },
     shadow: {
-      rest: { $value: '{shadow.elevation.sm}' },
-      hover: { $value: '{shadow.elevation.md}' }
-    }
-  }
+      rest: { $value: '{shadow.offset.sm}' },
+      hover: { $value: '{shadow.offset.md}' },
+    },
+  },
 };

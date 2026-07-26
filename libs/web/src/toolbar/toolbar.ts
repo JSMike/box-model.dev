@@ -6,6 +6,11 @@ import slotStyles from './toolbar.slot.scss?inline';
 
 export const ToolbarBox = 'toolbar-box';
 
+/**
+ * Toolbar surface for grouped actions.
+ * @slot - Default slot content.
+ * @csspart surface - Outer surface of the component.
+ */
 @customElement(ToolbarBox)
 export class Toolbar extends LitElement {
   static override styles = unsafeCSS(hostStyles);

@@ -2,24 +2,43 @@
 @use '../styles/theme' as theme;
 
 :host {
+  /** Link font family. */
   --link-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Link font weight. */
   --link-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Link letter spacing. */
   --link-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  /** Link line height. */
   --link-line-height: #{tokens.$typography-roles-body-line-height};
+  /** Link font size. */
   --link-font-size: #{tokens.$typography-font-size-md};
+  /** Link gap. */
   --link-gap: #{tokens.$space-scale-050};
+  /** Link underline offset. */
   --link-underline-offset: #{tokens.$space-scale-025};
+  /** Link decoration thickness. */
   --link-decoration-thickness: #{tokens.$size-border-width-hairline};
+  /** Link transition duration. */
   --link-transition-duration: #{tokens.$motion-interaction-press-duration};
+  /** Link transition easing. */
   --link-transition-easing: #{tokens.$motion-interaction-press-easing};
+  /** Link focus ring color. */
   @include theme.custom-property('link-focus-ring-color', 'box-model-focus-ring');
+  /** Link focus ring width. */
   --link-focus-ring-width: #{tokens.$size-border-width-thick};
+  /** Link focus ring offset. */
   --link-focus-ring-offset: #{tokens.$component-button-focus-offset};
+  /** Link focus ring shadow. */
   --link-focus-ring-shadow: #{tokens.$shadow-glow-focus};
+  /** Link disabled color. */
   @include theme.custom-property('link-disabled-color', 'box-model-disabled-text');
+  /** Link color. */
   @include theme.custom-property('link-color', 'box-model-text-accent');
+  /** Link hover color. */
   @include theme.custom-property('link-hover-color', 'box-model-brand-primary-intense');
+  /** Link active color. */
   @include theme.custom-property('link-active-color', 'box-model-brand-primary-strong');
+  /** Link visited color. */
   @include theme.custom-property('link-visited-color', 'box-model-brand-primary-strong');
 }
 

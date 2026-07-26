@@ -4,15 +4,22 @@ import styles from './close-control.host.scss?inline';
 
 export const CloseControlBox = 'close-control-box';
 
+/**
+ * Accessible close button control.
+ * @csspart button - Native button element.
+ * @csspart icon - Icon region.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(CloseControlBox)
 export class CloseControl extends LitElement {
   static override styles = unsafeCSS(styles);
 
+  /** Accessible label. */
   @property({ type: String }) public label = 'Close';
 
   private handleClick() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })

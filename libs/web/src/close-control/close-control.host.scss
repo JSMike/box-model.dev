@@ -3,13 +3,20 @@
 
 :host {
   display: inline-flex;
-  --close-size: #{tokens.$component-close-control-size};
-  --close-border-width: #{tokens.$component-close-control-border-width};
-  @include theme.custom-property('close-background', 'box-model-background-elevated');
-  @include theme.custom-property('close-background-hover', 'box-model-background-content');
-  @include theme.custom-property('close-background-active', 'box-model-background-sunken');
-  @include theme.custom-property('close-border-color', 'box-model-border-strong');
-  @include theme.custom-property('close-icon-color', 'box-model-text-primary');
+  /** Close control size. */
+  --close-control-size: #{tokens.$component-close-control-size};
+  /** Close control border width. */
+  --close-control-border-width: #{tokens.$component-close-control-border-width};
+  /** Close control background. */
+  @include theme.custom-property('close-control-background', 'box-model-background-elevated');
+  /** Close control background hover. */
+  @include theme.custom-property('close-control-background-hover', 'box-model-background-content');
+  /** Close control background active. */
+  @include theme.custom-property('close-control-background-active', 'box-model-background-sunken');
+  /** Close control border color. */
+  @include theme.custom-property('close-control-border-color', 'box-model-border-strong');
+  /** Close control icon color. */
+  @include theme.custom-property('close-control-icon-color', 'box-model-text-primary');
 }
 
 button {
@@ -18,11 +25,11 @@ button {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: var(--close-size);
-  height: var(--close-size);
-  background: var(--close-background);
-  border: var(--close-border-width) solid var(--close-border-color);
-  color: var(--close-icon-color);
+  width: var(--close-control-size);
+  height: var(--close-control-size);
+  background: var(--close-control-background);
+  border: var(--close-control-border-width) solid var(--close-control-border-color);
+  color: var(--close-control-icon-color);
   cursor: pointer;
 }
 
@@ -43,14 +50,14 @@ button {
 }
 
 button:hover {
-  background: var(--close-background-hover);
+  background: var(--close-control-background-hover);
 }
 
 button:active {
-  background: var(--close-background-active);
+  background: var(--close-control-background-active);
 }
 
 button:focus-visible {
-  outline: 2px solid var(--close-icon-color);
+  outline: 2px solid var(--close-control-icon-color);
   outline-offset: 2px;
 }

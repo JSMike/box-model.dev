@@ -8,11 +8,22 @@ let tooltipIds = 0;
 
 export const TooltipBox = 'tooltip-box';
 
+/**
+ * Accessible tooltip anchored to a trigger.
+ * @slot - Default slot content.
+ * @slot trigger - Element that triggers the tooltip.
+ * @csspart container - Tooltip container.
+ * @csspart content - Primary content region.
+ * @csspart trigger - Tooltip trigger control.
+ * @csspart trigger-wrapper - Wrapper around the trigger slot.
+ */
 @customElement(TooltipBox)
 export class Tooltip extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Accessible label. */
   @property({ type: String }) public label = 'More information';
+  /** Preferred tooltip placement. */
   @property({ attribute: 'default-placement', type: String })
   public defaultPlacement: 'top' | 'bottom' | 'left' | 'right' = 'top';
 
@@ -20,7 +31,7 @@ export class Tooltip extends LitElement {
 
   @query('slot[name="trigger"]') private triggerSlot?: HTMLSlotElement;
   @query('#tooltipFallback') private fallbackTrigger?: HTMLElement;
-  @query('#tooltipContent') private contentElement?: HTMLElement;
+  @query('.tooltip-box__content') private contentElement?: HTMLElement;
 
   private anchorElement?: HTMLElement;
   private readonly contentId = `tooltip-content-${++tooltipIds}`;
@@ -28,7 +39,8 @@ export class Tooltip extends LitElement {
 
   private readonly showTooltip = () => this.openPopover();
   private readonly hideTooltip = (event?: Event) => {
-    const next = (event as PointerEvent | undefined)?.relatedTarget as Node | null;
+    const next = (event as PointerEvent | undefined)
+      ?.relatedTarget as Node | null;
     if (next && this.contains(next)) {
       return;
     }
@@ -58,7 +70,8 @@ export class Tooltip extends LitElement {
   }
 
   private handleTriggerSlotChange() {
-    const assigned = this.triggerSlot?.assignedElements({ flatten: true }) ?? [];
+    const assigned =
+      this.triggerSlot?.assignedElements({ flatten: true }) ?? [];
     this.hasCustomTrigger = assigned.length > 0;
     this.applyAnchor(assigned[0] as HTMLElement | undefined);
   }
@@ -111,14 +124,18 @@ export class Tooltip extends LitElement {
   }
 
   private openPopover() {
-    const popover = this.contentElement as HTMLElement & { showPopover?: () => void };
+    const popover = this.contentElement as HTMLElement & {
+      showPopover?: () => void;
+    };
     if (!popover) return;
     popover.setAttribute('aria-hidden', 'false');
     popover.showPopover?.();
   }
 
   private closePopover() {
-    const popover = this.contentElement as HTMLElement & { hidePopover?: () => void };
+    const popover = this.contentElement as HTMLElement & {
+      hidePopover?: () => void;
+    };
     if (!popover) return;
     popover.setAttribute('aria-hidden', 'true');
     popover.hidePopover?.();
@@ -128,25 +145,28 @@ export class Tooltip extends LitElement {
     return html`
       <div class="tooltip-box__container" part="container">
         <div class="tooltip-box__trigger-wrapper" part="trigger-wrapper">
-          <slot name="trigger" @slotchange=${this.handleTriggerSlotChange}></slot>
+          <slot
+            name="trigger"
+            @slotchange=${this.handleTriggerSlotChange}
+          ></slot>
           ${this.hasCustomTrigger
             ? nothing
             : html`
-              <span
-                id="tooltipFallback"
-                class="tooltip-box__default-trigger"
-                part="trigger"
-                role="button"
-                tabindex="0"
-                aria-label="${this.label}"
-                aria-describedby=${this.contentId}
-              >
-                ?
-              </span>
-          `}
+                <span
+                  id="tooltipFallback"
+                  class="tooltip-box__default-trigger"
+                  part="trigger"
+                  role="button"
+                  tabindex="0"
+                  aria-label="${this.label}"
+                  aria-describedby=${this.contentId}
+                >
+                  ?
+                </span>
+              `}
         </div>
         <div
-          id="tooltipContent"
+          id=${this.contentId}
           aria-live="polite"
           aria-hidden="true"
           popover="manual"

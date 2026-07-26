@@ -64,15 +64,15 @@ const meta: Docs = {
 export default meta;
 
 const templateCards = html`
-  <card-box interactive>
+  <card-box hoverable>
     <div slot="header"><h3>Card one</h3></div>
     <p>First card content.</p>
   </card-box>
-  <card-box interactive>
+  <card-box hoverable>
     <div slot="header"><h3>Card two</h3></div>
     <p>Second card content.</p>
   </card-box>
-  <card-box interactive>
+  <card-box hoverable>
     <div slot="header"><h3>Card three</h3></div>
     <p>Third card content.</p>
   </card-box>

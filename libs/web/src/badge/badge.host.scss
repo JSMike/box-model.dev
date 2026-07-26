@@ -2,14 +2,24 @@
 
 :host {
   display: inline-flex;
+  /** Badge background. */
   --badge-background: #{tokens.$component-badge-background};
+  /** Badge text color. */
   --badge-text-color: #{tokens.$component-badge-text};
+  /** Badge radius. */
   --badge-radius: #{tokens.$component-badge-radius};
+  /** Badge gap. */
   --badge-gap: #{tokens.$component-badge-gap};
+  /** Badge padding. */
   --badge-padding: #{tokens.$component-badge-padding};
+  /** Badge font family. */
   --badge-font-family: #{tokens.$typography-roles-caption-font-family};
+  /** Badge font size. */
   --badge-font-size: #{tokens.$typography-roles-caption-font-size};
+  /** Badge font weight. */
   --badge-font-weight: #{tokens.$typography-roles-caption-font-weight};
+  /** Badge line height. */
   --badge-line-height: #{tokens.$typography-roles-caption-line-height};
+  /** Badge letter spacing. */
   --badge-letter-spacing: #{tokens.$typography-roles-caption-letter-spacing};
 }

@@ -10,10 +10,7 @@
       "@box-model/rsd/*": ["dist/libs/rsd/*/index.d.ts", "dist/libs/rsd/*"]
     }
   },
-  "include": [
-    "src",
-    "../../dist/libs/tokens/tokens.stylex.ts"
-  ],
+  "include": ["src", "../../dist/libs/tokens/tokens.stylex.ts"],
   "exclude": [
     "vite.config.ts",
     "vitest.config.ts",
@@ -25,5 +22,10 @@
     "**/*.stories.tsx",
     "**/*.stories.mdx",
     "**/*.mdx"
+  ],
+  "references": [
+    {
+      "path": "../rsd/tsconfig.lib.json"
+    }
   ]
 }

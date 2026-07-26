@@ -117,7 +117,7 @@ export const Canvas: Story = {
         ? html`<close-control-box
             slot="close-control"
             label="Dismiss notification"
-            style="--close-size: 1.25rem"
+            style="--close-control-size: 1.25rem"
           ></close-control-box>`
         : null}
     </toast-box>

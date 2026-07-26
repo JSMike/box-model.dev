@@ -20,18 +20,25 @@
 body {
   margin: 0;
   min-height: 100vh;
-  @include box-model.box-model-apply-dark();
-  background-color: var(--box-model-background-canvas, #{tokens.$color-background-sunken});
+  background-color: var(
+    --box-model-background-canvas,
+    #{tokens.$color-background-sunken}
+  );
   color: var(--box-model-text-primary, #{tokens.$color-text-primary});
 }
 
+#root {
+  min-height: 100vh;
+}
+
 a {
-  color: var(--box-model-brand-primary-emphasis, #{tokens.$color-brand-primary-emphasis});
-  text-decoration: none;
+  color: var(--box-model-text-accent, #{tokens.$color-text-accent});
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 
   &:hover {
-    text-decoration: underline;
-    color: var(--box-model-brand-primary-strong, #{tokens.$color-brand-primary-strong});
+    color: var(--box-model-text-primary, #{tokens.$color-text-primary});
   }
 }
 

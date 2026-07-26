@@ -2,8 +2,11 @@
 
 :host {
   display: block;
+  /** Divider color. */
   --divider-color: #{tokens.$component-divider-color};
+  /** Divider thickness. */
   --divider-thickness: #{tokens.$component-divider-thickness};
+  /** Divider spacing. */
   --divider-spacing: #{tokens.$component-divider-spacing};
 }
 

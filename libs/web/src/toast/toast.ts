@@ -8,10 +8,18 @@ export type ToastVariant = 'default' | 'info' | 'success' | 'warning' | 'danger'
 
 export const ToastBox = 'toast-box';
 
+/**
+ * Transient toast notification.
+ * @slot - Default slot content.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @csspart icon - Icon region.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(ToastBox)
 export class Toast extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: ToastVariant = 'default';
   @state() private hasCloseControl = false;
 
@@ -51,6 +59,7 @@ export class Toast extends LitElement {
         name="close-control"
         ?hidden=${!this.hasCloseControl}
         @slotchange=${this.handleCloseSlotChange}
+        @close=${this.handleSlottedClose}
         @click=${this.handleCloseClick}
       ></slot>
     `;
@@ -65,9 +74,13 @@ export class Toast extends LitElement {
     this.dispatchCloseEvent();
   }
 
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
+  }
+
   private dispatchCloseEvent() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })

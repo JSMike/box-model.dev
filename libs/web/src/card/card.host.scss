@@ -3,21 +3,45 @@
 
 :host {
   display: block;
-  --card-background: var(--box-model-background-surface, #{tokens.$component-card-background});
-  --card-border-color: var(--box-model-border-strong, #{tokens.$component-card-border-color});
+  /** Card background. */
+  --card-background: var(
+    --box-model-background-surface,
+    #{tokens.$component-card-background}
+  );
+  /** Card border color. */
+  --card-border-color: var(
+    --box-model-border-strong,
+    #{tokens.$component-card-border-color}
+  );
+  /** Card border width. */
   --card-border-width: #{tokens.$component-card-border-width};
+  /** Card border radius. */
   --card-border-radius: #{tokens.$component-card-border-radius};
+  /** Card padding. */
   --card-padding: #{tokens.$component-card-padding};
+  /** Card gap. */
   --card-gap: #{tokens.$component-card-gap};
-  --card-shadow: #{tokens.$component-card-shadow-rest};
-  --card-shadow-hover: #{tokens.$component-card-shadow-hover};
+  /** Card shadow. */
+  --card-shadow: var(
+    --box-model-shadow-offset-sm,
+    #{tokens.$component-card-shadow-rest}
+  );
+  /** Card shadow hover. */
+  --card-shadow-hover: var(
+    --box-model-shadow-offset-md,
+    #{tokens.$component-card-shadow-hover}
+  );
+  /** Card transition duration. */
   --card-transition-duration: #{tokens.$motion-duration-fast};
+  /** Card transition easing. */
   --card-transition-easing: #{tokens.$motion-easing-standard};
+  /** Card close size. */
   --card-close-size: #{tokens.$component-close-control-size};
+  /** Card text color. */
   @include theme.custom-property('card-text-color', 'box-model-text-primary');
 }
 
-:host([interactive]) {
+:host([hoverable]) {
   cursor: pointer;
 }
 
@@ -35,12 +59,20 @@
   border: var(--card-border-width) solid var(--card-border-color);
   box-shadow: var(--card-shadow);
   padding: var(--card-padding);
-  transition: box-shadow var(--card-transition-duration) var(--card-transition-easing);
+  transition: box-shadow var(--card-transition-duration)
+    var(--card-transition-easing);
   position: relative;
 }
 
-:host([interactive]):hover .card-box__surface {
+:host([hoverable]) .card-box__surface:hover {
   box-shadow: var(--card-shadow-hover);
+}
+
+@media (forced-colors: active) {
+  .card-box__surface {
+    border-color: CanvasText;
+    box-shadow: none;
+  }
 }
 
 .card-box__header {

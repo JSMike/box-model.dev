@@ -24,6 +24,12 @@
       "rules": {
         "@nx/enforce-module-boundaries": "off"
       }
+    },
+    {
+      "files": ["*.spec.ts", "*.test.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-expressions": "off"
+      }
     }
   ]
 }

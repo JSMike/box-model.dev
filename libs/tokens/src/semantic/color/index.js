@@ -16,8 +16,14 @@ export default {
     brand: {
       primary: withSchemes({
         emphasis: '{color.palette.content.500}',
-        strong: '{color.palette.content.600}',
-        intense: '{color.palette.content.700}',
+        strong: {
+          dark: '{color.palette.content.600}',
+          light: '{color.palette.content.750}',
+        },
+        intense: {
+          dark: '{color.palette.content.550}',
+          light: '{color.palette.content.800}',
+        },
         inverse: {
           dark: '{color.palette.surface.0}',
           light: '{color.palette.surface.950}',
@@ -29,8 +35,14 @@ export default {
       }),
       accent: withSchemes({
         emphasis: '{color.palette.content.500}',
-        strong: '{color.palette.content.600}',
-        intense: '{color.palette.content.700}',
+        strong: {
+          dark: '{color.palette.content.600}',
+          light: '{color.palette.content.750}',
+        },
+        intense: {
+          dark: '{color.palette.content.550}',
+          light: '{color.palette.content.800}',
+        },
         inverse: {
           dark: '{color.palette.surface.0}',
           light: '{color.palette.surface.950}',
@@ -55,7 +67,7 @@ export default {
         light: '{color.palette.surface.0}',
       },
       sunken: {
-        dark: '{color.palette.surface.600}',
+        dark: '{color.palette.surface.650}',
         light: '{color.palette.surface.100}',
       },
       content: {
@@ -82,19 +94,19 @@ export default {
       },
       tertiary: {
         dark: '{color.palette.surface.100}',
-        light: '{color.palette.surface.500}',
+        light: '{color.palette.surface.700}',
       },
       inverse: {
         dark: '{color.palette.surface.950}',
         light: '{color.palette.surface.0}',
       },
       accent: {
-        dark: '{color.palette.content.600}',
-        light: '{color.palette.content.700}',
+        dark: '{color.palette.content.50}',
+        light: '{color.palette.content.750}',
       },
       success: {
-        dark: '{color.palette.surface.0}',
-        light: '{color.palette.surface.950}',
+        dark: '{color.palette.padding.500}',
+        light: '{color.palette.padding.800}',
       },
       warning: {
         dark: '{color.palette.surface.0}',
@@ -130,15 +142,15 @@ export default {
     interactive: {
       primary: withSchemes({
         rest: {
-          dark: '{color.palette.content.600}',
+          dark: '{color.palette.content.750}',
           light: '{color.palette.content.400}',
         },
         hover: {
-          dark: '{color.palette.content.500}',
+          dark: '{color.palette.content.800}',
           light: '{color.palette.content.300}',
         },
         active: {
-          dark: '{color.palette.content.400}',
+          dark: '{color.palette.content.850}',
           light: '{color.palette.content.200}',
         },
         text: {
@@ -151,7 +163,7 @@ export default {
       secondary: withSchemes({
         rest: {
           dark: '{color.palette.margin.800}',
-          light: '{color.palette.margin.500}',
+          light: '{color.palette.margin.450}',
         },
         hover: {
           dark: '{color.palette.margin.700}',
@@ -169,8 +181,8 @@ export default {
       tertiary: withSchemes({
         rest: 'transparent',
         text: {
-          dark: '{color.palette.content.600}',
-          light: '{color.palette.content.700}',
+          dark: '{color.palette.content.50}',
+          light: '{color.palette.content.750}',
         },
         hover: 'rgba(136, 178, 189, {color.alpha.14})',
         active: 'rgba(136, 178, 189, {color.alpha.22})',

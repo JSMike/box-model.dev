@@ -2,26 +2,47 @@
 @use '../styles/theme' as theme;
 
 :host {
+  /** Button padding. */
   --button-padding: #{tokens.$component-button-padding-md};
+  /** Button font size. */
   --button-font-size: #{tokens.$component-button-font-size-md};
+  /** Button font family. */
   --button-font-family: #{tokens.$component-button-font-family};
+  /** Button font weight. */
   --button-font-weight: #{tokens.$component-button-font-weight};
+  /** Button letter spacing. */
   --button-letter-spacing: #{tokens.$component-button-letter-spacing};
+  /** Button line height. */
   --button-line-height: #{tokens.$component-button-line-height};
+  /** Button border radius. */
   --button-border-radius: 0;
+  /** Button min height. */
   --button-min-height: #{tokens.$component-button-min-height-md};
+  /** Button gap. */
   --button-gap: #{tokens.$component-button-gap};
+  /** Button bg color. */
   @include theme.custom-property('button-bg-color', 'box-model-primary-rest');
+  /** Button hover bg color. */
   @include theme.custom-property('button-hover-bg-color', 'box-model-primary-hover');
+  /** Button active bg color. */
   @include theme.custom-property('button-active-bg-color', 'box-model-primary-active');
+  /** Button text color. */
   @include theme.custom-property('button-text-color', 'box-model-primary-text');
+  /** Button focus ring color. */
   @include theme.custom-property('button-focus-ring-color', 'box-model-primary-focus-ring');
+  /** Button focus ring width. */
   --button-focus-ring-width: #{tokens.$component-button-focus-ring-width};
+  /** Button focus ring offset. */
   --button-focus-ring-offset: #{tokens.$component-button-focus-offset};
+  /** Button focus ring shadow. */
   --button-focus-ring-shadow: #{tokens.$component-button-focus-ring-shadow};
+  /** Button transition duration. */
   --button-transition-duration: #{tokens.$component-button-transition-duration};
+  /** Button transition easing. */
   --button-transition-easing: #{tokens.$component-button-transition-easing};
+  /** Button disabled bg color. */
   @include theme.custom-property('button-disabled-bg-color', 'box-model-disabled-background');
+  /** Button disabled text color. */
   @include theme.custom-property('button-disabled-text-color', 'box-model-disabled-text');
 }
 

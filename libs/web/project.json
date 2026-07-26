@@ -12,12 +12,7 @@
     "generate-types": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "tsx libs/web/generators/tag-name-map.ts",
-          "tsx libs/web/generators/react.ts",
-          "tsx libs/web/generators/preact.ts",
-          "tsx libs/web/generators/solid.ts"
-        ],
+        "commands": ["CEM_STRICT=1 tsx libs/web/generators/generate-all.ts"],
         "parallel": false
       }
     },
@@ -49,6 +44,13 @@
         "ci": {
           "quiet": true
         }
+      }
+    },
+    "test-a11y": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "command": "node libs/web/accessibility/axe-storybook.mjs"
       }
     },
     "test": {

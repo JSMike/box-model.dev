@@ -4,15 +4,32 @@
 :host {
   display: block;
   height: 100%;
+  /** Terminal padding. */
   --terminal-padding: #{tokens.$space-scale-200};
+  /** Terminal gap. */
   --terminal-gap: #{tokens.$space-scale-100};
+  /** Terminal font size. */
   --terminal-font-size: #{tokens.$typography-roles-code-font-size};
+  /** Terminal font family. */
   --terminal-font-family: #{tokens.$typography-roles-code-font-family};
+  /** Terminal line height. */
   --terminal-line-height: #{tokens.$typography-line-height-normal};
+  /** Terminal min height. */
   --terminal-min-height: 12.5rem;
-  @include theme.custom-property('terminal-surface', 'box-model-background-canvas');
+  /** Terminal surface. */
+  @include theme.custom-property(
+    'terminal-surface',
+    'box-model-background-canvas'
+  );
+  /** Terminal text. */
   @include theme.custom-property('terminal-text', 'box-model-text-primary');
+  /** Terminal border. */
   @include theme.custom-property('terminal-border', 'box-model-border-default');
+  /** Terminal shadow. */
+  --terminal-shadow: var(
+    --box-model-shadow-offset-sm,
+    #{tokens.$shadow-offset-sm}
+  );
 }
 
 .terminal-box__surface {
@@ -30,4 +47,12 @@
   line-height: var(--terminal-line-height);
   box-sizing: border-box;
   border-radius: 0;
+  box-shadow: var(--terminal-shadow);
+}
+
+@media (forced-colors: active) {
+  .terminal-box__surface {
+    border-color: CanvasText;
+    box-shadow: none;
+  }
 }

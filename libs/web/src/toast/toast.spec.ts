@@ -28,12 +28,13 @@ describe('toast-box', () => {
       </toast-box>
     `);
 
-    let closed = false;
-    element.addEventListener('close', () => (closed = true));
+    const closeEvents: Event[] = [];
+    element.addEventListener('close', (event) => closeEvents.push(event));
     const control = element.querySelector('close-control-box');
     control?.shadowRoot?.querySelector('button')?.click();
 
-    expect(closed).to.be.true;
+    expect(closeEvents).to.have.length(1);
+    expect(closeEvents[0].target).to.equal(element);
     expect(element.hasAttribute('hidden')).to.be.true;
   });
 });

@@ -1,0 +1,63 @@
+@use 'sass:map';
+@use './theme';
+@use './tokens' as tokens;
+
+$shadow-tokens: (
+  subtle: 'box-model-shadow-offset-xs',
+  default: 'box-model-shadow-offset-sm',
+  prominent: 'box-model-shadow-offset-md',
+);
+
+@function shadow-token($emphasis) {
+  $token: map.get($shadow-tokens, $emphasis);
+
+  @if $token == null {
+    @error 'Unknown Box Model surface emphasis "#{$emphasis}".';
+  }
+
+  @return $token;
+}
+
+@function themed-value($token, $mode) {
+  @return var(--#{$token}, #{theme.fallback($token, $mode)});
+}
+
+@mixin offset-theme($mode) {
+  --box-model-shadow-offset-xs: #{theme.fallback(
+      'box-model-shadow-offset-xs',
+      $mode
+    )};
+  --box-model-shadow-offset-sm: #{theme.fallback(
+      'box-model-shadow-offset-sm',
+      $mode
+    )};
+  --box-model-shadow-offset-md: #{theme.fallback(
+      'box-model-shadow-offset-md',
+      $mode
+    )};
+}
+
+@mixin frame($emphasis: default, $mode: dark) {
+  $shadow-token: shadow-token($emphasis);
+
+  --box-model-surface-background: #{themed-value(
+      'box-model-background-surface',
+      $mode
+    )};
+  --box-model-surface-border: #{themed-value('box-model-border-strong', $mode)};
+  --box-model-surface-color: #{themed-value('box-model-text-primary', $mode)};
+  --box-model-surface-padding: #{tokens.$space-layout-section-sm};
+  --box-model-surface-shadow: #{themed-value($shadow-token, $mode)};
+
+  padding: var(--box-model-surface-padding);
+  border: #{tokens.$size-border-width-hairline} solid var(--box-model-surface-border);
+  border-radius: 0;
+  background-color: var(--box-model-surface-background);
+  color: var(--box-model-surface-color);
+  box-shadow: var(--box-model-surface-shadow);
+
+  @media (forced-colors: active) {
+    border-color: CanvasText;
+    box-shadow: none;
+  }
+}

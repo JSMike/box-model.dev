@@ -8,12 +8,26 @@ import slotStyles from './dialog.slot.scss?inline';
 
 export const DialogBox = 'dialog-box';
 
+/**
+ * Modal dialog built on the native dialog element.
+ * @slot - Default slot content.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @slot footer - Footer content.
+ * @slot header - Header content.
+ * @csspart body - Body region.
+ * @csspart close - Close control wrapper.
+ * @csspart footer - Footer region.
+ * @csspart header - Header region.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(DialogBox)
 export class Dialog extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Whether the overlay is open. */
   @property({ type: Boolean, reflect: true }) open = false;
 
+  /** When true, backdrop clicks do not close the overlay. */
   @property({ type: Boolean, reflect: true, attribute: 'no-backdrop-close' })
   public noBackdropClose = false;
 
@@ -50,7 +64,7 @@ export class Dialog extends LitElement {
 
   private emitClose() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })
@@ -69,10 +83,15 @@ export class Dialog extends LitElement {
     this.emitClose();
   }
 
-  private handleCancel(event: Event) {
-    if (this.noBackdropClose) {
-      event.preventDefault();
+  private handleDialogClick(event: MouseEvent) {
+    if (event.target !== event.currentTarget || this.noBackdropClose) {
+      return;
     }
+    this.handleCloseRequest();
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   private handleNativeClose() {
@@ -90,8 +109,8 @@ export class Dialog extends LitElement {
   override render() {
     return html`
       <dialog
-        @cancel=${this.handleCancel}
         @close=${this.handleNativeClose}
+        @click=${this.handleDialogClick}
       >
         <div
           class="dialog-box__section--header"
@@ -106,6 +125,7 @@ export class Dialog extends LitElement {
             <slot
               name="close-control"
               @slotchange=${this.onCloseSlotChange}
+              @close=${this.handleSlottedClose}
               @click=${this.handleCloseControlClick}
             ></slot>
           </div>

@@ -6,6 +6,10 @@ import slotStyles from './drawer-header.slot.scss?inline';
 
 export const DrawerHeaderBox = 'drawer-header-box';
 
+/**
+ * Header layout helper for drawers.
+ * @slot - Default slot content.
+ */
 @customElement(DrawerHeaderBox)
 export class DrawerHeader extends LitElement {
   static override styles = unsafeCSS(styles);

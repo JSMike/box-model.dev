@@ -72,31 +72,31 @@ const meta: Docs = {
       },
     },
     cssProperties: {
-      '--banner-box-padding': {
+      '--banner-padding': {
         description: 'Padding inside the banner box.',
         defaultValue: '1rem',
       },
-      '--banner-box-gap': {
+      '--banner-gap': {
         description: 'Gap between elements inside the banner box.',
         defaultValue: '0.5rem',
       },
-      '--banner-box-border-radius': {
+      '--banner-border-radius': {
         description: 'Border radius of the banner box.',
         defaultValue: '0',
       },
-      '--banner-box-background': {
+      '--banner-background': {
         description: 'Background color of the banner box.',
         defaultValue: 'var(--color-background-secondary)',
       },
-      '--banner-box-border': {
+      '--banner-border': {
         description: 'Border of the banner box.',
         defaultValue: '1px solid var(--color-border-primary)',
       },
-      '--banner-box-text': {
+      '--banner-text': {
         description: 'Text color of the banner box.',
         defaultValue: 'var(--color-text-primary)',
       },
-      '--banner-box-close-size': {
+      '--banner-close-size': {
         description: 'Size of the close control.',
         defaultValue: '1rem',
       },
@@ -158,7 +158,7 @@ export const Canvas: Story = {
         ? html`<close-control-box
             slot="close-control"
             label="Dismiss banner"
-            style="--close-size: 1.25rem"
+            style="--close-control-size: 1.25rem"
           ></close-control-box>`
         : nothing}
     </banner-box>

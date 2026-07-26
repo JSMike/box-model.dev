@@ -8,10 +8,15 @@ export type TagVariant = 'neutral' | 'info' | 'success' | 'warning' | 'danger';
 
 export const TagBox = 'tag-box';
 
+/**
+ * Compact tag/chip for categorization.
+ * @slot - Default slot content.
+ */
 @customElement(TagBox)
 export class Tag extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: TagVariant = 'neutral';
 
   override connectedCallback() {

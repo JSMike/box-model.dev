@@ -10,11 +10,17 @@ $loading-static-opacities: (1, 0.85, 0.7, 0.55, 0.4, 0.25, 0.1, 0.05);
   display: inline-flex;
   align-items: center;
   gap: #{tokens.$space-scale-100};
+  /** Loading size. */
   --loading-size: #{tokens.$size-control-height-sm};
+  /** Loading gap. */
   --loading-gap: #{tokens.$space-scale-025};
+  /** Loading speed. */
   --loading-speed: #{tokens.$motion-duration-slower};
+  /** Loading delay step. */
   --loading-delay-step: calc(#{tokens.$motion-duration-slower} / #{$loading-sequence-length});
+  /** Loading opacity. */
   --loading-opacity: #{tokens.$color-alpha-20};
+  /** Loading color. */
   @include theme.custom-property('loading-color', 'box-model-text-primary');
   color: var(--loading-color);
 }

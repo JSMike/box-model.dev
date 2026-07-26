@@ -6,9 +6,10 @@ export default {
     border: { $value: '{color.border.subtle}' },
     borderWidth: { $value: '{size.borderWidth.hairline}' },
     borderRadius: { $value: '{size.radius.none}' },
+    shadow: { $value: '{shadow.offset.sm}' },
     title: { $value: '{color.text.secondary}' },
     value: { $value: '{color.text.primary}' },
     deltaPositive: { $value: '{color.feedback.success.text}' },
-    deltaNegative: { $value: '{color.feedback.danger.text}' }
-  }
+    deltaNegative: { $value: '{color.feedback.danger.text}' },
+  },
 };

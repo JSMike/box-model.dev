@@ -40,6 +40,11 @@ type LinkContext = {
 
 export const MarkdownBox = 'markdown-box';
 
+/**
+ * Renders markdown content into HTML.
+ * @slot - Default slot content.
+ * @csspart content - Primary content region.
+ */
 @customElement(MarkdownBox)
 export class Markdown extends LitElement {
   static override styles = unsafeCSS(hostStyles);
@@ -51,6 +56,7 @@ export class Markdown extends LitElement {
   private initialRawContent?: string;
   private hasHandledFirstSlotChange = false;
 
+  /** Automatically convert URLs into links. */
   @property({ type: Boolean, reflect: true }) linkify = true;
 
   private readonly markdown = this.createMarkdownRenderer();
@@ -80,12 +86,18 @@ export class Markdown extends LitElement {
 
   private createMarkdownRenderer() {
     const renderer = new MarkdownIt({
-      html: true,
+      // Raw HTML is deliberately disabled. Markdown input is user-controlled in many consumers,
+      // and this component renders the generated output with unsafeHTML.
+      html: false,
       linkify: this.linkify,
       typographer: true,
     });
 
-    renderer.use(markdownItAttrs);
+    renderer.use(markdownItAttrs, {
+      // Only attributes consumed by the link wrapper are supported. In particular, never allow
+      // event-handler attributes from Markdown input.
+      allowedAttributes: ['type', 'variant', 'size'],
+    });
 
     const linkStack: LinkContext[] = [];
     const defaultLinkOpen =
@@ -160,7 +172,7 @@ export class Markdown extends LitElement {
       name: 'card',
       tag: 'card-box',
       attributes: {
-        interactive: (value) => (value === 'true' ? 'true' : undefined),
+        hoverable: (value) => (value === 'true' ? 'true' : undefined),
       },
     });
 
@@ -241,7 +253,10 @@ export class Markdown extends LitElement {
       const key = match[1];
       const value = match[2] ?? match[3] ?? '';
       const sanitizer = sanitizers[key];
-      const sanitizedValue = sanitizer ? sanitizer(value) : escapeAttribute(value);
+      if (!sanitizer) {
+        continue;
+      }
+      const sanitizedValue = sanitizer(value);
       if (sanitizedValue) {
         attributes[key] = sanitizedValue;
       }

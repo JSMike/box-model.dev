@@ -4,12 +4,24 @@ import hostStyles from './progress.host.scss?inline';
 
 export const ProgressBox = 'progress-box';
 
+/**
+ * Progress bar with optional label.
+ * @slot - Default slot content.
+ * @csspart header - Header region.
+ * @csspart indicator - Progress indicator fill.
+ * @csspart percent - Percentage display.
+ * @csspart track - Progress track.
+ */
 @customElement(ProgressBox)
 export class Progress extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Current value. */
   @property({ type: Number }) public value = 0;
+  /** Maximum value. */
   @property({ type: Number }) public max = 100;
+  /** Accessible name for the progressbar. */
+  @property({ type: String, reflect: true }) public label = 'Progress';
 
   private get clampedValue() {
     const max = this.max > 0 ? this.max : 100;
@@ -33,6 +45,7 @@ export class Progress extends LitElement {
         aria-valuemin="0"
         aria-valuemax="${max}"
         aria-valuenow="${Math.round(value)}"
+        aria-label=${this.label}
       >
         <div class="progress-box__indicator" part="indicator" style="width: ${percent}%"></div>
       </div>

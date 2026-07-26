@@ -3,36 +3,50 @@
 
 :host {
   display: block;
-  --checkbox-fieldset-border: #{tokens.$component-input-border-color-rest};
-  --checkbox-fieldset-radius: #{tokens.$component-input-border-radius};
-  --checkbox-fieldset-padding: #{tokens.$component-input-padding-block} #{tokens.$component-input-padding-inline};
-  --checkbox-gap: #{tokens.$component-list-gap};
-  @include theme.custom-property('checkbox-label-color', 'box-model-text-primary');
-  @include theme.custom-property('checkbox-helper-color', 'box-model-text-secondary');
-  @include theme.custom-property('checkbox-legend-color', 'box-model-text-primary');
-  --checkbox-control-size: 1.25rem;
-  --checkbox-border-width: #{tokens.$component-input-border-width};
-  --checkbox-border-color: #{tokens.$component-input-border-color-rest};
-  @include theme.custom-property('checkbox-border-color-checked', 'box-model-feedback-info-border');
-  @include theme.custom-property('checkbox-background', 'box-model-background-elevated');
-  @include theme.custom-property('checkbox-background-checked', 'box-model-feedback-info-surface');
-  @include theme.custom-property('checkbox-checkmark-color', 'box-model-feedback-info-icon');
+  /** Checkbox group fieldset border. */
+  --checkbox-group-fieldset-border: #{tokens.$component-input-border-color-rest};
+  /** Checkbox group fieldset radius. */
+  --checkbox-group-fieldset-radius: #{tokens.$component-input-border-radius};
+  /** Checkbox group fieldset padding. */
+  --checkbox-group-fieldset-padding: #{tokens.$component-input-padding-block} #{tokens.$component-input-padding-inline};
+  /** Checkbox group gap. */
+  --checkbox-group-gap: #{tokens.$component-list-gap};
+  /** Checkbox group label color. */
+  @include theme.custom-property('checkbox-group-label-color', 'box-model-text-primary');
+  /** Checkbox group helper color. */
+  @include theme.custom-property('checkbox-group-helper-color', 'box-model-text-secondary');
+  /** Checkbox group legend color. */
+  @include theme.custom-property('checkbox-group-legend-color', 'box-model-text-primary');
+  /** Checkbox group control size. */
+  --checkbox-group-control-size: 1.25rem;
+  /** Checkbox group border width. */
+  --checkbox-group-border-width: #{tokens.$component-input-border-width};
+  /** Checkbox group border color. */
+  --checkbox-group-border-color: #{tokens.$component-input-border-color-rest};
+  /** Checkbox group border color checked. */
+  @include theme.custom-property('checkbox-group-border-color-checked', 'box-model-feedback-info-border');
+  /** Checkbox group background. */
+  @include theme.custom-property('checkbox-group-background', 'box-model-background-elevated');
+  /** Checkbox group background checked. */
+  @include theme.custom-property('checkbox-group-background-checked', 'box-model-feedback-info-surface');
+  /** Checkbox group checkmark color. */
+  @include theme.custom-property('checkbox-group-checkmark-color', 'box-model-feedback-info-icon');
 }
 
 fieldset {
-  border: var(--checkbox-border-width) solid var(--checkbox-fieldset-border);
-  border-radius: var(--checkbox-fieldset-radius);
-  padding: var(--checkbox-fieldset-padding);
+  border: var(--checkbox-group-border-width) solid var(--checkbox-group-fieldset-border);
+  border-radius: var(--checkbox-group-fieldset-radius);
+  padding: var(--checkbox-group-fieldset-padding);
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--checkbox-gap);
+  gap: var(--checkbox-group-gap);
 }
 
 legend {
   margin-bottom: 0.5rem;
   font-weight: #{tokens.$typography-roles-body-strong-font-weight};
-  color: var(--checkbox-legend-color);
+  color: var(--checkbox-group-legend-color);
 }
 
 legend[hidden] {
@@ -42,5 +56,5 @@ legend[hidden] {
 .checkbox-group__content {
   display: flex;
   flex-direction: column;
-  gap: var(--checkbox-gap);
+  gap: var(--checkbox-group-gap);
 }

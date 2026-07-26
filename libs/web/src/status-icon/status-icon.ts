@@ -8,11 +8,18 @@ export type StatusIconVariant = 'info' | 'success' | 'warning' | 'danger' | 'cus
 
 export const StatusIconBox = 'status-icon-box';
 
+/**
+ * Status glyph for feedback variants.
+ * @slot - Default slot content.
+ * @csspart glyph - Status glyph.
+ */
 @customElement(StatusIconBox)
 export class StatusIcon extends LitElement {
   static override styles = unsafeCSS(styles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: StatusIconVariant = 'info';
+  /** Accessible label. */
   @property({ type: String }) public label?: string;
 
   override connectedCallback(): void {

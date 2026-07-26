@@ -89,8 +89,9 @@ const meta: Docs = {
         defaultValue: 'var(--typography-roles-caption-letter-spacing)',
       },
       '--tag-text-transform': {
-        description: 'Text transform applied to tag text.',
-        defaultValue: 'uppercase',
+        description:
+          'Text transform applied to tag text. Authored casing is preserved by default.',
+        defaultValue: 'none',
       },
     },
     cssParts: {},

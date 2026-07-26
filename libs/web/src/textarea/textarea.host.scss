@@ -3,24 +3,43 @@
 
 :host {
   display: block;
+  /** Textarea font family. */
   --textarea-font-family: #{tokens.$typography-roles-body-font-family};
+  /** Textarea font size. */
   --textarea-font-size: #{tokens.$typography-roles-body-font-size};
+  /** Textarea font weight. */
   --textarea-font-weight: #{tokens.$typography-roles-body-font-weight};
+  /** Textarea line height. */
   --textarea-line-height: #{tokens.$typography-roles-body-line-height};
+  /** Textarea letter spacing. */
   --textarea-letter-spacing: #{tokens.$typography-roles-body-letter-spacing};
+  /** Textarea text color. */
   @include theme.custom-property('textarea-text-color', 'box-model-text-primary');
+  /** Textarea background. */
   @include theme.custom-property('textarea-background', 'box-model-background-elevated');
+  /** Textarea border color. */
   @include theme.custom-property('textarea-border-color', 'box-model-border-default');
+  /** Textarea border color hover. */
   @include theme.custom-property('textarea-border-color-hover', 'box-model-border-strong');
+  /** Textarea border color focus. */
   @include theme.custom-property('textarea-border-color-focus', 'box-model-border-focus');
+  /** Textarea border radius. */
   --textarea-border-radius: 0;
+  /** Textarea border width. */
   --textarea-border-width: 1px;
+  /** Textarea padding block. */
   --textarea-padding-block: #{tokens.$space-scale-125};
+  /** Textarea padding inline. */
   --textarea-padding-inline: #{tokens.$space-scale-150};
+  /** Textarea min height. */
   --textarea-min-height: 6rem;
+  /** Textarea transition duration. */
   --textarea-transition-duration: #{tokens.$motion-interaction-press-duration};
+  /** Textarea transition easing. */
   --textarea-transition-easing: #{tokens.$motion-interaction-press-easing};
+  /** Textarea focus shadow. */
   --textarea-focus-shadow: #{tokens.$shadow-glow-focus};
+  /** Textarea placeholder color. */
   @include theme.custom-property('textarea-placeholder-color', 'box-model-text-tertiary');
 }
 

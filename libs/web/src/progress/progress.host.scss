@@ -4,10 +4,15 @@
 :host {
   display: block;
   width: 100%;
+  /** Progress height. */
   --progress-height: #{tokens.$component-progress-height};
+  /** Progress track. */
   --progress-track: #{tokens.$component-progress-track};
+  /** Progress indicator. */
   --progress-indicator: #{tokens.$component-progress-indicator};
+  /** Progress radius. */
   --progress-radius: #{tokens.$component-progress-radius};
+  /** Progress animation duration. */
   --progress-animation-duration: #{tokens.$component-progress-animation-duration};
   padding: #{tokens.$space-scale-050} 0;
   display: flex;

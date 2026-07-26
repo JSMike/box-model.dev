@@ -9,9 +9,9 @@ const meta: Docs = {
   component: 'card-box',
   title: 'Components/Card box',
   argTypes: {
-    interactive: {
+    hoverable: {
       control: 'boolean',
-      description: 'Toggle hover elevation effect',
+      description: 'Toggle the stronger hover offset-shadow treatment',
     },
     heading: {
       control: 'text',
@@ -31,7 +31,7 @@ const meta: Docs = {
     },
   },
   args: {
-    interactive: false,
+    hoverable: false,
     heading: 'Card heading',
     body: 'Use cards to group related content and surface actions.',
     footer: 'Last updated just now',
@@ -41,9 +41,10 @@ const meta: Docs = {
     selector: 'card-box',
     className: 'Card',
     attributes: {
-      interactive: {
+      hoverable: {
         type: 'boolean',
-        description: 'Enables hover elevation on the card surface.',
+        description:
+          'Strengthens the crisp offset shadow when the card is hovered.',
         defaultValue: false,
         options: [true, false],
       },
@@ -97,12 +98,13 @@ const meta: Docs = {
         defaultValue: 'var(--component-card-gap)',
       },
       '--card-shadow': {
-        description: 'Shadow in the resting state.',
-        defaultValue: 'var(--component-card-shadow-rest)',
+        description: 'Crisp offset shadow in the resting state.',
+        defaultValue: 'var(--box-model-shadow-offset-sm)',
       },
       '--card-shadow-hover': {
-        description: 'Shadow on hover when interactive.',
-        defaultValue: 'var(--component-card-shadow-hover)',
+        description:
+          'Stronger crisp offset shadow when a hoverable card is hovered.',
+        defaultValue: 'var(--box-model-shadow-offset-md)',
       },
       '--card-transition-duration': {
         description: 'Duration for hover transition.',
@@ -143,7 +145,8 @@ const meta: Docs = {
     },
     dependencies: {
       'close-control-box': {
-        description: 'Optional dependency for dismissing the card via the `close-control` slot.',
+        description:
+          'Optional dependency for dismissing the card via the `close-control` slot.',
         included: false,
       },
     },
@@ -153,9 +156,9 @@ const meta: Docs = {
 export default meta;
 
 export const Canvas: Story = {
-  render: ({ interactive, heading, body, footer, showCloseControl }) => html`
+  render: ({ hoverable, heading, body, footer, showCloseControl }) => html`
     <div style="max-width: 28rem;">
-      <card-box ?interactive="${interactive}">
+      <card-box ?hoverable="${hoverable}">
         <div slot="header">
           <h3 style="margin: 0;">${heading}</h3>
         </div>
@@ -170,7 +173,7 @@ export const Canvas: Story = {
           ? html`<close-control-box
               slot="close-control"
               label="Dismiss card"
-              style="--close-size: 1.25rem"
+              style="--close-control-size: 1.25rem"
             ></close-control-box>`
           : null}
       </card-box>

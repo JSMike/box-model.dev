@@ -9,8 +9,11 @@
   width: 1.25rem;
   height: 1.25rem;
   box-sizing: border-box;
+  /** Status icon color. */
   @include theme.custom-property('status-icon-color', 'box-model-feedback-info-icon');
+  /** Status icon background. */
   @include theme.custom-property('status-icon-background', 'box-model-feedback-info-surface');
+  /** Status icon border color. */
   @include theme.custom-property('status-icon-border-color', 'box-model-feedback-info-border');
   color: var(--status-icon-color);
   background: var(--status-icon-background);

@@ -9,11 +9,17 @@ export type LinkSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export const LinkBox = 'link-box';
 
+/**
+ * Themed anchor/link surface.
+ * @slot - Default slot content.
+ */
 @customElement(LinkBox)
 export class Link extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: LinkVariant = 'primary';
+  /** Size of the component. */
   @property({ type: String, reflect: true }) public size: LinkSize = 'md';
 
   override connectedCallback() {

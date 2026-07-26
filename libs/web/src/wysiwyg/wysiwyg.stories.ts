@@ -23,63 +23,63 @@ const meta: Docs = {
       },
     },
     cssProperties: {
-      '--textarea-font-family': {
+      '--wysiwyg-font-family': {
         description: 'Font family applied to the editing textarea.',
         defaultValue: 'var(--typography-roles-body-font-family)',
       },
-      '--textarea-font-size': {
+      '--wysiwyg-font-size': {
         description: 'Font size applied to the editing textarea.',
         defaultValue: 'var(--typography-roles-body-font-size)',
       },
-      '--textarea-font-weight': {
+      '--wysiwyg-font-weight': {
         description: 'Font weight applied to the editing textarea.',
         defaultValue: 'var(--typography-roles-body-font-weight)',
       },
-      '--textarea-line-height': {
+      '--wysiwyg-line-height': {
         description: 'Line height applied to the editing textarea.',
         defaultValue: 'var(--typography-roles-body-line-height)',
       },
-      '--textarea-letter-spacing': {
+      '--wysiwyg-letter-spacing': {
         description: 'Letter spacing applied to the editing textarea.',
         defaultValue: 'var(--typography-roles-body-letter-spacing)',
       },
-      '--textarea-text-color': {
+      '--wysiwyg-text-color': {
         description: 'Text color for editor content.',
         defaultValue: 'var(--box-model-text-primary)',
       },
-      '--textarea-background': {
+      '--wysiwyg-background': {
         description: 'Background color of the editor.',
         defaultValue: 'var(--box-model-background-surface)',
       },
-      '--textarea-border-color': {
+      '--wysiwyg-border-color': {
         description: 'Border color at rest for the editor.',
         defaultValue: 'var(--box-model-border-default)',
       },
-      '--textarea-border-color-hover': {
+      '--wysiwyg-border-color-hover': {
         description: 'Border color on hover.',
         defaultValue: 'var(--box-model-border-strong)',
       },
-      '--textarea-border-color-focus': {
+      '--wysiwyg-border-color-focus': {
         description: 'Border color on focus.',
         defaultValue: 'var(--box-model-primary-focus-ring)',
       },
-      '--textarea-padding-block': {
+      '--wysiwyg-padding-block': {
         description: 'Block padding inside the editor.',
         defaultValue: 'var(--component-input-padding-block)',
       },
-      '--textarea-padding-inline': {
+      '--wysiwyg-padding-inline': {
         description: 'Inline padding inside the editor.',
         defaultValue: 'var(--component-input-padding-inline)',
       },
-      '--textarea-min-height': {
+      '--wysiwyg-min-height': {
         description: 'Minimum height of the editor textarea.',
         defaultValue: '6rem',
       },
-      '--textarea-focus-shadow': {
+      '--wysiwyg-focus-shadow': {
         description: 'Shadow applied when the editor is focused.',
         defaultValue: 'var(--shadow-glow-focus)',
       },
-      '--textarea-placeholder-color': {
+      '--wysiwyg-placeholder-color': {
         description: 'Color of placeholder text.',
         defaultValue: 'var(--box-model-text-secondary)',
       },
@@ -124,8 +124,9 @@ export const Canvas: Story = {
 
     return html`
       <div class="wysiwyg-story">
+        <label for="wysiwyg-story-editor">Markdown content</label>
         <wysiwyg-box @input=${handleInput}>
-          <textarea .value=${initialValue}></textarea>
+          <textarea id="wysiwyg-story-editor" .value=${initialValue}></textarea>
         </wysiwyg-box>
         <markdown-box>${initialValue}</markdown-box>
       </div>

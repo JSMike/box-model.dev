@@ -6,10 +6,16 @@ import slotStyles from './list.slot.scss?inline';
 
 export const ListBox = 'list-box';
 
+/**
+ * Styled ordered or unordered list.
+ * @slot - Default slot content.
+ * @csspart list - The list element.
+ */
 @customElement(ListBox)
 export class List extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Render an ordered list instead of unordered. */
   @property({ type: Boolean, reflect: true }) public ordered = false;
 
   override connectedCallback() {

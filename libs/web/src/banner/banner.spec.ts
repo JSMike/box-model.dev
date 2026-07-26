@@ -32,13 +32,14 @@ describe('banner-box', () => {
       </banner-box>
     `);
 
-    let closed = false;
-    element.addEventListener('close', () => (closed = true));
+    const closeEvents: Event[] = [];
+    element.addEventListener('close', (event) => closeEvents.push(event));
 
     const control = element.querySelector('close-control-box');
     control?.shadowRoot?.querySelector('button')?.click();
 
-    expect(closed).to.be.true;
+    expect(closeEvents).to.have.length(1);
+    expect(closeEvents[0].target).to.equal(element);
   });
 
   it('places details content below the main message', async () => {

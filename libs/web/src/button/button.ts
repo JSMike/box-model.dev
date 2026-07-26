@@ -9,13 +9,19 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 
 export const ButtonBox = 'button-box';
 
+/**
+ * Themed button surface for slotted controls.
+ * @slot - Default slot content.
+ */
 @customElement(ButtonBox)
 export class Button extends LitElement {
   static override styles = unsafeCSS(styles);
 
+  /** Visual variant of the component. */
   @property({ attribute: 'variant', type: String, reflect: true })
   public variant?: ButtonVariant;
 
+  /** Size of the component. */
   @property({ attribute: 'size', type: String, reflect: true })
   public size?: ButtonSize;
 

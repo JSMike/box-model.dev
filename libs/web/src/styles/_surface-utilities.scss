@@ -1,0 +1,18 @@
+@use './surface';
+@use './theme';
+
+.box-model-surface {
+  @include surface.frame();
+}
+
+.box-model-surface--subtle {
+  --box-model-surface-shadow: #{theme.value('box-model-shadow-offset-xs')};
+}
+
+.box-model-surface--prominent {
+  --box-model-surface-shadow: #{theme.value('box-model-shadow-offset-md')};
+}
+
+.box-model-surface--flat {
+  --box-model-surface-shadow: none;
+}

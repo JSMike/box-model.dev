@@ -19,8 +19,11 @@ export default function BlogArticleRoute() {
 
   if (!post) {
     return (
-      <main className={styles.page}>
-        <section aria-labelledby="missing-post">
+      <main id="main-content" tabIndex={-1} className={styles.page}>
+        <section
+          className={`${styles.missing} box-model-surface box-model-surface--prominent`}
+          aria-labelledby="missing-post"
+        >
           <h1 id="missing-post">Blog post not found</h1>
           <p>Try heading back to the blog landing page.</p>
           <ButtonBox>
@@ -32,9 +35,13 @@ export default function BlogArticleRoute() {
   }
 
   return (
-    <main className={styles.page}>
-      <article className={styles.header}>
-        <p className={styles.date}>{intlDate.format(parseBlogDate(post.date))}</p>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
+      <article
+        className={`${styles.header} box-model-surface box-model-surface--prominent`}
+      >
+        <p className={styles.date}>
+          {intlDate.format(parseBlogDate(post.date))}
+        </p>
         <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.tags}>
           {post.tags.map((tag) => (
@@ -44,7 +51,9 @@ export default function BlogArticleRoute() {
           ))}
         </div>
       </article>
-      <section className={styles.body}>
+      <section
+        className={`${styles.body}`}
+      >
         <MarkdownBox>{post.content}</MarkdownBox>
       </section>
       <ButtonBox variant="secondary">

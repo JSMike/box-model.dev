@@ -3,36 +3,50 @@
 
 :host {
   display: block;
-  --radio-fieldset-border: #{tokens.$component-input-border-color-rest};
-  --radio-fieldset-radius: #{tokens.$component-input-border-radius};
-  --radio-fieldset-padding: #{tokens.$component-input-padding-block} #{tokens.$component-input-padding-inline};
-  --radio-gap: #{tokens.$component-list-gap};
-  @include theme.custom-property('radio-label-color', 'box-model-text-primary');
-  @include theme.custom-property('radio-helper-color', 'box-model-text-secondary');
-  @include theme.custom-property('radio-legend-color', 'box-model-text-primary');
-  --radio-control-size: 1.25rem;
-  --radio-border-width: #{tokens.$component-input-border-width};
-  @include theme.custom-property('radio-border-color', 'box-model-border-default');
-  @include theme.custom-property('radio-border-color-checked', 'box-model-feedback-info-border');
-  @include theme.custom-property('radio-background', 'box-model-background-elevated');
-  @include theme.custom-property('radio-background-checked', 'box-model-feedback-info-surface');
-  @include theme.custom-property('radio-indicator-color', 'box-model-feedback-info-icon');
+  /** Radio group fieldset border. */
+  --radio-group-fieldset-border: #{tokens.$component-input-border-color-rest};
+  /** Radio group fieldset radius. */
+  --radio-group-fieldset-radius: #{tokens.$component-input-border-radius};
+  /** Radio group fieldset padding. */
+  --radio-group-fieldset-padding: #{tokens.$component-input-padding-block} #{tokens.$component-input-padding-inline};
+  /** Radio group gap. */
+  --radio-group-gap: #{tokens.$component-list-gap};
+  /** Radio group label color. */
+  @include theme.custom-property('radio-group-label-color', 'box-model-text-primary');
+  /** Radio group helper color. */
+  @include theme.custom-property('radio-group-helper-color', 'box-model-text-secondary');
+  /** Radio group legend color. */
+  @include theme.custom-property('radio-group-legend-color', 'box-model-text-primary');
+  /** Radio group control size. */
+  --radio-group-control-size: 1.25rem;
+  /** Radio group border width. */
+  --radio-group-border-width: #{tokens.$component-input-border-width};
+  /** Radio group border color. */
+  @include theme.custom-property('radio-group-border-color', 'box-model-border-default');
+  /** Radio group border color checked. */
+  @include theme.custom-property('radio-group-border-color-checked', 'box-model-feedback-info-border');
+  /** Radio group background. */
+  @include theme.custom-property('radio-group-background', 'box-model-background-elevated');
+  /** Radio group background checked. */
+  @include theme.custom-property('radio-group-background-checked', 'box-model-feedback-info-surface');
+  /** Radio group indicator color. */
+  @include theme.custom-property('radio-group-indicator-color', 'box-model-feedback-info-icon');
 }
 
 fieldset {
-  border: var(--radio-border-width) solid var(--radio-fieldset-border);
-  border-radius: var(--radio-fieldset-radius);
-  padding: var(--radio-fieldset-padding);
+  border: var(--radio-group-border-width) solid var(--radio-group-fieldset-border);
+  border-radius: var(--radio-group-fieldset-radius);
+  padding: var(--radio-group-fieldset-padding);
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--radio-gap);
+  gap: var(--radio-group-gap);
 }
 
 legend {
   margin-bottom: 0.5rem;
   font-weight: #{tokens.$typography-roles-body-strong-font-weight};
-  color: var(--radio-legend-color);
+  color: var(--radio-group-legend-color);
 }
 
 legend[hidden] {
@@ -42,5 +56,5 @@ legend[hidden] {
 .radio-group__content {
   display: flex;
   flex-direction: column;
-  gap: var(--radio-gap);
+  gap: var(--radio-group-gap);
 }

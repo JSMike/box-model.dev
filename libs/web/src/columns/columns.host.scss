@@ -2,7 +2,9 @@
 
 :host {
   display: block;
+  /** Columns gap. */
   --columns-gap: #{tokens.$space-scale-300};
+  /** Columns min width. */
   --columns-min-width: 15rem;
 }
 

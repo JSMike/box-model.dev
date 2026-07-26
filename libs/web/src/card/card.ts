@@ -6,11 +6,27 @@ import slotStyles from './card.slot.scss?inline';
 
 export const CardBox = 'card-box';
 
+/**
+ * Content card with optional header, footer, and actions.
+ * @slot - Default slot content.
+ * @slot actions - Optional action controls.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @slot footer - Footer content.
+ * @slot header - Header content.
+ * @csspart actions - Actions region.
+ * @csspart body - Body region.
+ * @csspart close - Close control wrapper.
+ * @csspart footer - Footer region.
+ * @csspart header - Header region.
+ * @csspart surface - Outer surface of the component.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(CardBox)
 export class Card extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
-  @property({ type: Boolean, reflect: true }) public interactive = false;
+  /** Whether the card gains a stronger offset shadow on hover. */
+  @property({ type: Boolean, reflect: true }) public hoverable = false;
 
   @state() private hasHeader = false;
   @state() private hasFooter = false;
@@ -36,10 +52,15 @@ export class Card extends LitElement {
     const showHeader = this.hasHeader || this.hasCloseControl;
     return html`
       <div class="card-box__surface" part="surface">
-        <div class="card-box__close" part="close" ?hidden=${!this.hasCloseControl}>
+        <div
+          class="card-box__close"
+          part="close"
+          ?hidden=${!this.hasCloseControl}
+        >
           <slot
             name="close-control"
             @slotchange=${this.handleCloseSlotChange}
+            @close=${this.handleSlottedClose}
             @click=${this.handleCloseClick}
           ></slot>
         </div>
@@ -47,7 +68,11 @@ export class Card extends LitElement {
           ? html`<div class="card-box__header" part="header">
               <slot name="header" @slotchange=${this.onHeaderSlotChange}></slot>
             </div>`
-          : html`<slot name="header" hidden @slotchange=${this.onHeaderSlotChange}></slot>`}
+          : html`<slot
+              name="header"
+              hidden
+              @slotchange=${this.onHeaderSlotChange}
+            ></slot>`}
         <div class="card-box__body" part="body">
           <slot></slot>
         </div>
@@ -55,12 +80,23 @@ export class Card extends LitElement {
           ? html`<div class="card-box__footer" part="footer">
               <slot name="footer" @slotchange=${this.onFooterSlotChange}></slot>
             </div>`
-          : html`<slot name="footer" hidden @slotchange=${this.onFooterSlotChange}></slot>`}
+          : html`<slot
+              name="footer"
+              hidden
+              @slotchange=${this.onFooterSlotChange}
+            ></slot>`}
         ${this.hasActions
           ? html`<div class="card-box__actions" part="actions">
-              <slot name="actions" @slotchange=${this.onActionsSlotChange}></slot>
+              <slot
+                name="actions"
+                @slotchange=${this.onActionsSlotChange}
+              ></slot>
             </div>`
-          : html`<slot name="actions" hidden @slotchange=${this.onActionsSlotChange}></slot>`}
+          : html`<slot
+              name="actions"
+              hidden
+              @slotchange=${this.onActionsSlotChange}
+            ></slot>`}
       </div>
     `;
   }
@@ -74,9 +110,13 @@ export class Card extends LitElement {
     this.dispatchCloseEvent();
   }
 
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
+  }
+
   private dispatchCloseEvent() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })
@@ -85,7 +125,8 @@ export class Card extends LitElement {
 
   private syncCloseControlPresence(slot?: HTMLSlotElement | null) {
     const target = slot ?? this.closeSlot;
-    const hasClose = (target?.assignedElements({ flatten: true }).length ?? 0) > 0;
+    const hasClose =
+      (target?.assignedElements({ flatten: true }).length ?? 0) > 0;
     this.applyCloseControlPresence(hasClose);
   }
 
@@ -115,7 +156,9 @@ export class Card extends LitElement {
   }
 
   private hasLightDomSlot(name: string): boolean {
-    return Array.from(this.children).some((child) => (child as HTMLElement).slot === name);
+    return Array.from(this.children).some(
+      (child) => (child as HTMLElement).slot === name
+    );
   }
 
   private applyHeaderPresence(present: boolean) {

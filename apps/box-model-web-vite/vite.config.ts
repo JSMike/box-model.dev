@@ -6,6 +6,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import * as path from 'path';
 
 const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
+const workspaceRootPath = path.resolve(__dirname, '../..');
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -13,6 +14,9 @@ export default defineConfig(() => ({
   server: {
     port: 4200,
     host: 'localhost',
+    fs: {
+      allow: [workspaceRootPath],
+    },
   },
   resolve: {
     alias: [
@@ -27,7 +31,7 @@ export default defineConfig(() => ({
       {
         find: /^@box-model\/web\/(.+)$/,
         replacement: path.join(__dirname, '../../libs/web/src/$1'),
-      }
+      },
     ],
   },
   plugins: [

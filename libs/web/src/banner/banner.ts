@@ -9,10 +9,24 @@ export type BannerVariant = 'default' | 'info' | 'success' | 'warning' | 'danger
 
 export const BannerBox = 'banner-box';
 
+/**
+ * Prominent banner for page-level messaging.
+ * @slot - Default slot content.
+ * @slot actions - Optional action controls.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @slot details - Optional details content.
+ * @csspart actions - Actions region.
+ * @csspart close - Close control wrapper.
+ * @csspart content - Primary content region.
+ * @csspart details - Details region.
+ * @csspart surface - Outer surface of the component.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(BannerBox)
 export class Banner extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Visual variant of the component. */
   @property({ type: String, reflect: true }) public variant: BannerVariant = 'default';
 
   @query('slot[name="details"]') detailsSlot?: HTMLSlotElement;
@@ -80,11 +94,15 @@ export class Banner extends LitElement {
 
   dispatchCloseEvent() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })
     );
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   override render() {
@@ -106,6 +124,7 @@ export class Banner extends LitElement {
           <slot
             name="close-control"
             @slotchange=${this.onCloseSlotChange}
+            @close=${this.handleSlottedClose}
             @click=${this.handleCloseClick}
           ></slot>
         </div>

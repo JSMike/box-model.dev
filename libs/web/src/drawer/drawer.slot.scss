@@ -13,5 +13,5 @@ drawer-box [slot='close-control'] {
 }
 
 drawer-box > close-control-box[slot='close-control'] {
-  --close-size: var(--drawer-close-size);
+  --close-control-size: var(--drawer-close-size);
 }

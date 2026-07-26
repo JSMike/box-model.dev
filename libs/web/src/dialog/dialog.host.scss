@@ -3,20 +3,35 @@
 
 :host {
   display: contents;
+  /** Dialog width. */
   --dialog-width: #{tokens.$component-dialog-width};
+  /** Dialog max width. */
   --dialog-max-width: #{tokens.$component-dialog-max-width};
+  /** Dialog background. */
   @include theme.custom-property('dialog-background', 'box-model-background-elevated');
+  /** Dialog border. */
   @include theme.custom-property('dialog-border', 'box-model-border-strong');
+  /** Dialog border width. */
   --dialog-border-width: #{tokens.$component-dialog-border-width};
+  /** Dialog shadow. */
   --dialog-shadow: #{tokens.$component-dialog-shadow};
+  /** Dialog gap. */
   --dialog-gap: #{tokens.$component-dialog-gap};
+  /** Dialog overlay. */
   --dialog-overlay: #{tokens.$component-dialog-overlay};
+  /** Dialog header padding. */
   --dialog-header-padding: #{tokens.$component-dialog-header-padding};
+  /** Dialog header text. */
   @include theme.custom-property('dialog-header-text', 'box-model-text-primary');
+  /** Dialog body padding. */
   --dialog-body-padding: #{tokens.$component-dialog-body-padding};
+  /** Dialog body text. */
   @include theme.custom-property('dialog-body-text', 'box-model-text-primary');
+  /** Dialog footer padding. */
   --dialog-footer-padding: #{tokens.$component-dialog-footer-padding};
+  /** Dialog footer gap. */
   --dialog-footer-gap: #{tokens.$component-dialog-footer-gap};
+  /** Dialog close size. */
   --dialog-close-size: #{tokens.$component-close-control-size};
 }
 

@@ -9,13 +9,29 @@ export type DrawerPlacement = 'right' | 'left' | 'top' | 'bottom';
 
 export const DrawerBox = 'drawer-box';
 
+/**
+ * Slide-over drawer panel.
+ * @slot - Default slot content.
+ * @slot actions - Optional action controls.
+ * @slot close-control - Optional close control (typically `<close-control-box>`).
+ * @slot heading - Heading content.
+ * @csspart body - Body region.
+ * @csspart close - Close control wrapper.
+ * @csspart footer - Footer region.
+ * @csspart header - Header region.
+ * @csspart panel - Drawer panel surface.
+ * @fires close - Fired when the component requests to close (bubbles, composed).
+ */
 @customElement(DrawerBox)
 export class Drawer extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Whether the overlay is open. */
   @property({ type: Boolean, reflect: true }) open = false;
+  /** When true, backdrop clicks do not close the overlay. */
   @property({ type: Boolean, reflect: true, attribute: 'no-backdrop-close' })
   public noBackdropClose = false;
+  /** Placement of the drawer. */
   @property({ type: String, reflect: true }) public placement: DrawerPlacement = 'right';
   @state() private hasHeading = false;
   @state() private hasActions = false;
@@ -41,8 +57,8 @@ export class Drawer extends LitElement {
   override render() {
     return html`
       <dialog
-        @cancel=${this.handleCancel}
         @close=${this.handleNativeClose}
+        @click=${this.handleDialogClick}
       >
         <aside class="drawer-box__panel" part="panel" role="complementary">
           <div
@@ -55,6 +71,7 @@ export class Drawer extends LitElement {
               <slot
                 name="close-control"
                 @slotchange=${this.onCloseSlotChange}
+                @close=${this.handleSlottedClose}
                 @click=${this.handleCloseClick}
               ></slot>
             </div>
@@ -74,7 +91,7 @@ export class Drawer extends LitElement {
 
   private emitClose() {
     this.dispatchEvent(
-      new CustomEvent('close', {
+      new CustomEvent<void>('close', {
         bubbles: true,
         composed: true,
       })
@@ -93,10 +110,15 @@ export class Drawer extends LitElement {
     this.emitClose();
   }
 
-  private handleCancel(event: Event) {
-    if (this.noBackdropClose) {
-      event.preventDefault();
+  private handleDialogClick(event: MouseEvent) {
+    if (event.target !== event.currentTarget || this.noBackdropClose) {
+      return;
     }
+    this.handleCloseRequest();
+  }
+
+  private handleSlottedClose(event: Event) {
+    event.stopPropagation();
   }
 
   private handleNativeClose() {

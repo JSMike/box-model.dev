@@ -8,13 +8,27 @@ export type StatTrend = 'neutral' | 'up' | 'down';
 
 export const StatBox = 'stat-box';
 
+/**
+ * Statistic display with optional delta and trend.
+ * @slot - Default slot content.
+ * @slot title - Title content.
+ * @csspart delta - Delta value container.
+ * @csspart delta-text - Delta text.
+ * @csspart label - Label region.
+ * @csspart trend-icon - Trend indicator icon.
+ * @csspart value - Primary value display.
+ */
 @customElement(StatBox)
 export class Stat extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Current value. */
   @property({ type: String }) public value = '';
+  /** Delta text shown beside the value. */
   @property({ type: String }) public delta?: string;
+  /** Trend direction for the delta. */
   @property({ type: String, reflect: true }) public trend: StatTrend = 'neutral';
+  /** Whether to show the trend indicator icon. */
   @property({ type: Boolean, attribute: 'show-trend-indicator' })
   public showTrendIndicator = false;
 

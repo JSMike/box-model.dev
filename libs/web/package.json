@@ -1,7 +1,32 @@
 {
   "name": "@box-model/web",
+  "version": "0.0.1",
+  "description": "Accessible, framework-agnostic web components for the Box Model design system.",
   "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "customElements": "./custom-elements.json",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSMike/box-model.dev.git",
+    "directory": "libs/web"
+  },
+  "homepage": "https://box-model.dev",
+  "bugs": {
+    "url": "https://github.com/JSMike/box-model.dev/issues"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "lit",
+    "design-system",
+    "accessible"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "lit": "^3.3.1"
+    "lit": "^3.3.3"
   }
 }

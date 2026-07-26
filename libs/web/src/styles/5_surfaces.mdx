@@ -1,0 +1,98 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta
+  title="Styles/Surfaces and shadows"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Surfaces and shadows
+
+Box Model surfaces use square corners, a visible border, and a crisp zero-blur offset shadow. The
+offset exposes the shape of the box without imitating soft physical elevation.
+
+Use offset shadows for bounded content surfaces such as sections, cards, statistics, and terminal
+output. Continue to use elevation shadows for floating overlays such as dialogs, drawers, and
+tooltips. Focus glow tokens remain reserved for keyboard focus and must not be replaced by a
+decorative surface shadow.
+
+## Offset-shadow scale
+
+- `--box-model-shadow-offset-xs` — subtle callouts and compact surfaces.
+- `--box-model-shadow-offset-sm` — the default boxed-surface treatment.
+- `--box-model-shadow-offset-md` — prominent or interactive surfaces.
+
+Each token selects an appropriate accent color in light and dark themes.
+
+## Compiled utility
+
+Import the Box Model stylesheet once, then apply the surface class:
+
+<Source
+  dark={true}
+  language="scss"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/box-model';
+  `}
+/>
+
+<Source
+  dark={true}
+  language="html"
+  format="dedent"
+  code={`
+    <section class="box-model-surface">
+      <h2>Integration status</h2>
+      <p>The border defines the box and the offset shadow adds emphasis.</p>
+    </section>
+  `}
+/>
+
+Combine the base class with `box-model-surface--subtle`,
+`box-model-surface--prominent`, or `box-model-surface--flat` to change its emphasis.
+
+## Sass mixin
+
+Applications that do not want the compiled utility class can consume the surface module directly:
+
+<Source
+  dark={true}
+  language="scss"
+  format="dedent"
+  code={`
+    @use '@box-model/web/styles/surface';
+
+    .light-feature {
+      @include surface.offset-theme(light);
+    }
+
+    .integration-panel {
+      @include surface.frame(prominent, light);
+    }
+
+`}
+/>
+
+The `surface` module is mixin-only, so using it inside a component emits the frame where it is
+included without also copying the compiled utility selectors into that component's stylesheet.
+The utility selectors are emitted by the complete `box-model` stylesheet instead.
+
+The second `frame` argument controls the surface fallback scheme when the host application has not
+registered the Box Model theme variables. `offset-theme()` scopes all three offset tokens for
+nested Box Model components in partial-theme integrations. When the complete theme variables are
+present, they remain authoritative unless deliberately overridden in a nearer scope.
+
+The surface API can be customized with:
+
+- `--box-model-surface-background`
+- `--box-model-surface-border`
+- `--box-model-surface-color`
+- `--box-model-surface-padding`
+- `--box-model-surface-shadow`
+
+## Accessibility
+
+The border is always retained so the surface does not rely on its shadow as the only boundary. In
+forced-colors mode, the decorative shadow is removed and the border uses the system `CanvasText`
+color. Components use the same rule. Offset shadows do not replace focus rings or communicate
+state on their own.

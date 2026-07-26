@@ -33,32 +33,56 @@ describe('dialog-box', () => {
       </dialog-box>
     `);
 
-    let closed = false;
-    element.addEventListener('close', () => {
-      closed = true;
-    });
+    const closeEvents: Event[] = [];
+    element.addEventListener('close', (event) => closeEvents.push(event));
 
     const closeButton = element.querySelector('close-control-box');
     const buttonEl = closeButton?.shadowRoot?.querySelector('button');
     buttonEl?.click();
 
-    expect(closed).to.be.true;
+    expect(closeEvents).to.have.length(1);
+    expect(closeEvents[0].target).to.equal(element);
     expect(element.hasAttribute('hidden')).to.be.true;
   });
 
-  it('allows backdrop cancel by default', async () => {
-    const element = await fixture<Dialog>(html`<dialog-box open></dialog-box>`);
-    const dialog = element.shadowRoot?.querySelector('dialog');
-    const cancelEvent = new Event('cancel', { cancelable: true });
-    dialog?.dispatchEvent(cancelEvent);
-    expect(cancelEvent.defaultPrevented).to.be.false;
+  it('allows Escape cancellation even when backdrop closing is disabled', async () => {
+    for (const noBackdropClose of [false, true]) {
+      const element = await fixture<Dialog>(html`
+        <dialog-box open ?no-backdrop-close=${noBackdropClose}></dialog-box>
+      `);
+      const dialog = element.shadowRoot?.querySelector('dialog');
+      const cancelEvent = new Event('cancel', { cancelable: true });
+      dialog?.dispatchEvent(cancelEvent);
+      expect(cancelEvent.defaultPrevented).to.be.false;
+    }
   });
 
-  it('prevents backdrop cancel when no-backdrop-close is set', async () => {
+  it('closes on a backdrop click by default', async () => {
+    const element = await fixture<Dialog>(html`<dialog-box open></dialog-box>`);
+    const dialog = element.shadowRoot?.querySelector('dialog');
+    const closeEvents: Event[] = [];
+    element.addEventListener('close', (event) => closeEvents.push(event));
+
+    dialog?.click();
+
+    expect(element.open).to.be.false;
+    expect(closeEvents).to.have.length(1);
+  });
+
+  it('keeps the dialog open on backdrop clicks when no-backdrop-close is set', async () => {
     const element = await fixture<Dialog>(html`<dialog-box open no-backdrop-close></dialog-box>`);
     const dialog = element.shadowRoot?.querySelector('dialog');
-    const cancelEvent = new Event('cancel', { cancelable: true });
-    dialog?.dispatchEvent(cancelEvent);
-    expect(cancelEvent.defaultPrevented).to.be.true;
+
+    dialog?.click();
+
+    expect(element.open).to.be.true;
+  });
+
+  it('does not treat content clicks as backdrop clicks', async () => {
+    const element = await fixture<Dialog>(html`<dialog-box open><p>Content</p></dialog-box>`);
+
+    element.querySelector('p')?.click();
+
+    expect(element.open).to.be.true;
   });
 });

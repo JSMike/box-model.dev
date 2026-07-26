@@ -6,10 +6,15 @@ import slotStyles from './table.slot.scss?inline';
 
 export const TableBox = 'table-box';
 
+/**
+ * Styled host for tabular content.
+ * @slot - Default slot content.
+ */
 @customElement(TableBox)
 export class Table extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Alternate row background colors. */
   @property({ reflect: true })
   public zebra?: 'surface' | 'border' | 'padding' | 'content' | 'margin';
 

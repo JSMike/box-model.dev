@@ -3,8 +3,11 @@
 
 :host {
   display: block;
+  /** Toolbar background. */
   @include theme.custom-property('toolbar-background', 'box-model-background-elevated');
+  /** Toolbar border color. */
   @include theme.custom-property('toolbar-border-color', 'box-model-border-strong');
+  /** Toolbar text color. */
   @include theme.custom-property('toolbar-text-color', 'box-model-text-primary');
   border: 1px solid var(--toolbar-border-color);
   background-color: var(--toolbar-background);

@@ -55,7 +55,7 @@ const meta: Docs = {
         },
         'no-backdrop-close': {
           type: 'boolean',
-          description: 'Prevents closing when the user clicks the backdrop or presses Escape.',
+          description: 'Prevents closing when the user clicks the backdrop. Escape remains enabled.',
           defaultValue: false,
           options: [true, false],
         },
@@ -68,7 +68,7 @@ const meta: Docs = {
       },
       events: {
         close: {
-          description: 'Emitted when the drawer closes (via close control or backdrop).',
+          description: 'Emitted when the drawer closes via close control, backdrop, or Escape.',
           detail: 'void',
         },
       },
@@ -165,7 +165,7 @@ export const Canvas: Story = {
           ? html`<close-control-box
               slot="close-control"
               label="Close drawer"
-              style="--close-size: 1.25rem"
+              style="--close-control-size: 1.25rem"
             ></close-control-box>`
           : nothing}
       </drawer-box>

@@ -2,14 +2,23 @@
 
 :host {
   display: inline-block;
+  /** Toast padding. */
   --toast-padding: #{tokens.$component-toast-padding};
+  /** Toast gap. */
   --toast-gap: #{tokens.$component-toast-gap};
+  /** Toast border width. */
   --toast-border-width: #{tokens.$component-toast-border-width};
+  /** Toast shadow. */
   --toast-shadow: #{tokens.$component-toast-shadow};
+  /** Toast background. */
   --toast-background: #{tokens.$component-toast-default-background};
+  /** Toast border. */
   --toast-border: #{tokens.$component-toast-default-border};
+  /** Toast text. */
   --toast-text: #{tokens.$component-toast-default-text};
+  /** Toast icon. */
   --toast-icon: #{tokens.$component-toast-default-icon};
+  /** Toast close size. */
   --toast-close-size: #{tokens.$component-close-control-size};
 }
 

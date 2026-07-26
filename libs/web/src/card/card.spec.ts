@@ -17,7 +17,10 @@ describe('card-box', () => {
         <p>Body</p>
         <div slot="footer">Footer</div>
         <div slot="actions"><button>CTA</button></div>
-        <close-control-box slot="close-control" label="Dismiss card"></close-control-box>
+        <close-control-box
+          slot="close-control"
+          label="Dismiss card"
+        ></close-control-box>
       </card-box>
     `);
 
@@ -33,9 +36,10 @@ describe('card-box', () => {
     expect(actions?.textContent).to.equal('CTA');
     expect(close).to.exist;
 
-    let closed = false;
-    element.addEventListener('close', () => (closed = true));
+    const closeEvents: Event[] = [];
+    element.addEventListener('close', (event) => closeEvents.push(event));
     close?.shadowRoot?.querySelector('button')?.click();
-    expect(closed).to.be.true;
+    expect(closeEvents).to.have.length(1);
+    expect(closeEvents[0].target).to.equal(element);
   });
 });

@@ -6,10 +6,15 @@ import slotStyles from './select.slot.scss?inline';
 
 export const SelectBox = 'select-box';
 
+/**
+ * Styled host for a native select control.
+ * @slot - Default slot content.
+ */
 @customElement(SelectBox)
 export class Select extends LitElement {
   static override styles = unsafeCSS(hostStyles);
 
+  /** Stretch the control to fill available width. */
   @property({ type: Boolean, reflect: true }) public fullwidth = false;
 
   override connectedCallback() {

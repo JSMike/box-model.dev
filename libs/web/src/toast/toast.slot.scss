@@ -17,5 +17,5 @@ toast-box p {
 toast-box close-control-box {
   margin-left: auto;
   align-self: flex-start;
-  --close-size: var(--toast-close-size);
+  --close-control-size: var(--toast-close-size);
 }
