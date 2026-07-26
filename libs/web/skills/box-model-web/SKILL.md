@@ -44,6 +44,17 @@ node scripts/inspect-cem.mjs --manifest ./node_modules/@box-model/web/custom-ele
 5. In Angular, React, or other frameworks, adapt binding and event syntax while preserving the
    custom-element attributes, property types, event names, and light-DOM slot composition.
 
+## Configure JSX types
+
+For TypeScript JSX projects, append the matching declaration entry to `compilerOptions.types`:
+
+- React: `@box-model/web/react`
+- Preact: `@box-model/web/preact`
+- Solid: `@box-model/web/solid`
+
+Preserve any existing `types` entries. The declaration provides JSX checking only, so still import
+`@box-model/web` or the required component entrypoints to register the elements at runtime.
+
 ## Apply styles
 
 1. Read [references/styles.md](references/styles.md) when configuring themes, utility classes,

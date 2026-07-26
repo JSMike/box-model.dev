@@ -32,6 +32,14 @@ independent `@box-model/web` 0.0.1 release review.
       native form controls
 - [x] Misleading pre-release interaction APIs are resolved before consumers depend on them
 - [x] Regression tests exercise final behavior rather than prior implementation history
+- [x] React, Preact, and Solid JSX declarations are available through type-only package exports
+- [x] Framework consumers can enable the declarations through `compilerOptions.types`
+- [x] Storybook documents framework-specific setup next to the introduction
+- [x] Framework declarations work with Bundler and NodeNext module resolution
+- [x] Framework declarations type direct and ancestor listeners for custom events using each
+      framework's runtime event-name convention
+- [x] The package and Storybook include a 0.0.1 changelog and pre-1.0 SemVer policy
+- [x] Shared implementation services remain internal rather than becoming public package exports
 
 ## Related Issues
 

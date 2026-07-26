@@ -68,32 +68,61 @@
   pointer-events: auto;
 }
 
-@supports (anchor-name: --tooltip-anchor) {
-  :host .tooltip-box__trigger-wrapper > * {
-    anchor-name: --tooltip-anchor;
-  }
-
+/*
+ * Chromium shipped anchor() before position-area. Keep an anchor-function path for those
+ * intermediate releases and for the OddBird polyfill, then use position-area where available.
+ */
+@supports not (position-area: top) {
   :host .tooltip-box__content {
     position: fixed;
-    position-anchor: --tooltip-anchor;
-    inset: auto auto anchor(top) anchor(center);
-    translate: -50% 0;
+    inset: auto;
+  }
+
+  :host .tooltip-box__content[data-placement='top'] {
+    bottom: anchor(top);
+    left: anchor(center);
+    translate: -50% calc(-1 * var(--tooltip-offset));
   }
 
   :host .tooltip-box__content[data-placement='bottom'] {
-    inset: anchor(bottom) auto auto anchor(center);
-    translate: -50% 0;
+    top: anchor(bottom);
+    left: anchor(center);
+    translate: -50% var(--tooltip-offset);
   }
 
   :host .tooltip-box__content[data-placement='left'] {
-    inset: anchor(center) auto auto auto;
-    right: auto;
-    left: auto;
-    translate: 0 -50%;
+    top: anchor(center);
+    right: anchor(left);
+    translate: calc(-1 * var(--tooltip-offset)) -50%;
   }
 
   :host .tooltip-box__content[data-placement='right'] {
-    inset: anchor(center) auto auto anchor(right);
-    translate: 0 -50%;
+    top: anchor(center);
+    left: anchor(right);
+    translate: var(--tooltip-offset) -50%;
+  }
+}
+
+@supports (position-area: top) {
+  :host .tooltip-box__content {
+    position: fixed;
+    position-anchor: --tooltip-anchor;
+    position-area: top;
+    inset: auto;
+    margin: var(--tooltip-offset);
+    position-try: flip-block, flip-inline, flip-block flip-inline;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+
+  :host .tooltip-box__content[data-placement='bottom'] {
+    position-area: bottom;
+  }
+
+  :host .tooltip-box__content[data-placement='left'] {
+    position-area: left;
+  }
+
+  :host .tooltip-box__content[data-placement='right'] {
+    position-area: right;
   }
 }

@@ -72,8 +72,6 @@ export type ComponentMeta = {
 
 export type ComponentMetadataResult = {
   components: ComponentMeta[];
-  /** Bubbling event names for React/Preact/Solid typings only. */
-  events: string[];
   warnings: string[];
 };
 
@@ -193,7 +191,6 @@ export async function collectComponentMetadataFromFiles(
   const program = createProgram(options?.tsconfigPath, filePaths);
   const checker = program.getTypeChecker();
   const components: ComponentMeta[] = [];
-  const bubblingEvents = new Set<string>();
   const warnings: string[] = [];
 
   for (const filePath of filePaths) {
@@ -214,11 +211,6 @@ export async function collectComponentMetadataFromFiles(
 
     for (const component of fileComponents) {
       components.push(component);
-      for (const event of component.events) {
-        if (event.bubbles) {
-          bubblingEvents.add(event.name);
-        }
-      }
     }
   }
 
@@ -226,7 +218,6 @@ export async function collectComponentMetadataFromFiles(
 
   return {
     components,
-    events: Array.from(bubblingEvents).sort((a, b) => a.localeCompare(b)),
     warnings,
   };
 }

@@ -33,6 +33,15 @@
     },
     "./styles/*": {
       "default": "./styles/*"
+    },
+    "./react": {
+      "types": "./types/react.d.ts"
+    },
+    "./preact": {
+      "types": "./types/preact.d.ts"
+    },
+    "./solid": {
+      "types": "./types/solid.d.ts"
     }
   },
   "publishConfig": {

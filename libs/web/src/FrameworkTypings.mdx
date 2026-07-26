@@ -1,0 +1,163 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Framework typings" />
+
+# Framework typings
+
+Box Model publishes opt-in JSX declarations for React, Preact, and Solid. They teach each
+framework's TypeScript JSX namespace about every custom-element tag and validate declared
+attributes such as `tag-box`'s `variant`.
+
+The declarations are type-only. They do not register custom elements or add framework packages to
+your production bundle.
+
+## Register the components
+
+Import every component once:
+
+<Source dark={true} language="ts" code={`import '@box-model/web';`} />
+
+Or register only the components the application uses:
+
+<Source dark={true} language="ts" code={`import '@box-model/web/tag';`} />
+
+## React
+
+Append `@box-model/web/react` to the `types` array in the React application's TypeScript
+configuration:
+
+<Source
+  dark={true}
+  language="json"
+  code={`{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["@box-model/web/react"]
+  }
+}`}
+/>
+
+TypeScript then recognizes and validates Box Model elements:
+
+<Source
+  dark={true}
+  language="tsx"
+  code={`export function Status() {
+  return <tag-box variant="success">Ready</tag-box>;
+}`}
+/>
+
+React custom-element events preserve the event's dispatched name. For example, the `close` event is
+exposed as lowercase `onclose`, not the standard React `onClose` prop:
+
+<Source
+  dark={true}
+  language="tsx"
+  code={`export function DismissibleAlert() {
+  return (
+    <alert-box onclose={(event) => console.log(event.detail)}>
+      Account settings saved
+    </alert-box>
+  );
+}`}
+/>
+
+Box Model's public custom events bubble and cross shadow boundaries. React attaches an exact-name
+custom-event prop to a custom element, so the generated declarations allow another custom element
+to act as the ancestor listener:
+
+<Source
+  dark={true}
+  language="tsx"
+  code={`export function AlertRegion() {
+  return (
+    <columns-box onclose={(event) => console.log(event.detail)}>
+      <alert-box>Account settings saved</alert-box>
+    </columns-box>
+  );
+}`}
+/>
+
+React does not attach an unrecognized lowercase custom-event prop to a native element such as
+`section`. Use a ref with `addEventListener('close', handler)` when a native React element must own
+the listener.
+
+## Preact
+
+Use the Preact declaration entry alongside the project's existing JSX configuration:
+
+<Source
+  dark={true}
+  language="json"
+  code={`{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "types": ["@box-model/web/preact"]
+  }
+}`}
+/>
+
+Preact also preserves custom-event casing, so the `close` event uses `onclose` for both direct and
+ancestor listeners. Unlike React, Preact attaches unrecognized exact-name event props to native
+DOM elements, so the ancestor may be either native or custom.
+
+## Solid
+
+Use the Solid declaration entry:
+
+<Source
+  dark={true}
+  language="json"
+  code={`{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["@box-model/web/solid"]
+  }
+}`}
+/>
+
+Solid's custom-event syntax uses a colon and installs a native listener. The same `on:close`
+spelling can be used on the component or any ancestor:
+
+<Source
+  dark={true}
+  language="tsx"
+  code={`export function DismissibleAlert() {
+  return (
+    <alert-box on:close={(event) => console.log(event.detail)}>
+      Account settings saved
+    </alert-box>
+  );
+}`}
+/>
+
+## Preserve existing global types
+
+When a project already defines `compilerOptions.types`, append the Box Model entry instead of
+replacing the existing values. For example, a Vite React application commonly needs both:
+
+<Source
+  dark={true}
+  language="json"
+  code={`{
+  "compilerOptions": {
+    "types": ["vite/client", "@box-model/web/react"]
+  }
+}`}
+/>
+
+Specifying `types` controls which ambient type packages TypeScript includes. Keep every existing
+entry the application still relies on.
+
+## What is checked
+
+- Custom-element tag names
+- Manifest-backed attribute names and values
+- Direct and ancestor custom-event handlers, including event payloads
+- Standard framework HTML attributes and children
+
+The framework declaration and runtime import are separate by design: the declaration provides
+editor and compiler guidance, while the JavaScript entrypoint performs custom-element
+registration.

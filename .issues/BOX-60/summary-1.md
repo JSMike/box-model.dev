@@ -35,5 +35,5 @@
 ## Next Steps
 
 - Review the public API and token changes.
-- Keep tooltip portability/association, framework JSX publication, explicit stat scheme tokens, and
-  a future CDN bundle as separate follow-up work.
+- Keep tooltip portability/association, explicit stat scheme tokens, and a future CDN bundle as
+  separate follow-up work.

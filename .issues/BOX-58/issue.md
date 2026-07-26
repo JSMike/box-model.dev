@@ -1,17 +1,18 @@
 # BOX-58: slotStyleService constructable stylesheet portability (jsdom)
 
 <!-- Metadata -->
-| Field        | Value        |
-|--------------|--------------|
-| Status       | ready        |
-| Owner        | Agent        |
-| Complexity   | medium       |
-| Created      | 2026-07-13   |
-| Source       | Angular CEM integration (BOX-55) |
-| External     |              |
-| Blocks       |              |
-| Blocked-by   |              |
-| Priority     | medium       |
+
+| Field      | Value                            |
+| ---------- | -------------------------------- |
+| Status     | ready                            |
+| Owner      | Agent                            |
+| Complexity | medium                           |
+| Created    | 2026-07-13                       |
+| Source     | Angular CEM integration (BOX-55) |
+| External   |                                  |
+| Blocks     |                                  |
+| Blocked-by |                                  |
+| Priority   | medium                           |
 
 ## Summary
 
@@ -32,8 +33,9 @@ Choose and implement one (or both) of:
 
 Also:
 
-- [ ] Box Model’s own Vitest setup uses the same shim/fallback path so library tests and consumer tests stay aligned
-- [ ] Document the requirement/shim in `libs/web/README.md` / `AI-README.md`
+- [x] Box Model’s own Vitest setup uses the documented `CSSStyleSheet` and
+      `adoptedStyleSheets` shim path so library tests and consumer tests stay aligned
+- [x] Document the requirement and Vitest/Jest setup in `libs/web/README.md` and Storybook
 - [ ] Angular demo can drop its one-off shim once the library solution lands (verify in follow-up)
 
 ## References

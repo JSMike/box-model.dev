@@ -9,126 +9,177 @@ interface SignalLike<T> {
 }
 type Signalish<T> = T | SignalLike<T>;
 
+type ComponentElementMap = {
+  'alert-box': import('../alert/alert.js').Alert;
+  'badge-box': import('../badge/badge.js').Badge;
+  'banner-box': import('../banner/banner.js').Banner;
+  'button-box': import('../button/button.js').Button;
+  'card-box': import('../card/card.js').Card;
+  'checkbox-group-box': import('../checkbox/checkbox.js').CheckboxGroup;
+  'close-control-box': import('../close-control/close-control.js').CloseControl;
+  'columns-box': import('../columns/columns.js').Columns;
+  'dialog-box': import('../dialog/dialog.js').Dialog;
+  'dialog-footer-box': import('../dialog/dialog-footer.js').DialogFooter;
+  'dialog-header-box': import('../dialog/dialog-header.js').DialogHeader;
+  'divider-box': import('../divider/divider.js').Divider;
+  'drawer-box': import('../drawer/drawer.js').Drawer;
+  'drawer-header-box': import('../drawer/drawer-header.js').DrawerHeader;
+  'input-box': import('../input/input.js').Input;
+  'link-box': import('../link/link.js').Link;
+  'list-box': import('../list/list.js').List;
+  'loading-box': import('../loading/loading.js').Loading;
+  'markdown-box': import('../markdown/markdown.js').Markdown;
+  'progress-box': import('../progress/progress.js').Progress;
+  'radio-group-box': import('../radio/radio.js').RadioGroup;
+  'select-box': import('../select/select.js').Select;
+  'skeleton-box': import('../skeleton/skeleton.js').Skeleton;
+  'stat-box': import('../stat/stat.js').Stat;
+  'status-icon-box': import('../status-icon/status-icon.js').StatusIcon;
+  'table-box': import('../table/table.js').Table;
+  'tag-box': import('../tag/tag.js').Tag;
+  'terminal-box': import('../terminal/terminal.js').Terminal;
+  'terminal-line-box': import('../terminal/terminal-line.js').TerminalLine;
+  'textarea-box': import('../textarea/textarea.js').Textarea;
+  'toast-box': import('../toast/toast.js').Toast;
+  'toolbar-box': import('../toolbar/toolbar.js').Toolbar;
+  'tooltip-box': import('../tooltip/tooltip.js').Tooltip;
+  'wysiwyg-box': import('../wysiwyg/wysiwyg.js').Wysiwyg;
+};
+
 type ComponentAttributeMap = {
   'alert-box': {
-    'variant': Signalish<import('../alert/alert').Alert['variant'] | undefined>;
+    'variant': Signalish<import('../alert/alert.js').Alert['variant'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'banner-box': {
-    'variant': Signalish<import('../banner/banner').Banner['variant'] | undefined>;
+    'variant': Signalish<import('../banner/banner.js').Banner['variant'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'button-box': {
-    'size': Signalish<import('../button/button').Button['size'] | undefined>;
-    'variant': Signalish<import('../button/button').Button['variant'] | undefined>;
+    'size': Signalish<import('../button/button.js').Button['size'] | undefined>;
+    'variant': Signalish<import('../button/button.js').Button['variant'] | undefined>;
   };
   'card-box': {
-    'hoverable': Signalish<import('../card/card').Card['hoverable'] | undefined>;
+    'hoverable': Signalish<import('../card/card.js').Card['hoverable'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'checkbox-group-box': {
-    'legend': Signalish<import('../checkbox/checkbox').CheckboxGroup['legend'] | undefined>;
+    'legend': Signalish<import('../checkbox/checkbox.js').CheckboxGroup['legend'] | undefined>;
   };
   'close-control-box': {
-    'label': Signalish<import('../close-control/close-control').CloseControl['label'] | undefined>;
+    'label': Signalish<import('../close-control/close-control.js').CloseControl['label'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'columns-box': {
-    'gap': Signalish<import('../columns/columns').Columns['gap'] | undefined>;
-    'min-width': Signalish<import('../columns/columns').Columns['minWidth'] | undefined>;
+    'gap': Signalish<import('../columns/columns.js').Columns['gap'] | undefined>;
+    'min-width': Signalish<import('../columns/columns.js').Columns['minWidth'] | undefined>;
   };
   'dialog-box': {
-    'no-backdrop-close': Signalish<import('../dialog/dialog').Dialog['noBackdropClose'] | undefined>;
-    'open': Signalish<import('../dialog/dialog').Dialog['open'] | undefined>;
+    'no-backdrop-close': Signalish<import('../dialog/dialog.js').Dialog['noBackdropClose'] | undefined>;
+    'open': Signalish<import('../dialog/dialog.js').Dialog['open'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'divider-box': {
-    'orientation': Signalish<import('../divider/divider').Divider['orientation'] | undefined>;
+    'orientation': Signalish<import('../divider/divider.js').Divider['orientation'] | undefined>;
   };
   'drawer-box': {
-    'no-backdrop-close': Signalish<import('../drawer/drawer').Drawer['noBackdropClose'] | undefined>;
-    'open': Signalish<import('../drawer/drawer').Drawer['open'] | undefined>;
-    'placement': Signalish<import('../drawer/drawer').Drawer['placement'] | undefined>;
+    'no-backdrop-close': Signalish<import('../drawer/drawer.js').Drawer['noBackdropClose'] | undefined>;
+    'open': Signalish<import('../drawer/drawer.js').Drawer['open'] | undefined>;
+    'placement': Signalish<import('../drawer/drawer.js').Drawer['placement'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'input-box': {
-    'fullwidth': Signalish<import('../input/input').Input['fullwidth'] | undefined>;
+    'fullwidth': Signalish<import('../input/input.js').Input['fullwidth'] | undefined>;
   };
   'link-box': {
-    'size': Signalish<import('../link/link').Link['size'] | undefined>;
-    'variant': Signalish<import('../link/link').Link['variant'] | undefined>;
+    'size': Signalish<import('../link/link.js').Link['size'] | undefined>;
+    'variant': Signalish<import('../link/link.js').Link['variant'] | undefined>;
   };
   'list-box': {
-    'ordered': Signalish<import('../list/list').List['ordered'] | undefined>;
+    'ordered': Signalish<import('../list/list.js').List['ordered'] | undefined>;
   };
   'loading-box': {
-    'label-visible': Signalish<import('../loading/loading').Loading['labelVisible'] | undefined>;
+    'label-visible': Signalish<import('../loading/loading.js').Loading['labelVisible'] | undefined>;
   };
   'markdown-box': {
-    'linkify': Signalish<import('../markdown/markdown').Markdown['linkify'] | undefined>;
+    'linkify': Signalish<import('../markdown/markdown.js').Markdown['linkify'] | undefined>;
   };
   'progress-box': {
-    'label': Signalish<import('../progress/progress').Progress['label'] | undefined>;
-    'max': Signalish<import('../progress/progress').Progress['max'] | undefined>;
-    'value': Signalish<import('../progress/progress').Progress['value'] | undefined>;
+    'label': Signalish<import('../progress/progress.js').Progress['label'] | undefined>;
+    'max': Signalish<import('../progress/progress.js').Progress['max'] | undefined>;
+    'value': Signalish<import('../progress/progress.js').Progress['value'] | undefined>;
   };
   'radio-group-box': {
-    'legend': Signalish<import('../radio/radio').RadioGroup['legend'] | undefined>;
+    'legend': Signalish<import('../radio/radio.js').RadioGroup['legend'] | undefined>;
   };
   'select-box': {
-    'fullwidth': Signalish<import('../select/select').Select['fullwidth'] | undefined>;
+    'fullwidth': Signalish<import('../select/select.js').Select['fullwidth'] | undefined>;
   };
   'skeleton-box': {
-    'animated': Signalish<import('../skeleton/skeleton').Skeleton['animated'] | undefined>;
-    'height': Signalish<import('../skeleton/skeleton').Skeleton['height'] | undefined>;
-    'width': Signalish<import('../skeleton/skeleton').Skeleton['width'] | undefined>;
+    'animated': Signalish<import('../skeleton/skeleton.js').Skeleton['animated'] | undefined>;
+    'height': Signalish<import('../skeleton/skeleton.js').Skeleton['height'] | undefined>;
+    'width': Signalish<import('../skeleton/skeleton.js').Skeleton['width'] | undefined>;
   };
   'stat-box': {
-    'delta': Signalish<import('../stat/stat').Stat['delta'] | undefined>;
-    'show-trend-indicator': Signalish<import('../stat/stat').Stat['showTrendIndicator'] | undefined>;
-    'trend': Signalish<import('../stat/stat').Stat['trend'] | undefined>;
-    'value': Signalish<import('../stat/stat').Stat['value'] | undefined>;
+    'delta': Signalish<import('../stat/stat.js').Stat['delta'] | undefined>;
+    'show-trend-indicator': Signalish<import('../stat/stat.js').Stat['showTrendIndicator'] | undefined>;
+    'trend': Signalish<import('../stat/stat.js').Stat['trend'] | undefined>;
+    'value': Signalish<import('../stat/stat.js').Stat['value'] | undefined>;
   };
   'status-icon-box': {
-    'label': Signalish<import('../status-icon/status-icon').StatusIcon['label'] | undefined>;
-    'variant': Signalish<import('../status-icon/status-icon').StatusIcon['variant'] | undefined>;
+    'label': Signalish<import('../status-icon/status-icon.js').StatusIcon['label'] | undefined>;
+    'variant': Signalish<import('../status-icon/status-icon.js').StatusIcon['variant'] | undefined>;
   };
   'table-box': {
-    'zebra': Signalish<import('../table/table').Table['zebra'] | undefined>;
+    'zebra': Signalish<import('../table/table.js').Table['zebra'] | undefined>;
   };
   'tag-box': {
-    'variant': Signalish<import('../tag/tag').Tag['variant'] | undefined>;
+    'variant': Signalish<import('../tag/tag.js').Tag['variant'] | undefined>;
   };
   'terminal-line-box': {
-    'cursor': Signalish<import('../terminal/terminal-line').TerminalLine['cursor'] | undefined>;
-    'variant': Signalish<import('../terminal/terminal-line').TerminalLine['variant'] | undefined>;
+    'cursor': Signalish<import('../terminal/terminal-line.js').TerminalLine['cursor'] | undefined>;
+    'variant': Signalish<import('../terminal/terminal-line.js').TerminalLine['variant'] | undefined>;
   };
   'textarea-box': {
-    'fullwidth': Signalish<import('../textarea/textarea').Textarea['fullwidth'] | undefined>;
+    'fullwidth': Signalish<import('../textarea/textarea.js').Textarea['fullwidth'] | undefined>;
   };
   'toast-box': {
-    'variant': Signalish<import('../toast/toast').Toast['variant'] | undefined>;
+    'variant': Signalish<import('../toast/toast.js').Toast['variant'] | undefined>;
+    'onclose'?: (event: CustomEvent<void>) => void;
   };
   'tooltip-box': {
-    'default-placement': Signalish<import('../tooltip/tooltip').Tooltip['defaultPlacement'] | undefined>;
-    'label': Signalish<import('../tooltip/tooltip').Tooltip['label'] | undefined>;
+    'default-placement': Signalish<import('../tooltip/tooltip.js').Tooltip['defaultPlacement'] | undefined>;
+    'label': Signalish<import('../tooltip/tooltip.js').Tooltip['label'] | undefined>;
   };
   'wysiwyg-box': {
-    'value': Signalish<import('../wysiwyg/wysiwyg').Wysiwyg['value'] | undefined>;
+    'value': Signalish<import('../wysiwyg/wysiwyg.js').Wysiwyg['value'] | undefined>;
+    'oninput'?: (event: Event) => void;
   };
 };
 
-type ComponentTagName = keyof ComponentAttributeMap;
-type HtmlTagName = keyof HTMLElementTagNameMap;
-type BasePreactProps<Tag extends HtmlTagName> = PreactJSX.HTMLAttributes<
-  HTMLElementTagNameMap[Tag]
+type ComponentTagName = keyof ComponentElementMap;
+type BasePreactProps<Tag extends ComponentTagName> = PreactJSX.HTMLAttributes<
+  ComponentElementMap[Tag]
 >;
 
 type ComponentIntrinsicElements = {
-  [Tag in ComponentTagName]: [keyof ComponentAttributeMap[Tag]] extends [never]
-    ? BasePreactProps<Tag>
-    : Omit<BasePreactProps<Tag>, keyof ComponentAttributeMap[Tag]> &
-        Partial<ComponentAttributeMap[Tag]>;
+  [Tag in ComponentTagName]: Tag extends keyof ComponentAttributeMap
+    ? [keyof ComponentAttributeMap[Tag]] extends [never]
+      ? BasePreactProps<Tag>
+      : Omit<BasePreactProps<Tag>, keyof ComponentAttributeMap[Tag]> &
+          Partial<ComponentAttributeMap[Tag]>
+    : BasePreactProps<Tag>;
 };
 
 declare module 'preact/jsx-runtime' {
   namespace JSX {
+    interface DOMAttributes<Target extends EventTarget> {
+      'onclose'?: (event: PreactJSX.TargetedEvent<Target, CustomEvent<void>>) => void;
+      'oninput'?: (event: PreactJSX.TargetedEvent<Target, Event>) => void;
+    }
     interface IntrinsicElements {
       'alert-box': ComponentIntrinsicElements['alert-box'];
+      'badge-box': ComponentIntrinsicElements['badge-box'];
       'banner-box': ComponentIntrinsicElements['banner-box'];
       'button-box': ComponentIntrinsicElements['button-box'];
       'card-box': ComponentIntrinsicElements['card-box'];
@@ -136,8 +187,11 @@ declare module 'preact/jsx-runtime' {
       'close-control-box': ComponentIntrinsicElements['close-control-box'];
       'columns-box': ComponentIntrinsicElements['columns-box'];
       'dialog-box': ComponentIntrinsicElements['dialog-box'];
+      'dialog-footer-box': ComponentIntrinsicElements['dialog-footer-box'];
+      'dialog-header-box': ComponentIntrinsicElements['dialog-header-box'];
       'divider-box': ComponentIntrinsicElements['divider-box'];
       'drawer-box': ComponentIntrinsicElements['drawer-box'];
+      'drawer-header-box': ComponentIntrinsicElements['drawer-header-box'];
       'input-box': ComponentIntrinsicElements['input-box'];
       'link-box': ComponentIntrinsicElements['link-box'];
       'list-box': ComponentIntrinsicElements['list-box'];
@@ -151,21 +205,13 @@ declare module 'preact/jsx-runtime' {
       'status-icon-box': ComponentIntrinsicElements['status-icon-box'];
       'table-box': ComponentIntrinsicElements['table-box'];
       'tag-box': ComponentIntrinsicElements['tag-box'];
+      'terminal-box': ComponentIntrinsicElements['terminal-box'];
       'terminal-line-box': ComponentIntrinsicElements['terminal-line-box'];
       'textarea-box': ComponentIntrinsicElements['textarea-box'];
       'toast-box': ComponentIntrinsicElements['toast-box'];
+      'toolbar-box': ComponentIntrinsicElements['toolbar-box'];
       'tooltip-box': ComponentIntrinsicElements['tooltip-box'];
       'wysiwyg-box': ComponentIntrinsicElements['wysiwyg-box'];
-      'badge-box': BasePreactProps<'badge-box'>;
-      'dialog-footer-box': BasePreactProps<'dialog-footer-box'>;
-      'dialog-header-box': BasePreactProps<'dialog-header-box'>;
-      'drawer-header-box': BasePreactProps<'drawer-header-box'>;
-      'terminal-box': BasePreactProps<'terminal-box'>;
-      'toolbar-box': BasePreactProps<'toolbar-box'>;
-    }
-    interface IntrinsicAttributes {
-      'onclose'?: (event: CustomEvent<unknown>) => void;
-      'oninput'?: (event: CustomEvent<unknown>) => void;
     }
   }
 }
