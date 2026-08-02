@@ -3,13 +3,12 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import fs from 'node:fs';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
 import { isPublicLibraryEntryDirectory } from './generators/library-entrypoints.js';
 
-const srcDir = path.resolve(__dirname, 'src');
-const outputPath = path.resolve(__dirname, '../../dist/libs/web');
+const srcDir = path.resolve(import.meta.dirname, 'src');
+const outputPath = path.resolve(import.meta.dirname, '../../dist/libs/web');
 const entryDirectories = fs
   .readdirSync(srcDir, { withFileTypes: true })
   .filter(
@@ -31,7 +30,10 @@ for (const directory of entryDirectories) {
   entryPoints[directory] = path.join(srcDir, directory, 'index.ts');
 }
 
-const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
+const tokensDistPath = path.resolve(
+  import.meta.dirname,
+  '../../dist/libs/tokens'
+);
 const isLitImport = (id: string): boolean =>
   id === 'lit' ||
   id.startsWith('lit/') ||
@@ -42,9 +44,10 @@ const isLitImport = (id: string): boolean =>
   id.startsWith('@lit/');
 
 export default defineConfig(() => ({
-  root: __dirname,
+  root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/libs/web',
   resolve: {
+    tsconfigPaths: true,
     alias: [
       {
         find: /^@box-model\/tokens\/tokens$/,
@@ -57,7 +60,6 @@ export default defineConfig(() => ({
     ],
   },
   plugins: [
-    nxViteTsPaths(),
     viteStaticCopy({
       targets: [
         {
@@ -69,7 +71,7 @@ export default defineConfig(() => ({
           dest: '.',
         },
         {
-          src: path.resolve(__dirname, '../../LICENSE'),
+          src: path.resolve(import.meta.dirname, '../../LICENSE'),
           dest: '.',
         },
         {
@@ -92,7 +94,7 @@ export default defineConfig(() => ({
     }),
     dts({
       entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
       pathsToAliases: false,
       beforeWriteFile: (filePath) => {
         const [topLevelDirectory] = path
@@ -107,7 +109,7 @@ export default defineConfig(() => ({
   ],
   // Uncomment this if you are using workers.
   // worker: {
-  //  plugins: [ nxViteTsPaths() ],
+  //  plugins: [],
   // },
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
@@ -126,13 +128,13 @@ export default defineConfig(() => ({
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
     },
-    rollupOptions: {
+    rolldownOptions: {
       // Let npm consumers share and deduplicate Lit with other component libraries.
       // A future self-contained CDN distribution can bundle Lit separately.
       external: isLitImport,
       plugins: [
         generatePackageJson({
-          inputFolder: __dirname,
+          inputFolder: import.meta.dirname,
           baseContents: (pkg) => {
             const baseExports = pkg.exports as Record<
               string,

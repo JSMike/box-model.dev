@@ -39,7 +39,9 @@
       "@box-model/rsd/*": ["libs/rsd/src/*"],
       "@box-model/rsd-app": ["libs/rsd-app/src/index.ts"],
       "@box-model/rsd-app/*": ["libs/rsd-app/src/*"]
-    }
+    },
+    "noUncheckedSideEffectImports": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }

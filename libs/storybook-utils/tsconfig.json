@@ -5,11 +5,9 @@
     "noPropertyAccessFromIndexSignature": false,
     "jsx": "react-jsx",
     "types": ["../web/src/types/react"],
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": [
-    "src",
-    "../web/src"
-  ]
+  "include": ["src", "../web/src"]
 }

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@box-model/rsd": "*",
-    "@expo/metro-config": "*",
+    "@expo/metro": "*",
     "@nx/detox": "*",
     "@nx/devkit": "*",
     "@nx/eslint": "*",
@@ -26,8 +26,6 @@
     "expo-status-bar": "*",
     "expo-system-ui": "*",
     "jest-expo": "*",
-    "metro-config": "*",
-    "metro-resolver": "*",
     "picocolors": "*",
     "react": "*",
     "react-dom": "*",

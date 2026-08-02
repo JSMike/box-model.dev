@@ -5,5 +5,18 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project box-model-web-vite --web",
-  "targets": {}
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/dist/out-tsc/apps/box-model-web-vite",
+        "{workspaceRoot}/dist/out-tsc/libs/web"
+      ],
+      "options": {
+        "cwd": "apps/box-model-web-vite",
+        "command": "tsc --build tsconfig.app.json --emitDeclarationOnly"
+      }
+    }
+  }
 }

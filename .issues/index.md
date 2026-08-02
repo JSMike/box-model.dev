@@ -1,6 +1,6 @@
 # Issue Index
 
-Generated: 2026-07-25
+Generated: 2026-08-01
 
 ## By Status
 
@@ -67,6 +67,7 @@ Generated: 2026-07-25
 
 | ID                          | Title                                                               | Completed  |
 | --------------------------- | ------------------------------------------------------------------- | ---------- |
+| [BOX-65](./BOX-65/issue.md) | Migrate workspace to Nx 23 and refresh RSD dependencies             | 2026-08-01 |
 | [BOX-52](./BOX-52/issue.md) | Write AI-Workflow methodology blog post from LM-44 and starter repo | 2026-02-06 |
 | [BOX-51](./BOX-51/issue.md) | Migrate deprecated SafeAreaView usage to safe-area-context          | 2026-01-25 |
 | [BOX-50](./BOX-50/issue.md) | Regenerate Expo Android project to remove EdgeToEdge theme          | 2026-01-25 |

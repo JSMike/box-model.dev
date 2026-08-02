@@ -2,13 +2,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
+import babelConfig from '../babel.config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const webOnlyExtensions = ['.web.js', '.web.jsx', '.web.ts', '.web.tsx'];
-
-const babelConfigPath = path.join(__dirname, '..', 'babel.config.js');
 
 export default defineConfig(() => {
   return {
@@ -18,7 +18,10 @@ export default defineConfig(() => {
     build: {
       assetsInlineLimit: 10 * 1024, // 10kb
     },
-    cacheDir: path.join(__dirname, '../../node_modules/.cache/storybook/rsd-app'),
+    cacheDir: path.join(
+      __dirname,
+      '../../node_modules/.cache/storybook/rsd-app'
+    ),
     css: {
       postcss: path.join(__dirname, '..'),
     },
@@ -27,11 +30,14 @@ export default defineConfig(() => {
       exclude: ['react-strict-dom'],
     },
     plugins: [
-      react({
-        babel: {
-          configFile: babelConfigPath,
-        },
-        exclude: [/\/node_modules\/(?!react-strict-dom)/],
+      react(),
+      babel({
+        parserOpts: babelConfig.parserOpts,
+        plugins: babelConfig.plugins,
+        exclude: [
+          /[\\/]node_modules[\\/](?!react-strict-dom[\\/])/,
+          /\0rolldown[\\/]runtime\.js/,
+        ],
       }),
     ],
     resolve: {
@@ -67,7 +73,10 @@ export default defineConfig(() => {
         },
         {
           find: /^@box-model\/rsd-app$/,
-          replacement: path.resolve(__dirname, '../../../libs/rsd-app/src/index.ts'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../libs/rsd-app/src/index.ts'
+          ),
         },
         {
           find: /^@box-model\/rsd-app\/(.*)/,
@@ -79,7 +88,10 @@ export default defineConfig(() => {
         },
         {
           find: /@box-model\/rsd\/([^/]+)/,
-          replacement: path.join(__dirname, '../../../libs/rsd/src/$1/index.ts'),
+          replacement: path.join(
+            __dirname,
+            '../../../libs/rsd/src/$1/index.ts'
+          ),
         },
         {
           // StyleX tokens file for RSD (must come before other token aliases)
@@ -91,19 +103,31 @@ export default defineConfig(() => {
         },
         {
           find: /^@box-model\/tokens\/tokens\.js$/,
-          replacement: path.resolve(__dirname, '../../../dist/libs/tokens/tokens.js'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../dist/libs/tokens/tokens.js'
+          ),
         },
         {
           find: /^@box-model\/tokens\/tokens$/,
-          replacement: path.resolve(__dirname, '../../../dist/libs/tokens/tokens.scss'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../dist/libs/tokens/tokens.scss'
+          ),
         },
         {
           find: /^@box-model\/tokens$/,
-          replacement: path.resolve(__dirname, '../../../dist/libs/tokens/tokens.js'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../dist/libs/tokens/tokens.js'
+          ),
         },
         {
           find: /^@box-model\/storybook-utils$/,
-          replacement: path.resolve(__dirname, '../../../libs/storybook-utils/src/index.ts'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../libs/storybook-utils/src/index.ts'
+          ),
         },
         {
           find: /^@box-model\/web\/styles\/(.*)/,
@@ -118,7 +142,10 @@ export default defineConfig(() => {
         },
         {
           find: /^@box-model\/web$/,
-          replacement: path.resolve(__dirname, '../../../dist/libs/web/index.js'),
+          replacement: path.resolve(
+            __dirname,
+            '../../../dist/libs/web/index.js'
+          ),
         },
       ],
     },

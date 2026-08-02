@@ -20,6 +20,18 @@ React Strict DOM implementation of the Box Model design system. Everything stays
   `}
 />
 
+Load the extracted StyleX stylesheet once at the root of web applications:
+
+<Source
+  dark={true}
+  format="dedent"
+  language="typescript"
+  code={`
+    import '@box-model/rsd/styles';
+    import { Button } from '@box-model/rsd/button';
+  `}
+/>
+
 ## Design Principles
 
 - **React Strict DOM first** – Use `html.*` primitives and `css.create` for compile-time styles; no runtime StyleX.

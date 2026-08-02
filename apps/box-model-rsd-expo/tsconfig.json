@@ -8,7 +8,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "declaration": true
+    "declaration": true,
+    "ignoreDeprecations": "6.0"
   },
   "files": [],
   "include": [],

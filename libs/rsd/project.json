@@ -4,41 +4,38 @@
   "sourceRoot": "libs/rsd/src",
   "projectType": "library",
   "tags": [],
-  "implicitDependencies": [
-    "tokens",
-    "web"
-  ],
-  "// targets": "to see all targets run: nx show project rsd --web",
+  "implicitDependencies": ["tokens", "web"],
   "targets": {
     "build": {
       "dependsOn": ["build-lib", "build-storybook"]
     },
     "build-lib": {
       "executor": "@nx/vite:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build-lib"],
       "options": {
         "outputPath": "dist/libs/rsd",
         "viteConfig": "libs/rsd/vite.config.ts"
-      },
-      "dependsOn": ["^build-lib"]
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-lib"],
+      "options": {
+        "command": "node libs/rsd/scripts/verify-package.mjs"
+      }
     },
     "storybook": {
       "executor": "@nx/storybook:storybook",
+      "dependsOn": ["^build"],
       "options": {
         "port": 4401,
         "configDir": "libs/rsd/.storybook"
-      },
-      "dependsOn": [
-        "^build"
-      ]
+      }
     },
     "build-storybook": {
       "executor": "@nx/storybook:build",
-      "outputs": [
-        "{options.outputDir}"
-      ],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/rsd",
         "configDir": "libs/rsd/.storybook"
@@ -51,13 +48,11 @@
     },
     "test": {
       "executor": "@nx/vitest:test",
+      "dependsOn": ["^build"],
       "options": {
         "config": "libs/rsd/vite.config.ts",
         "passWithNoTests": true
-      },
-      "dependsOn": [
-        "^build"
-      ]
+      }
     },
     "lint": {
       "executor": "@nx/eslint:lint",

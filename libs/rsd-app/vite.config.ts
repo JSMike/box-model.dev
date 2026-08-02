@@ -1,19 +1,22 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import fs from 'node:fs';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
+import babelConfig from './babel.config.js';
 
 const webOnlyExtensions = ['.web.js', '.web.jsx', '.web.ts', '.web.tsx'];
 
-const srcDir = path.resolve(__dirname, 'src');
+const srcDir = path.resolve(import.meta.dirname, 'src');
 const entryDirectories = fs
   .readdirSync(srcDir, { withFileTypes: true })
   .filter(
-    (entry) => entry.isDirectory() && fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
+    (entry) =>
+      entry.isDirectory() &&
+      fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
   )
   .map((entry) => entry.name);
 
@@ -28,7 +31,10 @@ for (const directory of entryDirectories) {
   entryPoints[directory] = path.join(srcDir, directory, 'index.ts');
 }
 
-const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
+const tokensDistPath = path.resolve(
+  import.meta.dirname,
+  '../../dist/libs/tokens'
+);
 const reactChunkMatchers = [
   '/node_modules/react',
   '/node_modules/react-dom',
@@ -44,6 +50,7 @@ const externalPackages = new Set([
   'react',
   'react-dom',
   'react/jsx-runtime',
+  'react/jsx-dev-runtime',
   'react-strict-dom',
   'react-native',
   '@react-navigation/native',
@@ -61,12 +68,13 @@ const isExternal = (id: string) => {
 };
 
 export default defineConfig(() => ({
-  root: __dirname,
+  root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/libs/rsd-app',
   css: {
-    postcss: __dirname,
+    postcss: import.meta.dirname,
   },
   resolve: {
+    tsconfigPaths: true,
     extensions: [
       ...webOnlyExtensions,
       '.mjs',
@@ -93,16 +101,18 @@ export default defineConfig(() => ({
     ],
   },
   plugins: [
-    react({
-      babel: {
-        configFile: path.join(__dirname, 'babel.config.js'),
-      },
-      exclude: [/\/node_modules\/(?!react-strict-dom)/],
+    react(),
+    babel({
+      parserOpts: babelConfig.parserOpts,
+      plugins: babelConfig.plugins,
+      exclude: [
+        /[\\/]node_modules[\\/](?!react-strict-dom[\\/])/,
+        /\0rolldown[\\/]runtime\.js/,
+      ],
     }),
-    nxViteTsPaths(),
     dts({
       entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
       pathsToAliases: false,
     }),
   ],
@@ -121,7 +131,7 @@ export default defineConfig(() => ({
       name: 'rsd-app',
       formats: ['es' as const],
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: (id) => isExternal(id),
       output: {
         manualChunks(id) {
@@ -133,7 +143,7 @@ export default defineConfig(() => ({
       },
       plugins: [
         generatePackageJson({
-          inputFolder: __dirname,
+          inputFolder: import.meta.dirname,
           baseContents: (pkg: any) => ({
             ...pkg,
             exports: Object.keys(entryPoints).reduce(

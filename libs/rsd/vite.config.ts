@@ -1,19 +1,22 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 import dts from 'vite-plugin-dts';
 import path from 'node:path';
 import fs from 'node:fs';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import generatePackageJson from 'rollup-plugin-generate-package-json';
+import babelConfig from './babel.config.js';
 
 const webOnlyExtensions = ['.web.js', '.web.jsx', '.web.ts', '.web.tsx'];
 
-const srcDir = path.resolve(__dirname, 'src');
+const srcDir = path.resolve(import.meta.dirname, 'src');
 const entryDirectories = fs
   .readdirSync(srcDir, { withFileTypes: true })
   .filter(
-    (entry) => entry.isDirectory() && fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
+    (entry) =>
+      entry.isDirectory() &&
+      fs.existsSync(path.join(srcDir, entry.name, 'index.ts'))
   )
   .map((entry) => entry.name);
 
@@ -28,7 +31,10 @@ for (const directory of entryDirectories) {
   entryPoints[directory] = path.join(srcDir, directory, 'index.ts');
 }
 
-const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
+const tokensDistPath = path.resolve(
+  import.meta.dirname,
+  '../../dist/libs/tokens'
+);
 const reactChunkMatchers = [
   '/node_modules/react',
   '/node_modules/react-dom',
@@ -41,12 +47,13 @@ const isReactModule = (id: string) => {
 };
 
 export default defineConfig(() => ({
-  root: __dirname,
+  root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/libs/rsd',
   css: {
-    postcss: __dirname,
+    postcss: import.meta.dirname,
   },
   resolve: {
+    tsconfigPaths: true,
     extensions: [
       ...webOnlyExtensions,
       '.mjs',
@@ -68,33 +75,47 @@ export default defineConfig(() => ({
       },
       {
         find: /^@box-model\/storybook-utils$/,
-        replacement: path.resolve(__dirname, '../../libs/storybook-utils/src/index.ts'),
+        replacement: path.resolve(
+          import.meta.dirname,
+          '../../libs/storybook-utils/src/index.ts'
+        ),
       },
       {
         find: /^@box-model\/web\/styles\/(.*)/,
-        replacement: path.resolve(__dirname, '../../dist/libs/web/styles/_$1.scss'),
+        replacement: path.resolve(
+          import.meta.dirname,
+          '../../dist/libs/web/styles/_$1.scss'
+        ),
       },
       {
         find: /^@box-model\/web\/(.*)/,
-        replacement: path.resolve(__dirname, '../../dist/libs/web/$1.js'),
+        replacement: path.resolve(
+          import.meta.dirname,
+          '../../dist/libs/web/$1.js'
+        ),
       },
       {
         find: /^@box-model\/web$/,
-        replacement: path.resolve(__dirname, '../../dist/libs/web/index.js'),
+        replacement: path.resolve(
+          import.meta.dirname,
+          '../../dist/libs/web/index.js'
+        ),
       },
     ],
   },
   plugins: [
-    react({
-      babel: {
-        configFile: path.join(__dirname, 'babel.config.js'),
-      },
-      exclude: [/\/node_modules\/(?!react-strict-dom)/],
+    react(),
+    babel({
+      parserOpts: babelConfig.parserOpts,
+      plugins: babelConfig.plugins,
+      exclude: [
+        /[\\/]node_modules[\\/](?!react-strict-dom[\\/])/,
+        /\0rolldown[\\/]runtime\.js/,
+      ],
     }),
-    nxViteTsPaths(),
     dts({
       entryRoot: 'src',
-      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
       pathsToAliases: false,
     }),
   ],
@@ -112,13 +133,15 @@ export default defineConfig(() => ({
       entry: entryPoints,
       name: 'rsd',
       formats: ['es' as const],
+      cssFileName: 'styles',
     },
-    rollupOptions: {
+    rolldownOptions: {
       // External packages that should not be bundled
       external: [
         'react',
         'react-dom',
         'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         'react-strict-dom',
         'react-native',
       ],
@@ -132,23 +155,47 @@ export default defineConfig(() => ({
       },
       plugins: [
         generatePackageJson({
-          inputFolder: __dirname,
+          inputFolder: import.meta.dirname,
           baseContents: (pkg: any) => ({
             ...pkg,
-            exports: Object.keys(entryPoints).reduce((acc: any, entry: string) => {
-              acc[`./${entry}`] = {
-                types: `./${entry}/index.d.ts`,
-                default: `./${entry}.js`
-              };
-              return acc;
-            }, {
-              './package.json': {
-                default: './package.json'
+            sideEffects: ['./styles.css'],
+            exports: Object.keys(entryPoints).reduce(
+              (acc: any, entry: string) => {
+                const exportEntry = {
+                  types: `./${entry}/index.d.ts`,
+                  default: `./${entry}.js`,
+                };
+                if (entry === 'index') {
+                  acc['.'] = {
+                    types: './index.d.ts',
+                    default: './index.js',
+                  };
+                  return acc;
+                }
+                if (entry === 'styles') {
+                  return acc;
+                }
+                acc[`./${entry}`] = exportEntry;
+                acc[`./${entry}.js`] = exportEntry;
+                return acc;
               },
-            }),
-          })
-        })
-      ]
+              {
+                './styles': {
+                  types: './styles/index.d.ts',
+                  default: './styles.css',
+                },
+                './styles.css': {
+                  types: './styles/index.d.ts',
+                  default: './styles.css',
+                },
+                './package.json': {
+                  default: './package.json',
+                },
+              }
+            ),
+          }),
+        }),
+      ],
     },
   },
   test: {
@@ -164,9 +211,16 @@ export default defineConfig(() => ({
       provider: 'v8' as const,
     },
     alias: {
+      'react-native': 'react-native-web',
       // Use mock for react-strict-dom in tests (avoids babel compilation requirement)
-      'react-strict-dom/runtime': path.join(__dirname, '__mocks__/react-strict-dom-runtime.ts'),
-      'react-strict-dom': path.join(__dirname, '__mocks__/react-strict-dom.ts'),
+      'react-strict-dom/runtime': path.join(
+        import.meta.dirname,
+        '__mocks__/react-strict-dom-runtime.ts'
+      ),
+      'react-strict-dom': path.join(
+        import.meta.dirname,
+        '__mocks__/react-strict-dom.ts'
+      ),
     },
   },
 }));

@@ -1,6 +1,6 @@
 const { withNxMetro } = require('@nx/expo');
-const { getDefaultConfig } = require('@expo/metro-config');
-const { mergeConfig } = require('metro-config');
+const { getDefaultConfig } = require('expo/metro-config');
+const { mergeConfig } = require('@expo/metro/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 const { assetExts, sourceExts } = defaultConfig.resolver;

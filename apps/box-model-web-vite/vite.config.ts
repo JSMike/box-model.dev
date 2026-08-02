@@ -1,15 +1,17 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import * as path from 'path';
 
-const tokensDistPath = path.resolve(__dirname, '../../dist/libs/tokens');
-const workspaceRootPath = path.resolve(__dirname, '../..');
+const tokensDistPath = path.resolve(
+  import.meta.dirname,
+  '../../dist/libs/tokens'
+);
+const workspaceRootPath = path.resolve(import.meta.dirname, '../..');
 
 export default defineConfig(() => ({
-  root: __dirname,
+  root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/box-model-web-vite',
   server: {
     port: 4200,
@@ -19,6 +21,7 @@ export default defineConfig(() => ({
     },
   },
   resolve: {
+    tsconfigPaths: true,
     alias: [
       {
         find: /^@box-model\/tokens\/tokens$/,
@@ -30,7 +33,7 @@ export default defineConfig(() => ({
       },
       {
         find: /^@box-model\/web\/(.+)$/,
-        replacement: path.join(__dirname, '../../libs/web/src/$1'),
+        replacement: path.join(import.meta.dirname, '../../libs/web/src/$1'),
       },
     ],
   },
@@ -44,8 +47,7 @@ export default defineConfig(() => ({
         }
       },
     }),
-    nxViteTsPaths(),
-    nxCopyAssetsPlugin(['*.md']),
+    viteStaticCopy({ targets: [{ src: '*.md', dest: '.' }] }),
   ],
   build: {
     outDir: '../../dist/apps/box-model-web-vite',
